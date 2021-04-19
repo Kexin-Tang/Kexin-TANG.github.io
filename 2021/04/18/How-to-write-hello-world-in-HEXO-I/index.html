@@ -94,7 +94,7 @@
                         
                         <li class="menu-item">
                             <a class=""
-                                href="/CV">
+                                href="/CV/CV.pdf">
                                 CV
                                     <!-- CV -->
                             </a>
@@ -159,7 +159,7 @@
                 
                 <li class="drawer-menu-item flex-center">
                     <a class=""
-                        href="/CV">
+                        href="/CV/CV.pdf">
                         CV
                     </a>
                 </li>
@@ -260,7 +260,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>330 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>366 Words</span>
         </span>
     
     
@@ -314,7 +314,11 @@
 <p>Cleans the cache file (<code>db.json</code>) and generated files (<code>public</code>).</p>
 <h3 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
 
-<p>Deploy your files to remote server.</p>
+<p>Deploy your files to remote server. You can set your deploy destination:</p>
+<ol>
+<li>open <code>_config.yml</code></li>
+<li>configure <code>depoly</code> area, for example, if you want to deploy your website in GitHub<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">    <span class="attr">repository:</span> <span class="string">https://github.com/xxx/xxx.github.io.git</span></span><br><span class="line">    <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></li>
+</ol>
 
                     </div>
 
