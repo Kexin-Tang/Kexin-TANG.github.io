@@ -232,7 +232,7 @@ KEEP.initUtils = () => {
           });
         });
       } else {
-        this.pageContainer_dom.removeChild(imageViewerDom);
+        // this.pageContainer_dom.removeChild(imageViewerDom);
       }
     },
 
