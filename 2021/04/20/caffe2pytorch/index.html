@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Kexin">
+    
+    <title>
+        
+            caffe2pytorch |
+        
+        Kexin Tang
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/tumblr-brands.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"kexin-tang.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#ef476f","avatar":"/images/tumblr-brands.svg","favicon":"/images/tumblr-brands.svg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/sea.jpg","description":"<tag> Too many people, too little soul... </tag>"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div
+        class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                Kexin Tang
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                                href="/">
+                                HOME
+                                    <!-- Home -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/archives">
+                                ARCHIVE
+                                    <!-- Archive -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/categories">
+                                CATEGORY
+                                    <!-- Category -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/tags">
+                                TAG
+                                    <!-- Tag -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/CV/CV.pdf">
+                                CV
+                                    <!-- CV -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/about">
+                                ABOUT
+                                    <!-- About -->
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/">
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/archives">
+                        ARCHIVE
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/categories">
+                        CATEGORY
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/tags">
+                        TAG
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/CV/CV.pdf">
+                        CV
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/about">
+                        ABOUT
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">
+                caffe2pytorch
+            </span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/tumblr-brands.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">
+                            Kexin
+                        </span>
+                        <!-- 
+                            <span class="author-label">Lv1</span>
+                         -->
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-04-20 16:21:54
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Deep-Learning/">Deep Learning</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Deep-Learning/Framework/">Framework</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Deep-Learning/Framework/PyTorch/">PyTorch</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Deep-Learning/">Deep Learning</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/PyTorch/">PyTorch</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>657 Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+            
+
+                    <div class="article-content markdown-body">
+                        <h1 id="Caffe2PyTorch"><a href="#Caffe2PyTorch" class="headerlink" title="Caffe2PyTorch"></a>Caffe2PyTorch</h1><p>This cookbook is a guide about how to transfer Caffe layers to PyTorch functions and networks.</p>
+<h2 id="Guidance"><a href="#Guidance" class="headerlink" title="Guidance"></a>Guidance</h2><ul>
+<li><a href="#nnconv2d">Conv</a></li>
+<li><a href="#nnbatchnorm2d">BN</a></li>
+<li><a href="#nnrelu">ReLU</a></li>
+<li><a href="#torchreshape">Reshape</a></li>
+<li><a href="#torchtranspose">Transpose</a></li>
+<li><a href="#torchbmm">Matrix Mul</a></li>
+<li><a href="#fsoftmax">Softmax</a></li>
+<li><a href="#crop">Crop</a></li>
+<li><a href="#eltwise">Eltwise</a></li>
+<li><a href="#nnconvtranspose2d">DeconV</a></li>
+<li><a href="#concat">Concat</a></li>
+</ul>
+<hr>
+<h6 id="nn-Conv2d"><a href="#nn-Conv2d" class="headerlink" title="nn.Conv2d"></a>nn.Conv2d</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nn.Conv2d(in_channels, out_channels, kernel_size, padding, stride, bias)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">layer &#123;</span><br><span class="line">  name: </span><br><span class="line">  type: &quot;Convolution&quot;</span><br><span class="line">  bottom: </span><br><span class="line">  top: </span><br><span class="line">  convolution_param &#123;</span><br><span class="line">    num_output: 64</span><br><span class="line">    bias_term: true</span><br><span class="line">    pad: 3</span><br><span class="line">    kernel_size: 7</span><br><span class="line">    stride: 2</span><br><span class="line">    weight_filler &#123;</span><br><span class="line">      type: &quot;msra&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="nn-BatchNorm2d"><a href="#nn-BatchNorm2d" class="headerlink" title="nn.BatchNorm2d"></a>nn.BatchNorm2d</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nn.BatchNorm2d(out_channels)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">layer &#123;</span><br><span class="line">  name: </span><br><span class="line">  type: &quot;BatchNorm&quot;</span><br><span class="line">  bottom: </span><br><span class="line">  top: </span><br><span class="line">  batch_norm_param &#123;</span><br><span class="line">    use_global_stats: false</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">layer &#123;</span><br><span class="line">  name: </span><br><span class="line">  type: &quot;Scale&quot;</span><br><span class="line">  bottom: </span><br><span class="line">  top: </span><br><span class="line">  scale_param &#123;</span><br><span class="line">    bias_term: true</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="nn-ReLU"><a href="#nn-ReLU" class="headerlink" title="nn.ReLU"></a>nn.ReLU</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nn.ReLU(inplace=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">layer &#123;</span><br><span class="line">  name: </span><br><span class="line">  type: &quot;ReLU&quot;</span><br><span class="line">  bottom: </span><br><span class="line">  top: </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="torch-reshape"><a href="#torch-reshape" class="headerlink" title="torch.reshape"></a>torch.reshape</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.reshape(x, (n, c, -<span class="number">1</span>)) <span class="comment"># caffe中dim=0表示维度不变</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">layer &#123;</span><br><span class="line">  name: </span><br><span class="line">  type: &quot;Reshape&quot;</span><br><span class="line">  bottom: </span><br><span class="line">  top: </span><br><span class="line">  reshape_param &#123;</span><br><span class="line">    shape &#123;</span><br><span class="line">      dim: 0</span><br><span class="line">      dim: 0</span><br><span class="line">      dim: -1</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="torch-transpose"><a href="#torch-transpose" class="headerlink" title="torch.transpose"></a>torch.transpose</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.transpose(x, dim_0, dim_1)    <span class="comment"># torch的transpose只能一次交换两个维度，多个维度需要多次交换</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">layer &#123;</span><br><span class="line">  name: </span><br><span class="line">  type: &quot;TensorTranspose&quot;</span><br><span class="line">  bottom: </span><br><span class="line">  top: </span><br><span class="line">  tensor_transpose_param &#123;</span><br><span class="line">    order: 0</span><br><span class="line">    order: 2</span><br><span class="line">    order: 1</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="torch-bmm"><a href="#torch-bmm" class="headerlink" title="torch.bmm"></a>torch.bmm</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">torch.bmm(x, y) <span class="comment"># bmm针对batch做矩阵乘法，即(n, c, w, h)，如果是(c, w, h)则可以使用bm</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">layer &#123;</span><br><span class="line">  name: </span><br><span class="line">  type: &quot;MatrixMultiplication&quot;</span><br><span class="line">  bottom: </span><br><span class="line">  bottom: </span><br><span class="line">  top: </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="F-softmax"><a href="#F-softmax" class="headerlink" title="F.softmax"></a>F.softmax</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">F.softmax(x, dim)   <span class="comment"># dim即为下面的axis</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">layer &#123;</span><br><span class="line">  name: </span><br><span class="line">  type: &quot;Softmax&quot;</span><br><span class="line">  bottom: </span><br><span class="line">  top: </span><br><span class="line">  softmax_param &#123;</span><br><span class="line">    axis: 2</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="Crop"><a href="#Crop" class="headerlink" title="Crop"></a>Crop</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Crop</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">        @ axis      -&gt;      从axis开始裁减后面的维度</span></span><br><span class="line"><span class="string">        @ offset    -&gt;      裁减的时候要偏离多少距离</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        ! 注意：在Caffe中，是以B的大小来裁减A，即 B.shape &lt;= A.shape</span></span><br><span class="line"><span class="string">    &#x27;&#x27;&#x27;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, axis, offset=<span class="number">0</span></span>):</span></span><br><span class="line">        <span class="built_in">super</span>(Crop, self).__init__()</span><br><span class="line">        self.axis = axis</span><br><span class="line">        self.offset = offset</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, x, ref</span>):</span></span><br><span class="line">        <span class="keyword">for</span> axis <span class="keyword">in</span> <span class="built_in">range</span>(self.axis, x.dim()):</span><br><span class="line">            ref_size = ref.size(axis)</span><br><span class="line">            indices = torch.arange(self.offset, self.offset + ref_size).long()</span><br><span class="line">            indices = x.data.new().resize_(indices.size()).copy_(indices)</span><br><span class="line">            x = x.index_select(axis, indices.to(torch.int64))</span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">layer &#123;</span><br><span class="line">  name: </span><br><span class="line">  type: &quot;Crop&quot;</span><br><span class="line">  bottom: A</span><br><span class="line">  bottom: B</span><br><span class="line">  top: </span><br><span class="line">  crop_param &#123;</span><br><span class="line">    axis: 2</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="Eltwise"><a href="#Eltwise" class="headerlink" title="Eltwise"></a>Eltwise</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Eltwise</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, operation=<span class="string">&#x27;+&#x27;</span></span>):</span></span><br><span class="line">        <span class="built_in">super</span>(Eltwise, self).__init__()</span><br><span class="line">        self.operation = operation</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, *inputs</span>):</span></span><br><span class="line">        <span class="keyword">if</span> self.operation == <span class="string">&#x27;+&#x27;</span> <span class="keyword">or</span> self.operation == <span class="string">&#x27;SUM&#x27;</span>:</span><br><span class="line">            x = inputs[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(inputs)):</span><br><span class="line">                x = x + inputs[i]</span><br><span class="line">        <span class="keyword">elif</span> self.operation == <span class="string">&#x27;*&#x27;</span> <span class="keyword">or</span> self.operation == <span class="string">&#x27;MUL&#x27;</span>:</span><br><span class="line">            x = inputs[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(inputs)):</span><br><span class="line">                x = x * inputs[i]</span><br><span class="line">        <span class="keyword">elif</span> self.operation == <span class="string">&#x27;/&#x27;</span> <span class="keyword">or</span> self.operation == <span class="string">&#x27;DIV&#x27;</span>:</span><br><span class="line">            x = inputs[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(inputs)):</span><br><span class="line">                x = x / inputs[i]</span><br><span class="line">        <span class="keyword">elif</span> self.operation == <span class="string">&#x27;MAX&#x27;</span>:</span><br><span class="line">            x = inputs[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(inputs)):</span><br><span class="line">                x =torch.<span class="built_in">max</span>(x, inputs[i])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;forward Eltwise, unknown operator&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">layer &#123;</span><br><span class="line">  name: </span><br><span class="line">  type: &quot;Eltwise&quot;</span><br><span class="line">  bottom: </span><br><span class="line">  bottom: </span><br><span class="line">  top: </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">layer &#123;</span><br><span class="line">  name: </span><br><span class="line">  type: &quot;Eltwise&quot;</span><br><span class="line">  bottom: </span><br><span class="line">  bottom: </span><br><span class="line">  top: </span><br><span class="line">  eltwise_param &#123;</span><br><span class="line">    operation: PROD</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="nn-ConvTranspose2d"><a href="#nn-ConvTranspose2d" class="headerlink" title="nn.ConvTranspose2d"></a>nn.ConvTranspose2d</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nn.ConvTranspose2d(in_channels, out_channels, kernel_size, stride, padding, output_padding, groups, bias)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">layer &#123;</span><br><span class="line">  name: </span><br><span class="line">  type: &quot;Deconvolution&quot;</span><br><span class="line">  bottom: </span><br><span class="line">  top: </span><br><span class="line">  param &#123;</span><br><span class="line">    lr_mult: 0.0</span><br><span class="line">  &#125;</span><br><span class="line">  convolution_param &#123;</span><br><span class="line">    num_output: 128</span><br><span class="line">    bias_term: false</span><br><span class="line">    pad: 0</span><br><span class="line">    kernel_size: 4</span><br><span class="line">    group: 128</span><br><span class="line">    stride: 2</span><br><span class="line">    weight_filler &#123;</span><br><span class="line">      type: &quot;bilinear&quot;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h6 id="Concat"><a href="#Concat" class="headerlink" title="Concat"></a>Concat</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Concat</span>(<span class="params">nn.Module</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, axis</span>):</span></span><br><span class="line">        <span class="built_in">super</span>(Concat, self).__init__()</span><br><span class="line">        self.axis = axis</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">self, *inputs</span>):</span></span><br><span class="line">        <span class="keyword">return</span> torch.cat(inputs, self.axis)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">layer &#123;</span><br><span class="line">  name: </span><br><span class="line">  type: &quot;Concat&quot;</span><br><span class="line">  bottom: </span><br><span class="line">  bottom: </span><br><span class="line">  bottom: </span><br><span class="line">  top: </span><br><span class="line">  propagate_down: true</span><br><span class="line">  propagate_down: true</span><br><span class="line">  propagate_down: false</span><br><span class="line">  concat_param &#123;</span><br><span class="line">    concat_dim: 1</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+                    </div>
+
+                    
+
+                            
+                                <div class="article-nav">
+                                    
+                                            
+                                                <div class="article-next">
+                                                    <a class="next" rel="next" href="/2021/04/19/%E7%BC%96%E8%AF%91%E5%9E%8B%E8%AF%AD%E8%A8%80%E5%92%8C%E8%A7%A3%E9%87%8A%E5%9E%8B%E8%AF%AD%E8%A8%80/">
+                                                        <span class="title flex-center">
+                                                            <span class="post-nav-title-item">
+                                                                编译型语言和解释型语言
+                                                            </span>
+                                                            <span class="post-nav-item">
+                                                                Next posts
+                                                            </span>
+                                                        </span>
+                                                        <span class="right arrow-icon flex-center">
+                                                            <i class="fas fa-chevron-right"></i>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                
+                                </div>
+                                
+
+                                    
+    </div>
+</div>
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Kexin</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Caffe2PyTorch"><span class="nav-text">Caffe2PyTorch</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Guidance"><span class="nav-text">Guidance</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#nn-Conv2d"><span class="nav-text">nn.Conv2d</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#nn-BatchNorm2d"><span class="nav-text">nn.BatchNorm2d</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#nn-ReLU"><span class="nav-text">nn.ReLU</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#torch-reshape"><span class="nav-text">torch.reshape</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#torch-transpose"><span class="nav-text">torch.transpose</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#torch-bmm"><span class="nav-text">torch.bmm</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#F-softmax"><span class="nav-text">F.softmax</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Crop"><span class="nav-text">Crop</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Eltwise"><span class="nav-text">Eltwise</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#nn-ConvTranspose2d"><span class="nav-text">nn.ConvTranspose2d</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Concat"><span class="nav-text">Concat</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
