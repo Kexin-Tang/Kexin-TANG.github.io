@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Kexin">
+    
+    <title>
+        
+            Celery和AJAX配合实现异步刷新 |
+        
+        Kexin Tang
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/tumblr-brands.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"kexin-tang.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#ef476f","avatar":"/images/tumblr-brands.svg","favicon":"/images/tumblr-brands.svg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/sea.jpg","description":"<tag> Too many people, too little soul... </tag>"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div
+        class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                Kexin Tang
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                                href="/">
+                                HOME
+                                    <!-- Home -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/archives">
+                                ARCHIVE
+                                    <!-- Archive -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/categories">
+                                CATEGORY
+                                    <!-- Category -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/tags">
+                                TAG
+                                    <!-- Tag -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/CV/CV.pdf">
+                                CV
+                                    <!-- CV -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/about">
+                                ABOUT
+                                    <!-- About -->
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/">
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/archives">
+                        ARCHIVE
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/categories">
+                        CATEGORY
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/tags">
+                        TAG
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/CV/CV.pdf">
+                        CV
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/about">
+                        ABOUT
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">
+                Celery和AJAX配合实现异步刷新
+            </span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/tumblr-brands.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">
+                            Kexin
+                        </span>
+                        <!-- 
+                            <span class="author-label">Lv1</span>
+                         -->
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-04-23 16:08:26
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Python/">Python</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Web/">Web</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Python/Django/">Django</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Web/Python/">Python</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/python/">python</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/django/">django</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/redis/">redis</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>755 Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+            
+
+                    <div class="article-content markdown-body">
+                        <h1 id="需求介绍"><a href="#需求介绍" class="headerlink" title="需求介绍"></a>需求介绍</h1><p>由于 <em>Celery</em> 是异步队列，有时候用户的页面已经显示出来，但是后台仍在执行任务，我们想实现这样一个功能：当后台执行任务完成后，前端页面相应进行改变。</p>
+<p>这样的场景和需求非常常见，比如上传视频这个过程非常耗时，我们希望用户点击上传视频后，页面马上显示一个区域，表示某视频正在上传（比如视频的图片、标题、简介等马上显示出来），但是此时还不能点击观看（disable链接），只有当后台上传完毕后，才能在前端开放（enable链接）。</p>
+<p>在之前的<a href="./Celery消息队列.md">Celery消息队列</a>中已经介绍过 <em>Celery</em>，此处先简介 <em>Ajax</em>。</p>
+<h1 id="AJAX"><a href="#AJAX" class="headerlink" title="AJAX"></a><em>AJAX</em></h1><p>Asynchronous JavaScript and XML。可以实现每次只使用HTTP请求一小部分资源并加载页面的某一些部分，而不用请求整个页面的所有资源并刷新整个页面所有内容。比较常见的 <em>AJAX</em> 使用场景就是在网页中“下拉显示更多”这样的操作。</p>
+<p>一般而言使用 <em>AJAX</em> 都需要搭配使用 <em>jQuery</em>，其常见的语法如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            $(<span class="string">&quot;.btn&quot;</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;        <span class="comment">// 点击btn时会调用下面的函数</span></span><br><span class="line">                <span class="keyword">let</span> id = $(<span class="string">&#x27;#id&#x27;</span>).val();        <span class="comment">// 获取id的值</span></span><br><span class="line">                $.ajax(&#123;</span><br><span class="line">                    url: <span class="string">&quot;&quot;</span>,                    <span class="comment">// 要发送请求的url，可以使用mako等模板</span></span><br><span class="line">                    type: <span class="string">&quot;GET&quot;</span>,                <span class="comment">// 请求的方式</span></span><br><span class="line">                    data: &#123;<span class="string">&#x27;id&#x27;</span>: id&#125;,           <span class="comment">// 一并发送的数据    </span></span><br><span class="line">                    success: <span class="function"><span class="keyword">function</span>(<span class="params">results</span>)</span>&#123; <span class="comment">// 如果成功请求</span></span><br><span class="line">                        ...</span><br><span class="line">                    &#125;,</span><br><span class="line">                    error: <span class="function"><span class="keyword">function</span>(<span class="params">error</span>) </span>&#123;    <span class="comment">// 如果发生错误</span></span><br><span class="line">                        ...</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><ol>
+<li><p>首先将操作放入 <em>celery</em> 异步队列中，得到一个 <em>&lt;celery.result.AsyncResult&gt;</em> 返回，最重要的是访问其中 <em>id</em> 属性，可以通过 <em>id</em> 访问最终队列的执行结果；</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    function.py</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Func</span>(<span class="params">View</span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get</span>(<span class="params">req</span>):</span></span><br><span class="line">        ...</span><br><span class="line">        task = celeryFunction.delay() <span class="comment"># 得到一个&lt;celery.result.AsyncResult&gt;</span></span><br><span class="line">        ...</span><br><span class="line">        <span class="keyword">return</span> render_to_redirect(req, self.TEMPLATE, data = &#123;<span class="string">&#x27;task_id&#x27;</span>: task_id&#125;)  <span class="comment"># 一定要将 task_id 保存住</span></span><br></pre></td></tr></table></figure></li>
+<li><p>然后编写HTML页面用于直接显示内容，可以包含已处理的和待处理的，里面加上 <em>ajax</em>，而 <em>ajax</em> 中的 <em>url</em> 指向某个路由，用于访问执行结果并进行返回；</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$(document).ready(function()&#123;</span><br><span class="line">            $(&quot;.refresh&quot;).click(function() &#123;</span><br><span class="line">                let task_id = $(&#x27;#task_id&#x27;).val();</span><br><span class="line">                $.ajax(&#123;</span><br><span class="line">                    url: &quot;$&#123;reverse(&#x27;check&#x27;)&#125;&quot;,</span><br><span class="line">                    type: &quot;GET&quot;,</span><br><span class="line">                    data: &#123;&#x27;task_id&#x27;: task_id&#125;,</span><br><span class="line">                    success: function(results)&#123;</span><br><span class="line">                        // 根据最终返回的JSON内容改变本页面的内容</span><br><span class="line">                    &#125;,</span><br><span class="line">                &#125;);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure></li>
+<li><p>在 <code>urls.py</code> 中将上面 <em>ajax</em> 需要跳转的页面进行注册</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">urlpatterns &#x3D; [</span><br><span class="line">    ...</span><br><span class="line">    path(&#39;check&#39;, views.check, name&#x3D;&quot;check&quot;),</span><br><span class="line">    ...</span><br><span class="line">]</span><br></pre></td></tr></table></figure></li>
+<li><p>编写上述新加入的页面函数逻辑，并返回 <code>JsonResponse</code> 进入 <em>ajax</em> 的处理函数中（如 <code>success</code> 中，从而可以改变原有页面内容）</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">    views.py</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> JsonResponse</span><br><span class="line"><span class="keyword">from</span> celery.result <span class="keyword">import</span> AsyncResult</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">check</span>(<span class="params">request</span>):</span></span><br><span class="line">    task_id = request.GET.get(<span class="string">&#x27;task_id&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> task_id:</span><br><span class="line">        task_res = AsyncResult(task_id)</span><br><span class="line">        <span class="keyword">return</span> JsonResponse(&#123;<span class="string">&#x27;finish&#x27;</span>: task_res.ready()&#125;)</span><br><span class="line">    <span class="keyword">return</span> JsonResponse(&#123;<span class="string">&#x27;finish&#x27;</span>: <span class="literal">False</span>&#125;)</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+                    </div>
+
+                    
+
+                            
+                                <div class="article-nav">
+                                    
+                                            
+                                                <div class="article-next">
+                                                    <a class="next" rel="next" href="/2021/04/22/Celery%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">
+                                                        <span class="title flex-center">
+                                                            <span class="post-nav-title-item">
+                                                                Celery消息队列
+                                                            </span>
+                                                            <span class="post-nav-item">
+                                                                Next posts
+                                                            </span>
+                                                        </span>
+                                                        <span class="right arrow-icon flex-center">
+                                                            <i class="fas fa-chevron-right"></i>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                
+                                </div>
+                                
+
+                                    
+    </div>
+</div>
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Kexin</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9C%80%E6%B1%82%E4%BB%8B%E7%BB%8D"><span class="nav-text">需求介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AJAX"><span class="nav-text">AJAX</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-text">代码</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
