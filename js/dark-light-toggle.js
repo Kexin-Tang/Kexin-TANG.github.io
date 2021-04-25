@@ -11,14 +11,16 @@ KEEP.initModeToggle = () => {
       document.body.classList.remove('dark-mode');
       document.body.classList.add('light-mode');
 
-      document.getElementById('about-intro').classList.remove('dark-mode');
-      document.getElementById('about-intro').classList.add('light-mode');
+      if (document.getElementById('about-intro')) {
+        document.getElementById('about-intro').classList.remove('dark-mode');
+        document.getElementById('about-intro').classList.add('light-mode');
 
-      document.getElementById('about-skills').classList.remove('dark-mode');
-      document.getElementById('about-skills').classList.add('light-mode');
+        document.getElementById('about-skills').classList.remove('dark-mode');
+        document.getElementById('about-skills').classList.add('light-mode');
 
-      document.getElementById('about-education').classList.remove('dark-mode');
-      document.getElementById('about-education').classList.add('light-mode');
+        document.getElementById('about-education').classList.remove('dark-mode');
+        document.getElementById('about-education').classList.add('light-mode');
+      }
 
       this.iconDom.className = 'fas fa-moon';
       KEEP.styleStatus.isDark = false;
@@ -29,14 +31,16 @@ KEEP.initModeToggle = () => {
       document.body.classList.add('dark-mode');
       document.body.classList.remove('light-mode');
 
-      document.getElementById('about-intro').classList.remove('light-mode');
-      document.getElementById('about-intro').classList.add('dark-mode');
+      if (document.getElementById('about-intro')) {
+        document.getElementById('about-intro').classList.remove('light-mode');
+        document.getElementById('about-intro').classList.add('dark-mode');
 
-      document.getElementById('about-skills').classList.remove('light-mode');
-      document.getElementById('about-skills').classList.add('dark-mode');
+        document.getElementById('about-skills').classList.remove('light-mode');
+        document.getElementById('about-skills').classList.add('dark-mode');
 
-      document.getElementById('about-education').classList.remove('light-mode');
-      document.getElementById('about-education').classList.add('dark-mode');
+        document.getElementById('about-education').classList.remove('light-mode');
+        document.getElementById('about-education').classList.add('dark-mode');
+      }
 
       this.iconDom.className = 'fas fa-sun';
       KEEP.styleStatus.isDark = true;
