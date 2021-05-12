@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Kexin">
+    
+    <title>
+        
+            Python4Redis |
+        
+        Kexin Tang
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/tumblr-brands.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"kexin-tang.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#ef476f","avatar":"/images/tumblr-brands.svg","favicon":"/images/tumblr-brands.svg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/sea.jpg","description":"<tag> Too many people, too little soul... </tag>"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div
+        class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                Kexin Tang
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                                href="/">
+                                HOME
+                                    <!-- Home -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/archives">
+                                ARCHIVE
+                                    <!-- Archive -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/categories">
+                                CATEGORY
+                                    <!-- Category -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/tags">
+                                TAG
+                                    <!-- Tag -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/CV/CV.pdf">
+                                CV
+                                    <!-- CV -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/about">
+                                ABOUT
+                                    <!-- About -->
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/">
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/archives">
+                        ARCHIVE
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/categories">
+                        CATEGORY
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/tags">
+                        TAG
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/CV/CV.pdf">
+                        CV
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/about">
+                        ABOUT
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">
+                Python4Redis
+            </span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/tumblr-brands.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">
+                            Kexin
+                        </span>
+                        <!-- 
+                            <span class="author-label">Lv2</span>
+                         -->
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-05-12 21:12:04
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Redis/">Redis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/redis/">redis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.7k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>7 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+            
+
+                    <div class="article-content markdown-body">
+                        <p>本文主要介绍基于Python来连接、操作Redis数据库。在Python中，使用redispy库来进行连接。关于redispy详细的文档可以参考<a class="link"   target="_blank" rel="noopener" href="https://github.com/andymccurdy/redis-py" >GitHub<i class="fas fa-external-link-alt"></i></a>。</p>
+<h1 id="连接Redis"><a href="#连接Redis" class="headerlink" title="连接Redis"></a>连接Redis</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> redis</span><br><span class="line"><span class="comment"># 简历连接实例，参数为&quot;主机&quot;，&quot;端口&quot;，&quot;数据库id&quot;</span></span><br><span class="line">r = redis.Redis(host=<span class="string">&#x27;localhost&#x27;</span>, port=<span class="number">6379</span>, db=<span class="number">0</span>, decode_responses=<span class="literal">True</span>)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>在Python3中返回的是bytes类型，想要直接获取str类型，需要设置decode_responses=True</p>
+</blockquote>
+<p>注意，在redispy中是没有设置<code>SELECT</code>操作更换数据库id，所以请为每个数据库都创建独立的连接实例。</p>
+<p>在默认情况下，redispy会自动给每个连接实例创建对应的连接池，但是用户也可以手动将连接池实例放入已存在的连接池中。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">pool = redis.ConnectionPool(host=<span class="string">&#x27;localhost&#x27;</span>, port=<span class="number">6379</span>, db=<span class="number">0</span>)</span><br><span class="line">r = redis.Redis(connection_pool=pool)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="Pipleline"><a href="#Pipleline" class="headerlink" title="Pipleline"></a>Pipleline</h1><p>在Redis中为了节省RTT，会使用pipeline将多个指令一并发送。在python中的操作如下：</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">pipe = r.pipeline()</span><br><span class="line">pipe.operation0()</span><br><span class="line">pipe.operation1()</span><br><span class="line">...</span><br><span class="line">pipe.operationN()</span><br><span class="line">pipe.execute()</span><br></pre></td></tr></table></figure>
+
+<p>由于pipeline是放入缓冲区顺序执行的，也可以在代码中串联起来</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pipe.operation0().operation1(). ... .operationN().execute()</span><br></pre></td></tr></table></figure>
+
+<p>在redispy中，上述pipeline过程会自动被转换成“事务”，以保证原子性。如果不希望自动被转换成“事务”，则需要设置<code>pipe = r.pipeline(transaction=False)</code>。</p>
+<hr>
+<h1 id="Transaction"><a href="#Transaction" class="headerlink" title="Transaction"></a>Transaction</h1><p>在redispy中，可以使用pipeline实现transaction</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">pipe = r.pipeline()</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        pipe.watch(<span class="string">&#x27;&lt;key&gt;&#x27;</span>) <span class="comment"># 加锁</span></span><br><span class="line">        pipe.multi()        <span class="comment"># 组队</span></span><br><span class="line">            ...</span><br><span class="line">        pipe.execute()      <span class="comment"># 执行</span></span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">except</span> WatchError:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">finally</span>:</span><br><span class="line">        pipe.reset()        <span class="comment"># 归还到连接池，默认情况下会自动调用</span></span><br></pre></td></tr></table></figure>
+
+<p>存在一种更便捷的方法，用于处理try-catch和加锁等操作。它需要一个回调函数，一个管道对象和任意数量的键都将被监视</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">transactionFunc</span>(<span class="params">pipe</span>):</span></span><br><span class="line">    pipe.multi()</span><br><span class="line">    ...</span><br><span class="line">    pipe.execute()</span><br><span class="line"><span class="comment"># 传入回调函数和需要被加锁监视的key</span></span><br><span class="line">r.trascation(transactionFunc, &lt;watched_key&gt;)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>对于基本的Redis操作都有支持。</p>
+<ul>
+<li>对于最普通的，传入参数都是<code>func(key: str, val: str/list/tuple)</code></li>
+<li>对于多个设置，如<code>mset</code>等，传入的都是键值对的<code>mapping</code></li>
+<li>对于设置时间相关的，如<code>setex</code>等，<code>func(key: str, time: int, value: str)</code></li>
+<li>对于有范围的，如<code>lrange</code>等，传入的都是<code>func(key: str, start: int, end: int)</code></li>
+<li>对于有个数的，如<code>lrem</code>等，传入的参数<code>func(key: str, num: int, value: str)</code></li>
+<li>对于有间隔的，如<code>incrby</code>等，传入的参数<code>func(key: str, step: int)</code></li>
+</ul>
+<blockquote>
+<p>注意，对于list/tuple等，传入时参数要为<code>*args</code>；对于dict，传入时参数要为<code>**kwargs</code></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">values = [<span class="string">&#x27;bob&#x27;</span>, <span class="string">&#x27;jack&#x27;</span>]</span><br><span class="line">r.lpush(<span class="string">&#x27;user&#x27;</span>, *values)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<h1 id="PubSub"><a href="#PubSub" class="headerlink" title="PubSub"></a>PubSub</h1><h2 id="订阅"><a href="#订阅" class="headerlink" title="订阅"></a>订阅</h2><p>订阅非常简单，只需要输入以下的指令创建pubsub实例，然后订阅指定的频道即可，其中<code>psubscribe</code>可以匹配正则表达式。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">r = redis.Redis(...)</span><br><span class="line">p = r.pubsub()</span><br><span class="line">p.subscribe(<span class="string">&#x27;channel0&#x27;</span>, <span class="string">&#x27;channel1&#x27;</span>, ...)</span><br><span class="line">p.psubscribe(<span class="string">&#x27;channel*&#x27;</span>)    <span class="comment"># 订阅任何channel开头的频道</span></span><br></pre></td></tr></table></figure>
+
+<p>通过<code>get_message</code>可以获得实例对应的信息。其中消息体的具体含义：</p>
+<ul>
+<li><em>type</em> – <em>subscribe</em>, <em>unsubscribe</em>, <em>psubscribe</em>, <em>punsubscribe</em>, <em>message</em>, <em>pmessage</em>中的某一个</li>
+<li><em>channel</em> – 订阅的频道或者是有新消息的频道</li>
+<li><em>pattern</em> – 与已发布消息的频道匹配的模式。 除<code>pmessage</code>类型外，在所有情况下均为<code>None</code></li>
+<li><em>data</em> – 消息信息。如果是有消息，则为消息内容，否则为频道id</li>
+</ul>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>p.get_message()</span><br><span class="line">&#123;<span class="string">&#x27;pattern&#x27;</span>: <span class="literal">None</span>, <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;subscribe&#x27;</span>, <span class="string">&#x27;channel&#x27;</span>: <span class="string">b&#x27;channel1&#x27;</span>, <span class="string">&#x27;data&#x27;</span>: <span class="number">1</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>p.get_message()</span><br><span class="line">&#123;<span class="string">&#x27;pattern&#x27;</span>: <span class="literal">None</span>, <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;subscribe&#x27;</span>, <span class="string">&#x27;channel&#x27;</span>: <span class="string">b&#x27;channel0&#x27;</span>, <span class="string">&#x27;data&#x27;</span>: <span class="number">2</span>&#125;</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>p.get_message()</span><br><span class="line">&#123;<span class="string">&#x27;pattern&#x27;</span>: <span class="literal">None</span>, <span class="string">&#x27;type&#x27;</span>: <span class="string">&#x27;psubscribe&#x27;</span>, <span class="string">&#x27;channel&#x27;</span>: <span class="string">b&#x27;channel*&#x27;</span>, <span class="string">&#x27;data&#x27;</span>: <span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="发布"><a href="#发布" class="headerlink" title="发布"></a>发布</h2><p>使用<code>p.publish</code>进行消息发布，可以指定发布的位置和消息内容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># the publish method returns the number matching channel and pattern</span><br><span class="line"># subscriptions. &#39;my-first-channel&#39; matches both the &#39;my-first-channel&#39;</span><br><span class="line"># subscription and the &#39;my-*&#39; pattern subscription, so this message will</span><br><span class="line"># be delivered to 2 channels&#x2F;patterns</span><br><span class="line">&gt;&gt;&gt; r.publish(&#39;my-first-channel&#39;, &#39;some data&#39;)</span><br><span class="line">2</span><br><span class="line">&gt;&gt;&gt; p.get_message()</span><br><span class="line">&#123;&#39;channel&#39;: b&#39;my-first-channel&#39;, &#39;data&#39;: b&#39;some data&#39;, &#39;pattern&#39;: None, &#39;type&#39;: &#39;message&#39;&#125;</span><br><span class="line">&gt;&gt;&gt; p.get_message()</span><br><span class="line">&#123;&#39;channel&#39;: b&#39;my-first-channel&#39;, &#39;data&#39;: b&#39;some data&#39;, &#39;pattern&#39;: b&#39;my-*&#39;, &#39;type&#39;: &#39;pmessage&#39;&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="取消订阅"><a href="#取消订阅" class="headerlink" title="取消订阅"></a>取消订阅</h2><p>对于<code>subscribe</code>，使用<code>unsubscribe</code>；对于<code>psubscribe</code>，使用<code>punsubscribe</code>。其可以指定取消订阅的频道名字/模式串，如果不传入任何参数则视为对所有频道取消订阅。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">p.unsubscribe()</span><br><span class="line">p.punsubscribe(<span class="string">&#x27;channel*&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过回调函数"><a href="#通过回调函数" class="headerlink" title="通过回调函数"></a>通过回调函数</h2><p>redis-py支持使用回调函数实现pubsub。回调函数要传入一个message变量，该变量为dict类型，就类似于之前的<code>get_message</code>返回的dict。如果想要订阅一个频道，则需要传入一个dict，其key为channelName，value为回调函数。</p>
+<p>当一个信息被读取后，handler会自动帮我们在message这个dict中保存信息，并调用回调函数，所以<code>get_message</code>返回的都是None而非信息。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">messageHandler</span>(<span class="params">message</span>):</span></span><br><span class="line">    <span class="built_in">print</span>(message)</span><br><span class="line">p.subcribe(**&#123;<span class="string">&#x27;mychannel&#x27;</span>: messageHandler&#125;) <span class="comment"># 订阅mychannel</span></span><br><span class="line">p.publish(<span class="string">&#x27;mychannel&#x27;</span>, <span class="string">&#x27;hello redis&#x27;</span>)   <span class="comment"># 此时message中有&#123;data: &#x27;hello redis&#x27;&#125;</span></span><br><span class="line">msg = p.get_message(<span class="string">&#x27;mychannel&#x27;</span>)    <span class="comment"># 打印message，但是返回给msg的为None</span></span><br><span class="line"><span class="built_in">print</span>(msg)  <span class="comment"># None</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="只接收新消息"><a href="#只接收新消息" class="headerlink" title="只接收新消息"></a>只接收新消息</h2><p>通过设置<code>p = r.pubsub(ignore_subscribe_messages=True)</code>，这样在<code>p.get_message()</code>时，如果没有新消息，则不会返回任何值；如果有信息消息，才会返回值。</p>
+<h2 id="读取消息"><a href="#读取消息" class="headerlink" title="读取消息"></a>读取消息</h2><h3 id="轮询"><a href="#轮询" class="headerlink" title="轮询"></a>轮询</h3><p><code>get_message</code>内部的实现机制是快速的调用<code>select</code>，在多个数据库之间遍历，寻找是否有新的消息，如果有则获取，否则返回None。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    message = p.get_message()</span><br><span class="line">    <span class="keyword">if</span> message:</span><br><span class="line">        ...</span><br><span class="line">        time.sleep(<span class="number">0.001</span>)  <span class="comment"># be nice to the system :)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="监听"><a href="#监听" class="headerlink" title="监听"></a>监听</h3><p><code>listen()</code>是一个生成器，其会阻塞其他进程直到有消息。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> message <span class="keyword">in</span> p.listen():</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
+
+<h3 id="另起线程"><a href="#另起线程" class="headerlink" title="另起线程"></a>另起线程</h3><p>可以将事件的循环放入另一个独立的线程中。<code>run_in_thread()</code>可以创建一个独立的线程，并在该线程内部开启一个循环，不断使用第一种方法查看是否有可用的信息。</p>
+<p><strong>注意：要使用该方法，必须使用回调函数</strong>。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">p.subscribe(**&#123;<span class="string">&#x27;my-channel&#x27;</span>: my_handler&#125;)</span><br><span class="line">thread = p.run_in_thread(sleep_time=<span class="number">0.001</span>)</span><br><span class="line"><span class="comment"># the event loop is now running in the background processing messages</span></span><br><span class="line"><span class="comment"># when it&#x27;s time to shut it down...</span></span><br><span class="line">thread.stop()</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="使用Lua脚本"><a href="#使用Lua脚本" class="headerlink" title="使用Lua脚本"></a>使用Lua脚本</h1><p>redis-py支持 <em>EVAL</em>, <em>EVALSHA</em>, 和 <em>SCRIPT</em> 这些操作，但是为了让代码更具有Python的风格，同时省去一些不必要的麻烦，我们可以使用独有的方法来加载并执行Lua脚本。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">lua_script = r.register_script(lua) <span class="comment"># 传入lua代码，返回脚本实例</span></span><br><span class="line">lua_script(keys=[...], args=[...])  <span class="comment"># 执行脚本，其中keys传入参数作为LUA中的KEYS，args作为ARGV</span></span><br></pre></td></tr></table></figure>
+
+<p>在执行<code>lua_script</code>时，还可以设置<code>client</code>，用于表明脚本在哪个平台上运行。如果不指明，则默认为注册<code>lua_script</code>的平台。</p>
+
+                    </div>
+
+                    
+
+                            
+                                <div class="article-nav">
+                                    
+                                            
+                                                <div class="article-next">
+                                                    <a class="next" rel="next" href="/2021/05/10/Redis%E7%AC%94%E8%AE%B0/">
+                                                        <span class="title flex-center">
+                                                            <span class="post-nav-title-item">
+                                                                Redis笔记
+                                                            </span>
+                                                            <span class="post-nav-item">
+                                                                Next posts
+                                                            </span>
+                                                        </span>
+                                                        <span class="right arrow-icon flex-center">
+                                                            <i class="fas fa-chevron-right"></i>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                
+                                </div>
+                                
+
+                                    
+    </div>
+</div>
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Kexin</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5Redis"><span class="nav-text">连接Redis</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pipleline"><span class="nav-text">Pipleline</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Transaction"><span class="nav-text">Transaction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PubSub"><span class="nav-text">PubSub</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%A2%E9%98%85"><span class="nav-text">订阅</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%91%E5%B8%83"><span class="nav-text">发布</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%96%E6%B6%88%E8%AE%A2%E9%98%85"><span class="nav-text">取消订阅</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E8%BF%87%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0"><span class="nav-text">通过回调函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AA%E6%8E%A5%E6%94%B6%E6%96%B0%E6%B6%88%E6%81%AF"><span class="nav-text">只接收新消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB%E5%8F%96%E6%B6%88%E6%81%AF"><span class="nav-text">读取消息</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BD%AE%E8%AF%A2"><span class="nav-text">轮询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%91%E5%90%AC"><span class="nav-text">监听</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%A6%E8%B5%B7%E7%BA%BF%E7%A8%8B"><span class="nav-text">另起线程</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8Lua%E8%84%9A%E6%9C%AC"><span class="nav-text">使用Lua脚本</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

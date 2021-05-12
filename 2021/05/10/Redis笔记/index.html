@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Kexin">
+    
+    <title>
+        
+            Redis笔记 |
+        
+        Kexin Tang
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/tumblr-brands.svg">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"kexin-tang.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#ef476f","avatar":"/images/tumblr-brands.svg","favicon":"/images/tumblr-brands.svg","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/sea.jpg","description":"<tag> Too many people, too little soul... </tag>"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div
+        class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                Kexin Tang
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                                href="/">
+                                HOME
+                                    <!-- Home -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/archives">
+                                ARCHIVE
+                                    <!-- Archive -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/categories">
+                                CATEGORY
+                                    <!-- Category -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/tags">
+                                TAG
+                                    <!-- Tag -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/CV/CV.pdf">
+                                CV
+                                    <!-- CV -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/about">
+                                ABOUT
+                                    <!-- About -->
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/">
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/archives">
+                        ARCHIVE
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/categories">
+                        CATEGORY
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/tags">
+                        TAG
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/CV/CV.pdf">
+                        CV
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/about">
+                        ABOUT
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">
+                Redis笔记
+            </span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/tumblr-brands.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">
+                            Kexin
+                        </span>
+                        <!-- 
+                            <span class="author-label">Lv2</span>
+                         -->
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-05-10 15:49:38
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Redis/">Redis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/redis/">redis</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.5k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>13 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+            
+
+                    <div class="article-content markdown-body">
+                        <h1 id="NoSQL-数据库"><a href="#NoSQL-数据库" class="headerlink" title="NoSQL 数据库"></a><em>NoSQL</em> 数据库</h1><p><em>NoSQL</em> (No only SQL)是一个高性能的 <em>key-value</em> 非关系型数据库。</p>
+<h2 id="Redis-优势"><a href="#Redis-优势" class="headerlink" title="Redis 优势"></a><em>Redis</em> 优势</h2><p><em>Redis</em> 有众多优势：</p>
+<ol>
+<li><strong>性能好</strong>：可以用于减小CPU压力和数据库的读写压力</li>
+<li><strong>数据类型丰富</strong></li>
+<li><strong>原子性</strong>：即单个操作是原子性的，要么成功要么完全不执行；多个操作可以使用事务完成原子性操作<blockquote>
+<p>注：<em>Redis</em> 支持事务，但是和 <em>MySQL</em> 的事务不同，并不支持ACID特性。</p>
+</blockquote>
+</li>
+<li><strong>持久化数据库</strong>：运行在内存，但是可以将数据持久化到磁盘</li>
+</ol>
+<p><em>Redis</em> 主要适用于“高并发、大数据、可扩展”的情形，但是不适用于“需要大量事务操作和结构化查询”的任务中。</p>
+<h2 id="redis-VS-memcache"><a href="#redis-VS-memcache" class="headerlink" title="redis VS memcache"></a><em>redis</em> VS <em>memcache</em></h2><p><em>Redis</em> 和常用的 <em>memcache</em> 有很大的不同：</p>
+<ol>
+<li><em>memcache</em> 不能持久化，只能将数据保存在内存中，断电后数据消失</li>
+<li><em>memcache</em> 只能支持String类型</li>
+<li><em>memcache</em> 使用 “串行+多线程+锁” 的方式实现并发，而 <em>redis</em> 使用 “单线程+多路IO复用” 实现并发</li>
+</ol>
+<h2 id="为什么-redis-支持高并发并效率高"><a href="#为什么-redis-支持高并发并效率高" class="headerlink" title="为什么 redis 支持高并发并效率高"></a>为什么 <em>redis</em> 支持高并发并效率高</h2><ol>
+<li><em>redis</em> 基于内存，免去了磁盘读写，减小了DB的IO压力</li>
+<li><em>redis</em> 单线程，不受CPU的限制，也省去了上下文切换</li>
+<li><em>redis</em> 多路复用，可以处理并发请求 (使用了<em>epoll</em>)</li>
+</ol>
+<hr>
+<h1 id="Redis-数据类型和基本操作"><a href="#Redis-数据类型和基本操作" class="headerlink" title="Redis 数据类型和基本操作"></a><em>Redis</em> 数据类型和基本操作</h1><h2 id="数据库设置"><a href="#数据库设置" class="headerlink" title="数据库设置"></a>数据库设置</h2><p><em>Redis</em> 默认有16个库</p>
+<ul>
+<li><code>select &lt;dbid&gt;</code>来进行数据库切换</li>
+<li><code>keys *</code>查看所有的keys</li>
+<li><code>exists &lt;key&gt;</code>查看某个key是否存在</li>
+<li><code>del &lt;key&gt;</code>删除某个key</li>
+<li><code>unlink &lt;key&gt;</code>异步删除某个key</li>
+<li><code>type &lt;key&gt;</code>查看key类型</li>
+<li><code>expire &lt;key&gt; &lt;time&gt;</code>设置某个key的生命周期</li>
+<li><code>ttl &lt;key&gt;</code>查看当前剩余时间，-1为永不过期，-2为已过期</li>
+</ul>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>是二进制安全的一种数据类型，可以存储任何“可转换为string类型”的数据，其底层是SDS(simple dynamic string，简单动态字符串)。该数据结构会预先分配一定的capacity，然后在空间不足时分配更多capacity。</p>
+<blockquote>
+<p>capacity最大为512MB，小于1MB时空间进行翻倍，大于1MB时每次多分配1MB</p>
+</blockquote>
+<ul>
+<li><code>set &lt;key&gt; &lt;value&gt;</code>设置键值对</li>
+<li><code>setnx &lt;key&gt; &lt;value&gt;</code>在key不存在时才设置</li>
+<li><code>get &lt;key&gt;</code>获取值</li>
+<li><code>append &lt;key&gt; &lt;str&gt;</code>将str附加到值的尾部</li>
+<li><code>strlen &lt;key&gt;</code>获取值的长度</li>
+<li><code>incr/decr &lt;key&gt;</code>值++/–</li>
+<li><code>incrby/decrby &lt;key&gt; &lt;step&gt;</code>值+step/-step</li>
+<li><code>mset &lt;k1&gt; &lt;v1&gt; &lt;k2&gt; &lt;v2&gt; ...</code>设置多个键值对</li>
+<li><code>mget &lt;k1&gt; &lt;k2&gt;</code>获取多个值</li>
+<li><code>getrange &lt;key&gt; &lt;start&gt; &lt;end&gt;</code>取key[start, end]，注意两边界可取</li>
+<li><code>setrange &lt;key&gt; &lt;start&gt; &lt;value&gt;</code>在start处插入一个value</li>
+<li><code>getset &lt;key&gt; &lt;value&gt;</code>获取旧值，设置新值</li>
+</ul>
+<h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>单键多值，底层为双向链表(quickList)，在数据量少时，使用一块连续内存，称为zipList，在数据量多时，将多个zipList作为节点，构建双向链表，称为quickList。</p>
+<ul>
+<li><code>lpush/rpush &lt;key&gt; &lt;v1, v2, ...&gt;</code>从左侧/右侧压入数据</li>
+<li><code>rpoplpush &lt;k1&gt; &lt;k2&gt;</code>从k1的右侧弹出元素放入k2的左侧</li>
+<li><code>lrange &lt;key&gt; &lt;start&gt; &lt;end&gt;</code>key[start, end]</li>
+<li><code>lindex &lt;key&gt; &lt;index&gt;</code>key[index]</li>
+<li><code>llen</code>获取长度</li>
+<li><code>linsert &lt;key&gt; before/after &lt;value&gt; &lt;newvalue&gt;</code>在key[value]前/后插入一个newvalue</li>
+<li><code>lrem &lt;key&gt; &lt;n&gt; &lt;value&gt;</code></li>
+</ul>
+<h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>与list相似，但是不允许重复，底层是字典(hash表)，增删查改都是O(1)。</p>
+<ul>
+<li><code>sadd &lt;key&gt; &lt;v1, v2, ...&gt;</code></li>
+<li><code>smembers &lt;key&gt;</code></li>
+<li><code>sismember &lt;key&gt; &lt;value&gt;</code>if value in key?</li>
+<li><code>scard &lt;key&gt;</code>返回个数</li>
+<li><code>srem &lt;key&gt; &lt;v1, v2, ...&gt;</code>删除</li>
+<li><code>spop &lt;key&gt;</code>随机弹出一个</li>
+<li><code>srandmember &lt;key&gt; &lt;n&gt;</code>随机抽取n个</li>
+<li><code>smove &lt;k1&gt; &lt;k2&gt;</code>从k1移动一个到k2</li>
+<li><code>sdiff/sinter/sunion &lt;destkey&gt; &lt;k1&gt; &lt;k2&gt;</code>将k1与k2进行操作放入destkey</li>
+</ul>
+<h2 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h2><p>存储的是 {key: {field: value, field: value}} 的结构。</p>
+<ul>
+<li><code>hset &lt;key&gt; &lt;field&gt; &lt;value&gt;</code></li>
+<li><code>hget &lt;key&gt; &lt;field&gt;</code></li>
+<li><code>hmset &lt;key&gt; &lt;field1&gt; &lt;value1&gt; &lt;field2&gt; &lt;value2&gt;...</code></li>
+<li><code>hexists &lt;key&gt; &lt;field&gt;</code></li>
+<li><code>hvals/hkeys &lt;key&gt;</code>查看所有value/key</li>
+</ul>
+<h2 id="Zset"><a href="#Zset" class="headerlink" title="Zset"></a>Zset</h2><p>与set类似，但是是有序的，因为其为每个成员设置了一个score用于排序。底层使用了两种数据结构：</p>
+<ol>
+<li>hash: {key: {value: score}}</li>
+<li>跳表</li>
+</ol>
+<ul>
+<li><code>zadd &lt;key&gt; &lt;s0&gt; &lt;value0&gt; &lt;s1&gt; &lt;value1&gt; ...</code></li>
+<li><code>zrange &lt;key&gt; &lt;start&gt; &lt;end&gt; [withscores]</code></li>
+<li><code>zrangebyscore &lt;key&gt; &lt;min&gt; &lt;max&gt; [withscores]</code>从大到小排序</li>
+<li><code>zrevrangebyscore ...</code>反序</li>
+<li><code>zcount &lt;key&gt; &lt;min&gt; &lt;max&gt;</code>范围内的元素个数</li>
+<li><code>zrank &lt;key&gt; &lt;value&gt;</code>返回排名，从0开始计数</li>
+<li><code>zrem &lt;key&gt; &lt;value&gt;</code>删除</li>
+</ul>
+<h2 id="Bitmaps"><a href="#Bitmaps" class="headerlink" title="Bitmaps"></a>Bitmaps</h2><p>实际上是字符串，但可以视为只能存储0和1，其下标被称为“偏移量”，用于提高内存使用率。</p>
+<ul>
+<li><code>setbit &lt;key&gt; &lt;offset&gt; &lt;value&gt;</code></li>
+<li><code>getbit &lt;key&gt; &lt;offset&gt;</code></li>
+<li><code>bitop and/or/not/xor &lt;destkey&gt; &lt;key...&gt;</code></li>
+<li><code>bitcount &lt;key&gt; [start] [end]</code>用于记录为1的个数，注意此处是针对8个bits，即一个byte为单位</li>
+</ul>
+<h2 id="HyperLogLog"><a href="#HyperLogLog" class="headerlink" title="HyperLogLog"></a>HyperLogLog</h2><p>用于做基数统计。在输入数据巨大时，计算基数所需的空间总是固定且较小的，比如在Redis中可以用12KB计算2<sup>64</sup>个基数。</p>
+<blockquote>
+<p>基数：不重复的数字个数</p>
+</blockquote>
+<ul>
+<li><code>pfadd &lt;key&gt; &lt;element ...&gt;</code></li>
+<li><code>pfcount &lt;key&gt;</code></li>
+<li><code>pfmerge &lt;destkey&gt; &lt;key1, key2 ...&gt;</code>将多个Log进行合并</li>
+</ul>
+<h2 id="GEO"><a href="#GEO" class="headerlink" title="GEO"></a>GEO</h2><p>主要用于保存地理信息，可以计算直线距离等</p>
+<hr>
+<h1 id="事务-amp-锁"><a href="#事务-amp-锁" class="headerlink" title="事务&amp;锁"></a>事务&amp;锁</h1><p><em>Redis</em> 事务是一个单独的隔离操作，所有命令序列化、按序执行，不会被插手打断。之所以要引入事务，就是为了将多个小操作合并成一个大操作，且“一次性”执行完整个大操作。</p>
+<h2 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h2><ol>
+<li>multi – 用于组合小操作，此时只是组合，并未执行。如果出现错误，则所有的操作均被抛弃，无法运行任何一个。</li>
+<li>exec – 执行队列。如果有错误，则只会执行正确的步骤，并不会像MySQL一样回滚。</li>
+<li>discard – 放弃之前的操作。</li>
+</ol>
+<h2 id="解决冲突"><a href="#解决冲突" class="headerlink" title="解决冲突"></a>解决冲突</h2><p>由于现实生活中都是并发执行的，所以可能出现多个对同一资源的诉求，这被称作冲突。解决冲突的方法就是<strong>加锁</strong>。</p>
+<h3 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h3><p>乐观锁认为资源不会轻易受污染，所以放任多个线程同时访问，如果访问结束后出现冲突再解决。</p>
+<p>具体方法是：使用版本号，对资源操作后更新版本号，其他已经占用资源的线程如果想更改资源，发现版本号不同后就无法操作。</p>
+<h3 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h3><p>悲观锁认为资源很容易就被污染，所以每一步操作都要加以限制。</p>
+<p>具体方法就是：一旦某个进程控制了资源，就给他加上锁，别的进程就只能等待。当使用完资源后，进程再解锁，别的进程再开始竞争。</p>
+<p>其逻辑简单，但是相当于是串行实现多线程，效率低下。</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>使用<code>multi</code>开启组队模式，组队完成后可以使用<code>exec</code>进行执行或<code>discard</code>放弃组队。而 <em>Redis</em> 中是不支持直接使用悲观锁的，所以加锁都是乐观锁。具体操作就是使用<code>watch &lt;key&gt;</code>完成对某个数据的监视，在事务执行前，如果被监视的数据发生了变化，则事务不能执行。</p>
+<h2 id="三大特性"><a href="#三大特性" class="headerlink" title="三大特性"></a>三大特性</h2><ol>
+<li>单独隔离操作</li>
+<li>无隔离级别</li>
+<li>不保证原子性 – 只能保证不被打断，一旦出错是不会rollback的</li>
+</ol>
+<hr>
+<h1 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h1><p>Redis客户端执行一条命令分为以下四个步骤:</p>
+<ol>
+<li>发送命令</li>
+<li>命令排队</li>
+<li>命令执行</li>
+<li>返回结果</li>
+</ol>
+<p>其中,第一步+第四步称为Round Trip Time(RTT,往返时间)。</p>
+<p>如果想要执行多个步骤，则需要耗费多个RTT，如果能把这些步骤在一个RTT内一起发送，就会非常有效率。这样的实现机制就是Pipeline。</p>
+<h2 id="Pipeline和事务的差别"><a href="#Pipeline和事务的差别" class="headerlink" title="Pipeline和事务的差别"></a>Pipeline和事务的差别</h2><ol>
+<li>Pipeline是将命令打包好一起发送，服务器接受后再一条一条的执行，处理完再将这些命令的结果一并返回；但是事务是在组队后发送多个操作，服务器在组队完毕后一口气执行完，最后再返回结果。(<strong>pipeline是将命令打包一次发送，服务器多次执行；事务是命令分开发送，服务器一并执行</strong>)</li>
+<li>pipeline只不过是将命令一起发送，对服务器而言是不知道客户端是否使用了pipeline；而事务是服务器支持的，客户端的命令发送仍然是分离的，但是服务器会将组队的一起执行。(<strong>pipeline是客户端行为，事务是服务端行为</strong>)</li>
+<li>执行事务时会阻塞其他任务，而pipeline不会</li>
+<li>事务是原子性的，pipeline不是</li>
+</ol>
+<hr>
+<h1 id="Lua脚本"><a href="#Lua脚本" class="headerlink" title="Lua脚本"></a>Lua脚本</h1><p>Lua是一种非常轻量级的脚本语言，一般使用C语言编写，其设计目的是为了嵌入应用程序中，从而为应用程序提供灵活的扩展和定制功能。</p>
+<h2 id="为什么要使用Lua"><a href="#为什么要使用Lua" class="headerlink" title="为什么要使用Lua"></a>为什么要使用Lua</h2><ol>
+<li>减少网络开销(类似pipeline)：多个请求通过脚本一次发送，减少网络延迟</li>
+<li>原子操作(类似事务)：将脚本作为一个整体执行，中间不会插入其他命令，无需使用事务</li>
+<li>复用：客户端发送的脚本永久存在redis中，其他客户端可以复用脚本</li>
+<li>可嵌入性：可嵌入JAVA，C#等多种编程语言，支持不同操作系统跨平台交互</li>
+</ol>
+<h2 id="如何使用Lua"><a href="#如何使用Lua" class="headerlink" title="如何使用Lua"></a>如何使用Lua</h2><ol>
+<li><code>EVAL script numkeys key [key ...] arg [arg ...]</code></li>
+</ol>
+<p>其中script是脚本的内容或路径，numkeys为传入的key的个数，然后key和arg分别对应Lua脚本中的 <em>KEYS[1] KEYS[2] …</em> 和 <em>ARGV[1] ARGV[2] …</em></p>
+<ol start="2">
+<li><code>SCRIPT LOAD script</code></li>
+</ol>
+<p>返回脚本的SHA1校验和，不执行</p>
+<ol start="3">
+<li><code>EVALSHA sha1 numkeys key [key ...] arg [arg ...]</code></li>
+</ol>
+<p>根据传入的 <em>sha1</em> 校验和执行脚本</p>
+<hr>
+<h1 id="持久化"><a href="#持久化" class="headerlink" title="持久化"></a>持久化</h1><h2 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h2><p><em>RDB</em> (Redis Database)是在指定时间间隔内将数据快照(snapshot)从内存中转移到磁盘中，恢复时将快照转至内存中。</p>
+<h3 id="Redis中RDB的配置"><a href="#Redis中RDB的配置" class="headerlink" title="Redis中RDB的配置"></a>Redis中RDB的配置</h3><p>默认在开启服务器的路径下生成一个<code>dump.rdb</code>文件，用于保存快照，其中可以设置时间间隔和达到的目标，如3600秒内更新了100个数据才会进行持久化。</p>
+<blockquote>
+<p>如果3600s内更新了101个文件，那么前100个会进行持久化，多余的1个会算入下一个3600s内。</p>
+</blockquote>
+<p>还有一些设置是否自动持久化、磁盘无法写入是否终止等操作的，可以自己摸索。</p>
+<h3 id="如何持久化"><a href="#如何持久化" class="headerlink" title="如何持久化"></a>如何持久化</h3><p>Redis会单独创建一个子进程用于持久化，会先将数据写入一个临时文件，当持久化结束后再用临时文件替换上一次持久化的文件。整个过程中，主进程不进行任何IO操作。</p>
+<p>由于需要将临时文件全部写入后才会更换原来的持久化文件，如果当写临时文件时出现宕机等，导致临时文件没有写完，那么持久化文件仍保存了上一次的数据，新的数据就丢失了。</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>优点：</p>
+<ul>
+<li>适合大规模数据，因为只需要父进程fork一个子进程，然后就不用管子进程</li>
+<li>节省磁盘空间</li>
+<li>恢复速度快</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>fork需要生成临时文件，会占用额外空间</li>
+<li>最后一次持久化后的数据可能丢失</li>
+<li>虽然使用写时拷贝技术，但是如果数据庞大时还是比较消耗性能</li>
+</ul>
+<h2 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h2><p><em>AOF</em> (Append Only File)会以日志形式记录每个写操作(增量保存，不会记录读操作)，只许追加文件但不可以改写文件。Redis启动时会将日志内容重新按序执行一次以恢复/加载数据。</p>
+<p>默认情况下AOF是不开启的，如果RDB和AOF同时开启，Redis会选择使用不会丢失信息的AOF。</p>
+<h3 id="AOF同步频率"><a href="#AOF同步频率" class="headerlink" title="AOF同步频率"></a>AOF同步频率</h3><ul>
+<li>appendfsync always：始终同步，每次写入操作都会记录到日志中，性能差但是完整性好</li>
+<li>appendfsync everysec：每秒同步一次</li>
+<li>appendfsync no：不主动同步，同步的时机由OS控制</li>
+</ul>
+<h3 id="Rewrite数据压缩"><a href="#Rewrite数据压缩" class="headerlink" title="Rewrite数据压缩"></a>Rewrite数据压缩</h3><p>将多个步骤压缩成较少的步骤，如<code>set k1 v1</code>和<code>set k2 v2</code>合并成<code>mset k1 v1 k2 v2</code>进行保存。</p>
+<p>当AOF文件持续增长而过大时，会fork一个新的进程来重写文件(先创建临时文件再覆盖)，实际上就是把rdb的快照以二进制形式加在新的aof的头部，作为历史数据汇总，替换流水账。</p>
+<h3 id="流程"><a href="#流程" class="headerlink" title="流程"></a>流程</h3><ol>
+<li>客户端写命令被追加到AOF缓冲区</li>
+<li>AOF缓冲区根据同步的频率将内存&rarr;磁盘</li>
+<li>AOF文件超过大小时进行rewrite</li>
+<li>Redis下次启动时会加载AOF的写操作完成数据加载</li>
+</ol>
+<h3 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h3><p>优点：</p>
+<ul>
+<li>备份机制更加稳健，丢失数据概率低</li>
+<li>日志文件易读，且有日志文件纠错</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>占用磁盘空间</li>
+<li>恢复和加载数据慢</li>
+<li>同步频率设置过高会造成巨大压力</li>
+</ul>
+<h2 id="选择RDB还是AOF？"><a href="#选择RDB还是AOF？" class="headerlink" title="选择RDB还是AOF？"></a>选择RDB还是AOF？</h2><ul>
+<li>建议两者都开启，搭配使用</li>
+<li>如果不追求数据完整性，建议使用RDB</li>
+<li>不建议单独使用AOF，因为可能存在日志BUG无法恢复数据</li>
+<li>如果只是做内存缓存，则可以都不使用</li>
+</ul>
+<hr>
+<h1 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h1><p>主机数据更新后根据配置和策略，自动同步到备机的master/slave机制，Master以写为主，Slave以读为主</p>
+<h2 id="为什么要使用主从复制"><a href="#为什么要使用主从复制" class="headerlink" title="为什么要使用主从复制"></a>为什么要使用主从复制</h2><ol>
+<li>读写分离，提高效率</li>
+<li>容灾快速恢复：由于一般有多个从服务器(即可以从多个地方读)，所以一旦一个服务器宕机，还可以依赖别的服务器</li>
+</ol>
+<hr>
+<h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1>
+                    </div>
+
+                    
+
+                            
+                                <div class="article-nav">
+                                    
+                                        <div class="article-prev">
+                                            <a class="prev" rel="prev" href="/2021/05/12/Python4Redis/">
+                                                <span class="left arrow-icon flex-center">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </span>
+                                                <span class="title flex-center">
+                                                    <span class="post-nav-title-item">
+                                                        Python4Redis
+                                                    </span>
+                                                    <span class="post-nav-item">
+                                                        Prev posts
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                        
+                                            
+                                                <div class="article-next">
+                                                    <a class="next" rel="next" href="/2021/04/26/WSGI/">
+                                                        <span class="title flex-center">
+                                                            <span class="post-nav-title-item">
+                                                                WSGI
+                                                            </span>
+                                                            <span class="post-nav-item">
+                                                                Next posts
+                                                            </span>
+                                                        </span>
+                                                        <span class="right arrow-icon flex-center">
+                                                            <i class="fas fa-chevron-right"></i>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                
+                                </div>
+                                
+
+                                    
+    </div>
+</div>
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Kexin</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NoSQL-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">NoSQL 数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E4%BC%98%E5%8A%BF"><span class="nav-text">Redis 优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis-VS-memcache"><span class="nav-text">redis VS memcache</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-redis-%E6%94%AF%E6%8C%81%E9%AB%98%E5%B9%B6%E5%8F%91%E5%B9%B6%E6%95%88%E7%8E%87%E9%AB%98"><span class="nav-text">为什么 redis 支持高并发并效率高</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text">Redis 数据类型和基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E7%BD%AE"><span class="nav-text">数据库设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-text">String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List"><span class="nav-text">List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set"><span class="nav-text">Set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash"><span class="nav-text">Hash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zset"><span class="nav-text">Zset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bitmaps"><span class="nav-text">Bitmaps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HyperLogLog"><span class="nav-text">HyperLogLog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GEO"><span class="nav-text">GEO</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1-amp-%E9%94%81"><span class="nav-text">事务&amp;锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4"><span class="nav-text">基本步骤</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E5%86%B2%E7%AA%81"><span class="nav-text">解决冲突</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%90%E8%A7%82%E9%94%81"><span class="nav-text">乐观锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%82%B2%E8%A7%82%E9%94%81"><span class="nav-text">悲观锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%9E%E7%8E%B0"><span class="nav-text">代码实现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7"><span class="nav-text">三大特性</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pipeline"><span class="nav-text">Pipeline</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipeline%E5%92%8C%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%B7%AE%E5%88%AB"><span class="nav-text">Pipeline和事务的差别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lua%E8%84%9A%E6%9C%AC"><span class="nav-text">Lua脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8Lua"><span class="nav-text">为什么要使用Lua</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Lua"><span class="nav-text">如何使用Lua</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-text">持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RDB"><span class="nav-text">RDB</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E4%B8%ADRDB%E7%9A%84%E9%85%8D%E7%BD%AE"><span class="nav-text">Redis中RDB的配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-text">如何持久化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AOF"><span class="nav-text">AOF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF%E5%90%8C%E6%AD%A5%E9%A2%91%E7%8E%87"><span class="nav-text">AOF同步频率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Rewrite%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9"><span class="nav-text">Rewrite数据压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B5%81%E7%A8%8B"><span class="nav-text">流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BC%98%E7%BC%BA%E7%82%B9-1"><span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%89%E6%8B%A9RDB%E8%BF%98%E6%98%AFAOF%EF%BC%9F"><span class="nav-text">选择RDB还是AOF？</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6"><span class="nav-text">主从复制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6"><span class="nav-text">为什么要使用主从复制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E7%BE%A4"><span class="nav-text">集群</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
