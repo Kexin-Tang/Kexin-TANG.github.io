@@ -287,6 +287,63 @@
                 
 
                 <h3 class="home-article-title">
+                    <a href="/2021/05/17/Redis%E5%9F%BA%E7%A1%80/">
+                        Redis基础
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        NoSQL 数据库NoSQL (No only SQL)是一个高性能的 key-value 非关系型数据库。
+Redis 优势Redis 有众多优势：
+
+性能好：可以用于减小CPU压力和数据库的读写压力
+数据类型丰富
+原子性：即单个操作是原子性的，要...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon May 17 2021 10:45:38 GMT+0800">2021-05-17</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/Redis/">Redis</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/redis/">redis</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/05/17/Redis%E5%9F%BA%E7%A1%80/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/2021/05/12/ab%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95/">
                         ab并发测试
                     </a>
@@ -389,63 +446,6 @@
     </div>
 
     <a href="/2021/05/12/Python4Redis/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/05/10/Redis%E5%9F%BA%E7%A1%80/">
-                        Redis笔记
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        NoSQL 数据库NoSQL (No only SQL)是一个高性能的 key-value 非关系型数据库。
-Redis 优势Redis 有众多优势：
-
-性能好：可以用于减小CPU压力和数据库的读写压力
-数据类型丰富
-原子性：即单个操作是原子性的，要...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon May 10 2021 15:49:38 GMT+0800">2021-05-10</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Redis/">Redis</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/redis/">redis</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/05/10/Redis%E5%9F%BA%E7%A1%80/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
@@ -1055,9 +1055,43 @@ BN
 
     
 
-    <div class="image-viewer-container">
-    <img src="">
-</div>
+    .image-viewer-container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0);
+  visibility: hidden;
+  z-index: $z-index-8;
+  padding: 6%;
+  box-sizing: border-box;
+  transition-t("visibility, background", "0, 0", "0.3, 0.3", "ease, ease");
+
+  &.active {
+    background: rgba(0, 0, 0, 0.5);
+    visibility: visible;
+
+    img {
+      cursor: zoom-out;
+      transform: scale(1);
+      padding: 2px;
+      background: var(--background-color);
+    }
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    transform: scale(0);
+    transition-t("transform", "0", "0.3", "ease");
+  }
+}
+
+
 
 
     
