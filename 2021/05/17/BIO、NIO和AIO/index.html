@@ -9,7 +9,7 @@
     
     <title>
         
-            编译型语言和解释型语言 |
+            BIO、NIO和AIO |
         
         Kexin Tang
     </title>
@@ -189,7 +189,7 @@
 
         <div class="article-title">
             <span class="title-hover-animation">
-                编译型语言和解释型语言
+                BIO、NIO和AIO
             </span>
         </div>
 
@@ -210,7 +210,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-04-19 16:48:45
+        <i class="fas fa-edit"></i>&nbsp;2021-05-17 20:56:42
     </span>
     
         <span class="article-categories article-meta-item">
@@ -218,11 +218,11 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/Program-Language/">Program Language</a>&nbsp;
+                        <a href="/categories/OS/">OS</a>&nbsp;
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/Program-Language/Java/">Java</a>&nbsp;
+                        &gt; <a href="/categories/OS/IO/">IO</a>&nbsp;
                     </li>
                 
             </ul>
@@ -238,7 +238,7 @@
                     </li>
                 
                     <li>
-                        | <a href="/tags/Java/">Java</a>&nbsp;
+                        | <a href="/tags/OS/">OS</a>&nbsp;
                     </li>
                 
             </ul>
@@ -248,7 +248,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>819 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>608 Words</span>
         </span>
     
     
@@ -269,46 +269,48 @@
             
 
                     <div class="article-content markdown-body">
-                        <h1 id="编译型语言和解释型语言"><a href="#编译型语言和解释型语言" class="headerlink" title="编译型语言和解释型语言"></a>编译型语言和解释型语言</h1><p>计算机是不能理解高级语言的，更不能直接执行高级语言，它只能直接理解机器语言，所以使用任何高级语言编写的程序若想被计算机运行，都必须将其转换成计算机语言，也就是机器码。而转换主要有两种方法</p>
-<ul>
-<li><p>编译 – 先进行转换，然后再运行</p>
-</li>
-<li><p>解释 – 运行的过程中进行转换</p>
-</li>
-</ul>
-<h2 id="编译型语言"><a href="#编译型语言" class="headerlink" title="编译型语言"></a>编译型语言</h2><p>使用<em>专门的编译器</em>，针对特定的平台，将高级语言源代码一次性的编译成可被该平台硬件执行的机器码，并包装成该平台所能识别的可执行性程序的格式(如.exe)。由于已经生成了可执行格式，以后运行时不需要编译，所以编译型语言执行效率高(<strong>编译一次，多次使用</strong>)。</p>
-<p>一般而言，编译型语言有以下特点：</p>
-<ol>
-<li>编译后无需再次编译，性能好</li>
-<li>针对特定平台，跨平台性能差</li>
-</ol>
-<p>由于有以上的特点，所以编译型语言常用于OS，嵌入式等对性能要求极高的特定平台，所以衍生出的经典语言类型有 – C/C++</p>
-<h2 id="解释型语言"><a href="#解释型语言" class="headerlink" title="解释型语言"></a>解释型语言</h2><p>使用<em>专门的解释器</em>对源程序逐行解释成特定平台的机器码并立即执行。是代码在执行时才被解释器一行行动态翻译和执行，而不是在执行之前就完成翻译。</p>
-<p>一般而言，解释型语言有以下特点：</p>
-<ol>
-<li>由于在执行时再翻译，每次执行都要翻译，效率低</li>
-<li>只要对应平台有相应的解释器即可运行，跨平台性能好，便于移植</li>
-</ol>
-<p>由于有以上的特点，所以解释型语言常用于Web，脚本等跨平台使用的场景，所以衍生出的经典语言类型有 – Python, Javascript</p>
-<h2 id="关于Java"><a href="#关于Java" class="headerlink" title="关于Java"></a>关于Java</h2><p>Java是一种很特殊的语言，其需要将.java文件通过编译生成.class文件，但是该.class文件却可以在各种平台上使用，因为java针对不同的平台有不同的<strong>JVM</strong>，实现了跨平台。</p>
-<blockquote>
-<ul>
-<li>你可以说它是编译型的：因为所有的Java代码都是要编译的，.java不经过编译就什么用都没有。 </li>
-<li>你可以说它是解释型的：因为java代码编译后不能直接运行，它是解释运行在JVM上的，所以它是解释运行的，那也就算是解释的了。 </li>
-<li>但是，现在的JVM为了效率，都有一些JIT优化。它又会把.class的二进制代码编译为本地的代码直接运行，所以，又是编译的。</li>
-</ul>
-<img  
+                        <h1 id="BIO"><a href="#BIO" class="headerlink" title="BIO"></a>BIO</h1><p>同步阻塞IO。同步指的是多个IO请求会按顺序执行，阻塞指的是如果一个IO请求没有完成，就会一直等待，直到完成释放。</p>
+<p><a href="https://sm.ms/image/1jXFDU58CuBYdgt" target="_blank"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://img-blog.csdn.net/20160419154349203"
-                     
-                >
-</blockquote>
-<h1 id="为什么需要编译"><a href="#为什么需要编译" class="headerlink" title="为什么需要编译"></a>为什么需要编译</h1><p>编译有两个主要的好处：</p>
-<ol>
-<li>可以提前排除错误;</li>
-<li>对于Java而言，编译并不会直接像C++一样产生基于特定系统的机器码，而是会产生一个二进制比特文件(又称为class文件)，这个文件可以在多种平台被识别(通过JVM)，然后再基于特定的系统进一步进行翻译，实现跨平台与高效率的trade-off</li>
-</ol>
+                     data-src="https://i.loli.net/2021/05/19/1jXFDU58CuBYdgt.jpg"
+                      
+                ></a></p>
+<p>图中<code>fd</code>代表 <em>文件描述符</em>。</p>
+<p>BIO的逻辑就是某个线程盯住某个特定的请求，没有请求就一直等，直到有请求并完成请求。</p>
+<hr>
+<h1 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h1><p>NIO本身是基于事件驱动思想来完成的，其主要想解决的是BIO的大并发问题。在BIO中，会使用多线程，每个线程盯住一个资源；在NIO中使用单线程或少量多线程，多个资源复用一个线程。</p>
+<h2 id="轮询"><a href="#轮询" class="headerlink" title="轮询"></a>轮询</h2><p><a href="https://sm.ms/image/2iQPmB6EY3GUTx7" target="_blank"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://i.loli.net/2021/05/19/2iQPmB6EY3GUTx7.jpg"
+                      
+                ></a></p>
+<p>会使用Linux的系统调用<code>read</code>来读取<code>fd</code>。仍然是使用类似循环的逻辑，不断查询<code>i</code>有没有请求？如果没有也不会傻等，而是换到下一个请求，所以是非阻塞的。在这种情况下，如果有<code>n</code>个IO，则需要调用<code>n</code>次系统调用。</p>
+<h2 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h2><p><a href="https://sm.ms/image/6kGiAujL8TQZeYz" target="_blank"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://i.loli.net/2021/05/19/6kGiAujL8TQZeYz.jpg"
+                      
+                ></a></p>
+<p>此时会使用Linux的系统调用<code>select</code>和<code>read</code>，但是此时不会调用<code>n</code>次系统调用。此时会先调用一次<code>select</code>记录下每个IO的请求与否，然后把这个信息返回。最后只调用<code>read</code>处理有请求的。这个过程类似于中断。</p>
+<h2 id="共享内存"><a href="#共享内存" class="headerlink" title="共享内存"></a>共享内存</h2><p><a href="https://sm.ms/image/fTNzVtprOwLYxBj" target="_blank"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://i.loli.net/2021/05/19/fTNzVtprOwLYxBj.jpg"
+                      
+                ></a></p>
+<p>上一种方法中仍然要进行文件的传输，而可以使用一个共享内存。kernel获取请求情况，然后标记在共享内存中，线程直接读取共享内存的状态即可，不用传输任何内容。</p>
+<hr>
+<h1 id="AIO"><a href="#AIO" class="headerlink" title="AIO"></a>AIO</h1><p>NIO本质上还是同步，但是AIO可以实现异步。</p>
+<p>AIO真正实现了中断的功能，即注册一个监视资源的线程，然后OS可以去做其他事。当资源发起请求时，线程监视到这个变化，并通知OS来处理该资源的请求。</p>
+<hr>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
+<li>AIO的做法是，每个水壶上装一个开关，当水开了以后会提醒对应的线程去处理。</li>
+<li>NIO的做法是，叫一个线程不停的循环观察每一个水壶，根据每个水壶当前的状态去处理。</li>
+<li>BIO的做法是，叫一个线程停留在一个水壶那，直到这个水壶烧开，才去处理下一个水壶。</li>
+</ul>
+<p>可以看出AIO是最聪明省力，NIO相对省力，BIO最愚蠢。</p>
 
                     </div>
 
@@ -318,13 +320,13 @@
                                 <div class="article-nav">
                                     
                                         <div class="article-prev">
-                                            <a class="prev" rel="prev" href="/2021/04/20/caffe2pytorch/">
+                                            <a class="prev" rel="prev" href="/2021/05/19/Redis%E8%BF%9B%E9%98%B6/">
                                                 <span class="left arrow-icon flex-center">
                                                     <i class="fas fa-chevron-left"></i>
                                                 </span>
                                                 <span class="title flex-center">
                                                     <span class="post-nav-title-item">
-                                                        caffe2pytorch
+                                                        Redis进阶
                                                     </span>
                                                     <span class="post-nav-item">
                                                         Prev posts
@@ -335,10 +337,10 @@
                                         
                                             
                                                 <div class="article-next">
-                                                    <a class="next" rel="next" href="/2021/04/19/How-to-write-hello-world-in-HEXO-II/">
+                                                    <a class="next" rel="next" href="/2021/05/17/Redis%E5%9F%BA%E7%A1%80/">
                                                         <span class="title flex-center">
                                                             <span class="post-nav-title-item">
-                                                                How-to-write-hello-world-in-HEXO-II
+                                                                Redis基础
                                                             </span>
                                                             <span class="post-nav-item">
                                                                 Next posts
@@ -464,7 +466,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%9E%8B%E8%AF%AD%E8%A8%80%E5%92%8C%E8%A7%A3%E9%87%8A%E5%9E%8B%E8%AF%AD%E8%A8%80"><span class="nav-text">编译型语言和解释型语言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%9E%8B%E8%AF%AD%E8%A8%80"><span class="nav-text">编译型语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A%E5%9E%8B%E8%AF%AD%E8%A8%80"><span class="nav-text">解释型语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EJava"><span class="nav-text">关于Java</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E7%BC%96%E8%AF%91"><span class="nav-text">为什么需要编译</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BIO"><span class="nav-text">BIO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NIO"><span class="nav-text">NIO</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AE%E8%AF%A2"><span class="nav-text">轮询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="nav-text">多路复用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98"><span class="nav-text">共享内存</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AIO"><span class="nav-text">AIO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol>
     </div>
 </div>
         </aside>

@@ -370,11 +370,6 @@ button {
 .clear {
   clear: both;
 }
-p:first-letter {
-  font-size: 1.5rem;
-  color: #ef476f;
-  text-shadow: 1px 1px 1px #ef476f;
-}
 .about-odd {
   background: var(--about-odd-color);
 }

@@ -240,12 +240,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>6.9k Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>7k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>25 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>26 Mins</span>
         </span>
     
     
@@ -276,9 +276,19 @@
 <h2 id="redis-VS-memcache"><a href="#redis-VS-memcache" class="headerlink" title="redis VS memcache"></a><em>redis</em> VS <em>memcache</em></h2><p><em>Redis</em> 和常用的 <em>memcache</em> 有很大的不同：</p>
 <ol>
 <li><em>memcache</em> 不能持久化，只能将数据保存在内存中，断电后数据消失</li>
-<li><em>memcache</em> 只能支持String类型</li>
+<li><em>memcache</em> 没有数据类型概念，存的是json</li>
 <li><em>memcache</em> 使用 “串行+多线程+锁” 的方式实现并发，而 <em>redis</em> 使用 “单线程+多路IO复用” 实现并发</li>
 </ol>
+<blockquote>
+<p>为什么细分类型比使用Json好？</p>
+<ul>
+<li>如果使用json想要取回某一条数据时，需要返回整个Json，代价高</li>
+<li>计算向数据转移：使用json时获取数据需要在client进行解读；而细分数据类型时计算在server端完成，client直接得到计算完的结果<blockquote>
+<p>使用json时，类似使用某种未知语言通信，用户看不懂就要放入各种语言的翻译器尝试理解；细分数据类型后，相当于告知会使用什么语言通信，用户直接使用该语言的翻译器就可以理解语义</p>
+</blockquote>
+</li>
+</ul>
+</blockquote>
 <h2 id="为什么-redis-支持高并发并效率高"><a href="#为什么-redis-支持高并发并效率高" class="headerlink" title="为什么 redis 支持高并发并效率高"></a>为什么 <em>redis</em> 支持高并发并效率高</h2><ol>
 <li><em>redis</em> 基于内存，免去了磁盘读写，减小了DB的IO压力</li>
 <li><em>redis</em> 单线程，不受CPU的限制，也省去了上下文切换</li>
@@ -308,7 +318,7 @@
 <li><code>strlen &lt;key&gt;</code>获取值的长度</li>
 <li><code>incr/decr &lt;key&gt;</code>值++/–</li>
 <li><code>incrby/decrby &lt;key&gt; &lt;step&gt;</code>值+step/-step</li>
-<li><code>mset &lt;k1&gt; &lt;v1&gt; &lt;k2&gt; &lt;v2&gt; ...</code>设置多个键值对</li>
+<li><code>mset &lt;k1&gt; &lt;v1&gt; &lt;k2&gt; &lt;v2&gt; ...</code>设置多个键值对(<strong>原子操作，任何一个失败则全部失败，不予设置</strong>)</li>
 <li><code>mget &lt;k1&gt; &lt;k2&gt;</code>获取多个值</li>
 <li><code>getrange &lt;key&gt; &lt;start&gt; &lt;end&gt;</code>取key[start, end]，注意两边界可取</li>
 <li><code>setrange &lt;key&gt; &lt;start&gt; &lt;value&gt;</code>在start处插入一个value</li>
@@ -688,6 +698,22 @@
                             
                                 <div class="article-nav">
                                     
+                                        <div class="article-prev">
+                                            <a class="prev" rel="prev" href="/2021/05/17/BIO%E3%80%81NIO%E5%92%8CAIO/">
+                                                <span class="left arrow-icon flex-center">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </span>
+                                                <span class="title flex-center">
+                                                    <span class="post-nav-title-item">
+                                                        BIO、NIO和AIO
+                                                    </span>
+                                                    <span class="post-nav-item">
+                                                        Prev posts
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                        
                                             
                                                 <div class="article-next">
                                                     <a class="next" rel="next" href="/2021/05/12/ab%E5%B9%B6%E5%8F%91%E6%B5%8B%E8%AF%95/">
@@ -825,43 +851,9 @@
         </aside>
     
 
-    .image-viewer-container {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0);
-  visibility: hidden;
-  z-index: $z-index-8;
-  padding: 6%;
-  box-sizing: border-box;
-  transition-t("visibility, background", "0, 0", "0.3, 0.3", "ease, ease");
-
-  &.active {
-    background: rgba(0, 0, 0, 0.5);
-    visibility: visible;
-
-    img {
-      cursor: zoom-out;
-      transform: scale(1);
-      padding: 2px;
-      background: var(--background-color);
-    }
-  }
-
-  img {
-    max-width: 100%;
-    max-height: 100%;
-    transform: scale(0);
-    transition-t("transform", "0", "0.3", "ease");
-  }
-}
-
-
+    <div class="image-viewer-container">
+    <img src="">
+</div>
 
 
     
