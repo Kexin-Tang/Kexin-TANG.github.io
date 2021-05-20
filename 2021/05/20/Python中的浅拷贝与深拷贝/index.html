@@ -9,7 +9,7 @@
     
     <title>
         
-            ab并发测试 |
+            Python中的浅拷贝与深拷贝 |
         
         Kexin Tang
     </title>
@@ -189,7 +189,7 @@
 
         <div class="article-title">
             <span class="title-hover-animation">
-                ab并发测试
+                Python中的浅拷贝与深拷贝
             </span>
         </div>
 
@@ -210,7 +210,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-05-12 23:34:07
+        <i class="fas fa-edit"></i>&nbsp;2021-05-20 14:41:51
     </span>
     
         <span class="article-categories article-meta-item">
@@ -218,7 +218,11 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/Server/">Server</a>&nbsp;
+                        <a href="/categories/Programming-Language/">Programming Language</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Programming-Language/Python/">Python</a>&nbsp;
                     </li>
                 
             </ul>
@@ -230,11 +234,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/high-concurrency/">high concurrency</a>&nbsp;
+                        <a href="/tags/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/server/">server</a>&nbsp;
+                        | <a href="/tags/python/">python</a>&nbsp;
                     </li>
                 
             </ul>
@@ -244,12 +248,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>308 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>857 Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>3 Mins</span>
         </span>
     
     
@@ -265,21 +269,42 @@
             
 
                     <div class="article-content markdown-body">
-                        <h1 id="什么是ab"><a href="#什么是ab" class="headerlink" title="什么是ab"></a>什么是ab</h1><p>ab是Apache HTTP server benchmarking tool的缩写，可以用以测试HTTP请求的服务器性能,也是业界比较流行和简单易用的一种压力测试工具包。</p>
-<h1 id="使用ab"><a href="#使用ab" class="headerlink" title="使用ab"></a>使用ab</h1><p>在终端中切换至安装ab的bin目录下，然后输入<code>ab -n &lt;requestNum&gt; -c &lt;concurrencyNum&gt; &lt;destination&gt;</code></p>
-<ul>
-<li><em>requestNum</em>: 表示发送请求的数量</li>
-<li><em>concurrencyNum</em>: 表示并发请求的数量</li>
-<li><em>destination</em>: 表示请求的目标</li>
-</ul>
+                        <h1 id="可变对象-VS-不可变对象"><a href="#可变对象-VS-不可变对象" class="headerlink" title="可变对象 VS 不可变对象"></a>可变对象 VS 不可变对象</h1><p>在Python中，诸如int, string, tuple等称为不可变对象，主要是因为他们不能直接对数据进行修改，比如string中不能直接更改某一个位置的字符，tuple不能直接更改某一个内容。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&quot;hello&quot;</span></span><br><span class="line"><span class="comment"># 不能直接改变内容，如操作 a[1] = &#x27;w&#x27; 是不允许的</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(a))    <span class="comment"># 1008</span></span><br><span class="line">a = <span class="string">&quot;world&quot;</span>     <span class="comment"># 这样的操作意味着内存中新建一个&quot;world&quot;，地址与&quot;hello&quot;不同，然后让a这个引用指向新的内存地址</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(a))    <span class="comment"># 1010</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(a))    <span class="comment"># 1008</span></span><br><span class="line">a += <span class="number">1</span>          <span class="comment"># 相当于计算出结果为2，然后内存中新建2，地址与1不同，然后a引用指向新的地址</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(a))    <span class="comment"># 1010</span></span><br></pre></td></tr></table></figure>
+
+<p>诸如list, dict, set等称为可变对象，主要是他们可以直接对数据进行修改，如list可以通过索引访问并修改内容。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(a))    <span class="comment"># 1008</span></span><br><span class="line">a.pop()</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">id</span>(a))    <span class="comment"># 1008，即内存位置没有改变</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="is-VS"><a href="#is-VS" class="headerlink" title="is VS =="></a>is VS ==</h1><p><code>a == b</code>是用于判断数值是否相等；<code>a is b</code>是用于判断在内存中是否存储在同一个位置，即是否为同一个对象，也就是<code>id(a) == id(b)</code></p>
+<hr>
+<h1 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h1><p>由于Python的逻辑是“万物皆对象”，所以每个变量名都是一个引用。具体而言，比如定义<code>a = 1</code>，那么在内存中有一个int 1，然后a作为引用指向该地址。同理，定义<code>b = [1,2,3]</code>，那么内存中有一片区域[1,2,3]，然后b作为引用指向该地址。</p>
+<h2 id="不可变对象"><a href="#不可变对象" class="headerlink" title="不可变对象"></a>不可变对象</h2><p><strong>对于不可变对象而言，同样的内容在内存中只会存储一个</strong>。</p>
+<p>由于相同内容内存中只有一个，所以不存在拷贝的问题。</p>
 <blockquote>
-<p>注：如果提示 <em>SSL not compiled in; no https support</em>，请使用<code>abs</code>代替<code>ab</code></p>
+<p>拷贝：内容一样，但是存储的地点不同。</p>
 </blockquote>
-<h1 id="ab中常见的概念"><a href="#ab中常见的概念" class="headerlink" title="ab中常见的概念"></a>ab中常见的概念</h1><h2 id="吞吐率-Requests-per-second"><a href="#吞吐率-Requests-per-second" class="headerlink" title="吞吐率(Requests per second)"></a>吞吐率(Requests per second)</h2><p>用于描述服务器处理并发的能力，指的是某个并发用户数量下单位时间内处理的请求数量。</p>
-<h2 id="并发连接数-The-number-of-concurrent-connections"><a href="#并发连接数-The-number-of-concurrent-connections" class="headerlink" title="并发连接数(The number of concurrent connections)"></a>并发连接数(The number of concurrent connections)</h2><p>某个时刻服务器所接受的请求数目</p>
-<h2 id="并发用户数-Concurrency-level"><a href="#并发用户数-Concurrency-level" class="headerlink" title="并发用户数(Concurrency level)"></a>并发用户数(Concurrency level)</h2><p>由于一个用户可能发起多个请求，所以并发用户数≤并发连接数</p>
-<h2 id="用户平均等待时间"><a href="#用户平均等待时间" class="headerlink" title="用户平均等待时间"></a>用户平均等待时间</h2><p>处理完所有请求的时间 / (总请求数 / 并发用户数)</p>
-<h2 id="服务器平均请求等待时间"><a href="#服务器平均请求等待时间" class="headerlink" title="服务器平均请求等待时间"></a>服务器平均请求等待时间</h2><p>处理完所有请求的时间 / 总请求数 = 吞吐率<sup>-1</sup> = 用户平均请求等待时间 / 并发用户数</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br><span class="line">aa = a</span><br><span class="line"><span class="built_in">print</span>(aa <span class="keyword">is</span> a)  <span class="comment"># True，因为`1`只在内存中存储了一个，aa和a都是指向内存同一个地方</span></span><br><span class="line">aa = <span class="number">2</span>          <span class="comment"># 相当于在内存中新建一个`2`，然后设置一个引用名为aa，指向该内存地址</span></span><br><span class="line"><span class="built_in">print</span>(a, aa, aa <span class="keyword">is</span> a)   <span class="comment"># 1, 2, False</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span>   <span class="comment"># 1008 -&gt; 1</span></span><br><span class="line">b = <span class="number">2</span>   <span class="comment"># 1010 -&gt; 2</span></span><br><span class="line">a += <span class="number">1</span>  <span class="comment"># 此时结果为2，由于内存中已经有了2，所以直接新建一个引用a，指向已有的内存地址1010</span></span><br><span class="line"><span class="built_in">print</span>(a <span class="keyword">is</span> b)   <span class="comment"># True</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="可变对象"><a href="#可变对象" class="headerlink" title="可变对象"></a>可变对象</h2><p><strong>对于可变对象而言，同样的内容可能存储在不同的内存区域</strong>。因此，只有可变对象才需要讨论浅拷贝和深拷贝。</p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] <span class="comment"># 1008</span></span><br><span class="line">b = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>] <span class="comment"># 1010</span></span><br><span class="line"><span class="built_in">print</span>(a <span class="keyword">is</span> b)   <span class="comment"># False，因为a和b虽然内容一样，但是指向两个不同的对象，这两个对象在内存的地址也不同</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="引用-VS-浅拷贝-VS-深拷贝"><a href="#引用-VS-浅拷贝-VS-深拷贝" class="headerlink" title="引用 VS 浅拷贝 VS 深拷贝"></a>引用 VS 浅拷贝 VS 深拷贝</h1><figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> copy</span><br><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">b = [<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line">c = [a,b, <span class="number">100</span>]</span><br><span class="line">d = c                   <span class="comment"># 引用</span></span><br><span class="line">e = copy.copy(c)        <span class="comment"># 浅拷贝</span></span><br><span class="line">f = copy.deepcopy(c)    <span class="comment"># 深拷贝</span></span><br></pre></td></tr></table></figure>
+
+<p><a href="https://sm.ms/image/1dbAoyDMpeFcHGY" target="_blank"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://i.loli.net/2021/05/20/1dbAoyDMpeFcHGY.jpg"
+                      
+                ></a></p>
+<h2 id="引用-1"><a href="#引用-1" class="headerlink" title="引用"></a>引用</h2><p>引用就是直接赋值，相当于只是起了一个别名，指向的位置没有任何变化，原数据的任何变动都会影响该引用。</p>
+<h2 id="浅拷贝"><a href="#浅拷贝" class="headerlink" title="浅拷贝"></a>浅拷贝</h2><p>使用<code>copy.copy()</code>或者是<code>[:]</code>都是浅拷贝，意思就是直接拷贝原引用的指向，并不拷贝指向的内容。</p>
+<h2 id="深拷贝"><a href="#深拷贝" class="headerlink" title="深拷贝"></a>深拷贝</h2><p>使用<code>copy.deepcopy()</code>，意思就是拷贝指向和指向的内容，新建一个完全独立的内容，不会受任何影响。</p>
 
                     </div>
 
@@ -289,13 +314,13 @@
                                 <div class="article-nav">
                                     
                                         <div class="article-prev">
-                                            <a class="prev" rel="prev" href="/2021/05/17/Redis%E5%9F%BA%E7%A1%80/">
+                                            <a class="prev" rel="prev" href="/2021/05/20/Python%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E6%88%90%E5%91%98%E4%B8%8E%E9%AD%94%E6%B3%95%E6%96%B9%E6%B3%95/">
                                                 <span class="left arrow-icon flex-center">
                                                     <i class="fas fa-chevron-left"></i>
                                                 </span>
                                                 <span class="title flex-center">
                                                     <span class="post-nav-title-item">
-                                                        Redis基础
+                                                        Python中的特殊成员与魔法方法
                                                     </span>
                                                     <span class="post-nav-item">
                                                         Prev posts
@@ -306,10 +331,10 @@
                                         
                                             
                                                 <div class="article-next">
-                                                    <a class="next" rel="next" href="/2021/05/12/Python4Redis/">
+                                                    <a class="next" rel="next" href="/2021/05/19/Redis%E8%BF%9B%E9%98%B6/">
                                                         <span class="title flex-center">
                                                             <span class="post-nav-title-item">
-                                                                Python4Redis
+                                                                Redis进阶
                                                             </span>
                                                             <span class="post-nav-item">
                                                                 Next posts
@@ -435,7 +460,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFab"><span class="nav-text">什么是ab</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8ab"><span class="nav-text">使用ab</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ab%E4%B8%AD%E5%B8%B8%E8%A7%81%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">ab中常见的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%9E%E5%90%90%E7%8E%87-Requests-per-second"><span class="nav-text">吞吐率(Requests per second)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E8%BF%9E%E6%8E%A5%E6%95%B0-The-number-of-concurrent-connections"><span class="nav-text">并发连接数(The number of concurrent connections)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E7%94%A8%E6%88%B7%E6%95%B0-Concurrency-level"><span class="nav-text">并发用户数(Concurrency level)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E5%B9%B3%E5%9D%87%E7%AD%89%E5%BE%85%E6%97%B6%E9%97%B4"><span class="nav-text">用户平均等待时间</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%B9%B3%E5%9D%87%E8%AF%B7%E6%B1%82%E7%AD%89%E5%BE%85%E6%97%B6%E9%97%B4"><span class="nav-text">服务器平均请求等待时间</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1-VS-%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1"><span class="nav-text">可变对象 VS 不可变对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#is-VS"><span class="nav-text">is VS &#x3D;&#x3D;</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E7%94%A8"><span class="nav-text">引用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1"><span class="nav-text">不可变对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E5%8F%98%E5%AF%B9%E8%B1%A1"><span class="nav-text">可变对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BC%95%E7%94%A8-VS-%E6%B5%85%E6%8B%B7%E8%B4%9D-VS-%E6%B7%B1%E6%8B%B7%E8%B4%9D"><span class="nav-text">引用 VS 浅拷贝 VS 深拷贝</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BC%95%E7%94%A8-1"><span class="nav-text">引用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="nav-text">浅拷贝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%B1%E6%8B%B7%E8%B4%9D"><span class="nav-text">深拷贝</span></a></li></ol></li></ol>
     </div>
 </div>
         </aside>
