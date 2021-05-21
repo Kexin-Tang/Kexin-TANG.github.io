@@ -240,12 +240,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>2.5k Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>2.8k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>10 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>11 Mins</span>
         </span>
     
     
@@ -315,12 +315,10 @@
 </blockquote>
 <h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>是<strong>二进制安全</strong>的一种数据类型，可以存储任何“可转换为string类型”的数据，其底层是SDS(simple dynamic string，简单动态字符串)。该数据结构会预先分配一定的capacity，然后在空间不足时分配更多capacity。</p>
 <blockquote>
-<p>注<sub>1</sub>：capacity最大为512MB，小于1MB时空间进行翻倍，大于1MB时每次多分配1MB</p>
+<p>注：capacity最大为512MB，小于1MB时空间进行翻倍，大于1MB时每次多分配1MB</p>
 </blockquote>
-<blockquote>
-<p>注<sub>2</sub>：二进制安全指的是<strong>redis基于字节流而非字符流</strong>，所有的内容都会转换成没有实际意义的二进制来存储。比如在C语言中有 “hello\0world”，那么基于字符流时，会识别<code>\0</code>，因此只能保存 “hello”；而基于字节流时，所有内容转换为二进制，<code>\0</code>变为一串01序列，所以可以存储 “hello\0world”。</p>
-</blockquote>
-<ul>
+<h3 id="二进制安全"><a href="#二进制安全" class="headerlink" title="二进制安全"></a>二进制安全</h3><p>二进制安全指的是<strong>redis基于字节流而非字符流</strong>，所有的内容都会转换成没有实际意义的二进制来存储。比如在C语言中有 “hello\0world”，那么基于字符流时，会识别<code>\0</code>，因此只能保存 “hello”；而基于字节流时，所有内容转换为二进制，<code>\0</code>变为一串01序列，所以可以存储 “hello\0world”。</p>
+<h3 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h3><ul>
 <li><code>set &lt;key&gt; &lt;value&gt;</code>设置键值对</li>
 <li><code>setnx &lt;key&gt; &lt;value&gt;</code>在key不存在时才设置</li>
 <li><code>get &lt;key&gt;</code>获取值</li>
@@ -335,7 +333,7 @@
 <li><code>getset &lt;key&gt; &lt;value&gt;</code>获取旧值，设置新值</li>
 </ul>
 <h2 id="List"><a href="#List" class="headerlink" title="List"></a>List</h2><p>单键多值，底层为双向链表(quickList)，在数据量少时，使用一块连续内存，称为zipList，在数据量多时，将多个zipList作为节点，构建双向链表，称为quickList。</p>
-<ul>
+<h3 id="常见操作"><a href="#常见操作" class="headerlink" title="常见操作"></a>常见操作</h3><ul>
 <li><code>lpush/rpush &lt;key&gt; &lt;v1, v2, ...&gt;</code>从左侧/右侧压入数据</li>
 <li><code>rpoplpush &lt;k1&gt; &lt;k2&gt;</code>从k1的右侧弹出元素放入k2的左侧</li>
 <li><code>lrange &lt;key&gt; &lt;start&gt; &lt;end&gt;</code>key[start, end]</li>
@@ -343,6 +341,13 @@
 <li><code>llen</code>获取长度</li>
 <li><code>linsert &lt;key&gt; before/after &lt;value&gt; &lt;newvalue&gt;</code>在key[value]前/后插入一个newvalue</li>
 <li><code>lrem &lt;key&gt; &lt;n&gt; &lt;value&gt;</code></li>
+<li><code>blpop &lt;key&gt; &lt;timeout&gt;</code> – 在timeout时间内阻塞等待弹出</li>
+</ul>
+<h3 id="可实现的数据类型"><a href="#可实现的数据类型" class="headerlink" title="可实现的数据类型"></a>可实现的数据类型</h3><ul>
+<li>栈 – 通过同向插入删除即可</li>
+<li>队列 – 通过反向插入删除即可</li>
+<li>数组 – 使用<code>LSET</code>和<code>LINDEX</code>对单数据操作</li>
+<li>阻塞单播队列 – 使用<code>BLPOP</code>和<code>BRPOP</code>这种阻塞操作实现</li>
 </ul>
 <h2 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h2><p>与list相似，但是不允许重复，底层是字典(hash表)，增删查改都是O(1)。</p>
 <ul>
@@ -354,10 +359,11 @@
 <li><code>spop &lt;key&gt;</code>随机弹出一个</li>
 <li><code>srandmember &lt;key&gt; &lt;n&gt;</code>随机抽取n个</li>
 <li><code>smove &lt;k1&gt; &lt;k2&gt;</code>从k1移动一个到k2</li>
-<li><code>sdiff/sinter/sunion &lt;destkey&gt; &lt;k1&gt; &lt;k2&gt;</code>将k1与k2进行操作放入destkey</li>
+<li><code>sdiffstore/sinterstore/sunionstore &lt;destkey&gt; &lt;k1&gt; &lt;k2&gt;</code>将k1与k2进行操作放入destkey</li>
+<li><code>sdiff/sinter/sunion &lt;key ...&gt;</code>操作后输出</li>
 </ul>
 <h2 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h2><p>存储的是 {key: {field: value, field: value}} 的结构。</p>
-<ul>
+<h3 id="基本操作-1"><a href="#基本操作-1" class="headerlink" title="基本操作"></a>基本操作</h3><ul>
 <li><code>hset &lt;key&gt; &lt;field&gt; &lt;value&gt;</code></li>
 <li><code>hget &lt;key&gt; &lt;field&gt;</code></li>
 <li><code>hmset &lt;key&gt; &lt;field1&gt; &lt;value1&gt; &lt;field2&gt; &lt;value2&gt;...</code></li>
@@ -379,13 +385,23 @@
 <li><code>zrem &lt;key&gt; &lt;value&gt;</code>删除</li>
 </ul>
 <h2 id="Bitmaps"><a href="#Bitmaps" class="headerlink" title="Bitmaps"></a>Bitmaps</h2><p>实际上是字符串，但可以视为只能存储0和1，其下标被称为“偏移量”，用于提高内存使用率。</p>
-<ul>
+<h3 id="基本操作-2"><a href="#基本操作-2" class="headerlink" title="基本操作"></a>基本操作</h3><ul>
 <li><code>setbit &lt;key&gt; &lt;offset&gt; &lt;value&gt;</code>(<strong>注意是从最左边开始算offset，且STRLEN返回的是字节数而非比特数</strong>)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; setbit k1 1 1</span><br><span class="line">01000000            <span class="comment"># 从左边开始算偏移</span></span><br><span class="line">&gt; STRLEN k1</span><br><span class="line">1                   <span class="comment"># 返回字节数</span></span><br><span class="line">&gt; setbit k1 1 9</span><br><span class="line">0100000001000000    <span class="comment"># 仍然是从最左边开始算偏移 </span></span><br><span class="line">&gt; STRLEN k1</span><br><span class="line">2                   </span><br></pre></td></tr></table></figure></li>
 <li><code>getbit &lt;key&gt; &lt;offset&gt;</code></li>
 <li><code>bitop and/or/not/xor &lt;destkey&gt; &lt;key&gt; [key...]</code></li>
 <li><code>bitcount &lt;key&gt; [start] [end]</code>用于记录为1的个数，注意此处是针对8个bits，即一个byte为单位</li>
 <li><code>bitpos &lt;key&gt; &lt;bit&gt; [start] [end]</code>用于查询第start~第end个字节内第一个<code>bit</code>元素的偏移量(<strong>仍然是从最左边开始计算偏移量</strong>)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="built_in">set</span> k1 1 1</span><br><span class="line">&gt; <span class="built_in">set</span> k1 9 1</span><br><span class="line">&gt; get k1</span><br><span class="line">01000000 01000000</span><br><span class="line">&gt; bitpos k1 1 0 0</span><br><span class="line">1   <span class="comment"># 第0个字节内第一个1的偏移量</span></span><br><span class="line">&gt; bitpos k1 1 1 1</span><br><span class="line">9   <span class="comment"># 第1个字节内第一个1的偏移量，注意仍然是从最左侧计算偏移，所以是9而非1</span></span><br></pre></td></tr></table></figure></li>
 </ul>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><ul>
+<li>统计登录天数</li>
+</ul>
+<p>每一个key代表一个用户，value中保存了365个bit，用于代表每一天。该用户在第i天登录，那么<code>setbit user i 1</code>，即把第i个bit设置为1代表登录了。</p>
+<p>如果想要知道某个用户user的登录天数，那么只需要<code>bitcount user 0 -1</code>即可。</p>
+<ul>
+<li>统计活跃用户</li>
+</ul>
+<p>每一个key代表一天，value中每一个bit代表一个用户。如果用户i在当天登录，那么<code>setbit date i 1</code>。</p>
+<p>如果定义每一天都登录的为活跃用户，那么只需要<code>bitop and [date ...]</code>，再统计最后结果中有多少个为1即代表由多少活跃用户。</p>
 <h2 id="HyperLogLog"><a href="#HyperLogLog" class="headerlink" title="HyperLogLog"></a>HyperLogLog</h2><p>用于做基数统计。在输入数据巨大时，计算基数所需的空间总是固定且较小的，比如在Redis中可以用12KB计算2<sup>64</sup>个基数。</p>
 <blockquote>
 <p>基数：不重复的数字个数</p>
@@ -589,7 +605,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NoSQL-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">NoSQL 数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E4%BC%98%E5%8A%BF"><span class="nav-text">Redis 优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis-VS-memcache"><span class="nav-text">redis VS memcache</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-redis-%E6%94%AF%E6%8C%81%E9%AB%98%E5%B9%B6%E5%8F%91%E5%B9%B6%E6%95%88%E7%8E%87%E9%AB%98"><span class="nav-text">为什么 redis 支持高并发并效率高</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text">Redis 数据类型和基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E7%BD%AE"><span class="nav-text">数据库设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-text">String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List"><span class="nav-text">List</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set"><span class="nav-text">Set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash"><span class="nav-text">Hash</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zset"><span class="nav-text">Zset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bitmaps"><span class="nav-text">Bitmaps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HyperLogLog"><span class="nav-text">HyperLogLog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GEO"><span class="nav-text">GEO</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis-benchmark-%E5%8E%8B%E6%B5%8B"><span class="nav-text">redis-benchmark 压测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lua%E8%84%9A%E6%9C%AC"><span class="nav-text">Lua脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8Lua"><span class="nav-text">为什么要使用Lua</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Lua"><span class="nav-text">如何使用Lua</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6"><span class="nav-text">权限控制</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#NoSQL-%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="nav-text">NoSQL 数据库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-%E4%BC%98%E5%8A%BF"><span class="nav-text">Redis 优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis-VS-memcache"><span class="nav-text">redis VS memcache</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88-redis-%E6%94%AF%E6%8C%81%E9%AB%98%E5%B9%B6%E5%8F%91%E5%B9%B6%E6%95%88%E7%8E%87%E9%AB%98"><span class="nav-text">为什么 redis 支持高并发并效率高</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Redis-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text">Redis 数据类型和基本操作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E7%BD%AE"><span class="nav-text">数据库设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-text">String</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E8%BF%9B%E5%88%B6%E5%AE%89%E5%85%A8"><span class="nav-text">二进制安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="nav-text">基本操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List"><span class="nav-text">List</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E6%93%8D%E4%BD%9C"><span class="nav-text">常见操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text">可实现的数据类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set"><span class="nav-text">Set</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Hash"><span class="nav-text">Hash</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C-1"><span class="nav-text">基本操作</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zset"><span class="nav-text">Zset</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bitmaps"><span class="nav-text">Bitmaps</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C-2"><span class="nav-text">基本操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-text">使用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HyperLogLog"><span class="nav-text">HyperLogLog</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GEO"><span class="nav-text">GEO</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#redis-benchmark-%E5%8E%8B%E6%B5%8B"><span class="nav-text">redis-benchmark 压测</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lua%E8%84%9A%E6%9C%AC"><span class="nav-text">Lua脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E4%BD%BF%E7%94%A8Lua"><span class="nav-text">为什么要使用Lua</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E4%BD%BF%E7%94%A8Lua"><span class="nav-text">如何使用Lua</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6"><span class="nav-text">权限控制</span></a></li></ol>
     </div>
 </div>
         </aside>
