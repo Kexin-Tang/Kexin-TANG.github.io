@@ -287,6 +287,138 @@
                 
 
                 <h3 class="home-article-title">
+                    <a href="/2021/05/21/Python%E6%96%B9%E6%B3%95%E8%A7%A3%E6%9E%90%E9%A1%BA%E5%BA%8F%E8%A1%A8MRO/">
+                        Python方法解析顺序表MRO
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        MRO主要是解决多继承中重复继承的问题。
+在使用父类名.__init__()的方法中，会造成多次继承父类的父类，如下图所示。
+
+为了避免这样的问题，可以使用super，该方法基于MRO，根据MRO的顺序决定继承的顺序。
+
+使用className.__...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Fri May 21 2021 18:25:58 GMT+0800">2021-05-21</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/Programming-Language/">Programming Language</a>&nbsp;
+                        </li>
+                    
+                    
+                        <li>
+                            &gt; 
+                            <a href="/categories/Programming-Language/Python/">Python</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/python/">python</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/05/21/Python%E6%96%B9%E6%B3%95%E8%A7%A3%E6%9E%90%E9%A1%BA%E5%BA%8F%E8%A1%A8MRO/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
+                    <a href="/2021/05/20/Python%E5%85%A8%E5%B1%80%E8%A7%A3%E9%87%8A%E5%99%A8%E9%94%81GIL/">
+                        Python全局解释器锁GIL
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        GIL全局解释器锁GIL和Python其实并没有多大关系。因为Python是解释型语言，所以需要解释器，那么在最常见的C语言编写的CPython中，有一个部件会限制多线程的性能，这个部件就是GIL。
+在CPython运行的Python中，多线程实际上...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu May 20 2021 16:46:12 GMT+0800">2021-05-20</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/Programming-Language/">Programming Language</a>&nbsp;
+                        </li>
+                    
+                    
+                        <li>
+                            &gt; 
+                            <a href="/categories/Programming-Language/Python/">Python</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/python/">python</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/05/20/Python%E5%85%A8%E5%B1%80%E8%A7%A3%E9%87%8A%E5%99%A8%E9%94%81GIL/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/2021/05/20/Python%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E6%88%90%E5%91%98%E4%B8%8E%E9%AD%94%E6%B3%95%E6%96%B9%E6%B3%95/">
                         Python中的特殊成员与魔法方法
                     </a>
@@ -294,7 +426,9 @@
 
                 <div class="home-article-content markdown-body">
                     
-                        
+                        特殊成员和魔法方法是一系列特定结构的成员/方法，其格式为__XXX__，使用这些成员和方法通常会有比较奇特的效果，比如说 使用某个函数时就会自动调用某个方法，想要查看隐藏的信息就要访问特殊的成员 等。
+特殊成员__class__用于查看类名
+1234...
                     
                 </div>
 
@@ -754,145 +888,6 @@ Redis 优势Redis 有众多优势：
     </div>
 
     <a href="/2021/04/26/WSGI/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/04/26/HTTP%E5%92%8CHTTPS/">
-                        HTTP和HTTPS
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        HTTP超文本传输协议，是一个基于请求与响应，无状态的，应用层的协议，常基于TCP/IP协议传输数据，互联网上应用最为广泛的一种网络协议,所有的WWW文件都必须遵守这个标准。设计HTTP的初衷是为了提供一种发布和接收HTML页面的方法。
-HTTP主要...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Mon Apr 26 2021 17:40:10 GMT+0800">2021-04-26</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Web/">Web</a>&nbsp;
-                        </li>
-                    
-                    
-                        <li>
-                            &gt; 
-                            <a href="/categories/Web/Concept/">Concept</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/web/">web</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/http/">http</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/concept/">concept</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/04/26/HTTP%E5%92%8CHTTPS/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/04/25/Django%E4%B8%ADCookie%E5%92%8CSession%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95-%E6%B3%A8%E9%94%80/">
-                        Django中Cookie和Session实现登录/注销
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        什么是 cookies &amp; session?会话（Session）跟踪是Web程序中常用的技术，用来跟踪用户的整个会话。常用的会话跟踪技术是Cookie与Session。Cookie通过在客户端记录信息确定用户身份，Session通过在服务器...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Sun Apr 25 2021 00:40:23 GMT+0800">2021-04-25</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Python/">Python</a>&nbsp;
-                        </li>
-                    
-                    
-                        <li>
-                            &gt; 
-                            <a href="/categories/Web/">Web</a>&nbsp;
-                        </li>
-                    
-                    
-                        <li>
-                            &gt; 
-                            <a href="/categories/Python/Django/">Django</a>&nbsp;
-                        </li>
-                    
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/python/">python</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/django/">django</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/04/25/Django%E4%B8%ADCookie%E5%92%8CSession%E5%AE%9E%E7%8E%B0%E7%99%BB%E5%BD%95-%E6%B3%A8%E9%94%80/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>

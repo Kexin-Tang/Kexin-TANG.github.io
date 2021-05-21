@@ -9,7 +9,7 @@
     
     <title>
         
-            Category: Program Language |
+            Python全局解释器锁GIL |
         
         Kexin Tang
     </title>
@@ -77,7 +77,7 @@
                         </li>
                         
                         <li class="menu-item">
-                            <a class="active"
+                            <a class=""
                                 href="/categories">
                                 CATEGORY
                                     <!-- Category -->
@@ -144,7 +144,7 @@
                 </li>
                 
                 <li class="drawer-menu-item flex-center">
-                    <a class="active"
+                    <a class=""
                         href="/categories">
                         CATEGORY
                     </a>
@@ -185,45 +185,140 @@
 
                 
                     <div class="fade-in-down-animation">
-    <div class="category-container">
-        <div class="category-name">
-            <i class="fas fa-folder"></i>&nbsp;Program Language
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">
+                Python全局解释器锁GIL
+            </span>
         </div>
-        <div class="category-post-list">
-            
-<div class="archive-list-container">
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/tumblr-brands.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">
+                            Kexin
+                        </span>
+                        <!-- 
+                            <span class="author-label">Lv3</span>
+                         -->
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-05-20 16:46:12
+    </span>
     
-        <section class="archive-item">
-            <div class="archive-item-header">
-                <span class="archive-year">2021</span>
-                <span class="archive-year-post-count">[1]</span>
-            </div>
-            <ul class="article-list">
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
                 
-                    <li class="article-item">
-                        <a class="article-title"
-                           href="/2021/04/19/%E7%BC%96%E8%AF%91%E5%9E%8B%E8%AF%AD%E8%A8%80%E5%92%8C%E8%A7%A3%E9%87%8A%E5%9E%8B%E8%AF%AD%E8%A8%80/"
-                        >编译型语言和解释型语言</a>
-                        <span class="article-date">04-19</span>
+                    <li>
+                        <a href="/categories/Programming-Language/">Programming Language</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Programming-Language/Python/">Python</a>&nbsp;
                     </li>
                 
             </ul>
-        </section>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/python/">python</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>197 Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>1 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
-        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+                    <div class="article-content markdown-body">
+                        <h1 id="GIL全局解释器锁"><a href="#GIL全局解释器锁" class="headerlink" title="GIL全局解释器锁"></a>GIL全局解释器锁</h1><p>GIL和Python其实并没有多大关系。因为Python是解释型语言，所以需要解释器，那么在最常见的C语言编写的CPython中，有一个部件会限制多线程的性能，这个部件就是GIL。</p>
+<p>在CPython运行的Python中，多线程实际上是不存在的，比如CPU有两个核，py文件中开了两个线程，那么实际上CPU的2个核利用率都为50%，即两个核实际上是交替运行线程的，即串行执行任务而非并行。这么做的原因就是因为GIL限制了每一次一个进程只能执行一个线程。</p>
+<p>因此，<strong>在Python中想要实现真正的并行，需要使用多进程而非多线程</strong>。</p>
+
+                    </div>
+
+                    
+
+                            
+                                <div class="article-nav">
+                                    
+                                        <div class="article-prev">
+                                            <a class="prev" rel="prev" href="/2021/05/21/Python%E6%96%B9%E6%B3%95%E8%A7%A3%E6%9E%90%E9%A1%BA%E5%BA%8F%E8%A1%A8MRO/">
+                                                <span class="left arrow-icon flex-center">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </span>
+                                                <span class="title flex-center">
+                                                    <span class="post-nav-title-item">
+                                                        Python方法解析顺序表MRO
+                                                    </span>
+                                                    <span class="post-nav-item">
+                                                        Prev posts
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                        
+                                            
+                                                <div class="article-next">
+                                                    <a class="next" rel="next" href="/2021/05/20/Python%E4%B8%AD%E7%9A%84%E7%89%B9%E6%AE%8A%E6%88%90%E5%91%98%E4%B8%8E%E9%AD%94%E6%B3%95%E6%96%B9%E6%B3%95/">
+                                                        <span class="title flex-center">
+                                                            <span class="post-nav-title-item">
+                                                                Python中的特殊成员与魔法方法
+                                                            </span>
+                                                            <span class="post-nav-item">
+                                                                Next posts
+                                                            </span>
+                                                        </span>
+                                                        <span class="right arrow-icon flex-center">
+                                                            <i class="fas fa-chevron-right"></i>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                
+                                </div>
+                                
+
+                                    
     </div>
-    <div class="category-paginator">
-        <div class="paginator">
-    
-
-    
 </div>
-
-    </div>
-</div>
-
 
                 
             </div>
@@ -265,6 +360,23 @@
         </div>
     </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
     
 
     <div class="right-bottom-side-tools">
@@ -311,6 +423,14 @@
 
     </div>
 
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GIL%E5%85%A8%E5%B1%80%E8%A7%A3%E9%87%8A%E5%99%A8%E9%94%81"><span class="nav-text">GIL全局解释器锁</span></a></li></ol>
+    </div>
+</div>
+        </aside>
     
 
     <div class="image-viewer-container">
@@ -384,6 +504,14 @@
 
 
 <div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
     
 </div>
 

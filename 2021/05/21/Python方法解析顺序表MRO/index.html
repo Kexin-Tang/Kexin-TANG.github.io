@@ -9,7 +9,7 @@
     
     <title>
         
-            Python中的特殊成员与魔法方法 |
+            Python方法解析顺序表MRO |
         
         Kexin Tang
     </title>
@@ -189,7 +189,7 @@
 
         <div class="article-title">
             <span class="title-hover-animation">
-                Python中的特殊成员与魔法方法
+                Python方法解析顺序表MRO
             </span>
         </div>
 
@@ -210,7 +210,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-05-20 14:43:04
+        <i class="fas fa-edit"></i>&nbsp;2021-05-21 18:25:58
     </span>
     
         <span class="article-categories article-meta-item">
@@ -248,12 +248,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>486 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>135 Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>2 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>1 Mins</span>
         </span>
     
     
@@ -269,31 +269,23 @@
             
 
                     <div class="article-content markdown-body">
-                        <p>特殊成员和魔法方法是一系列特定结构的成员/方法，其格式为<code>__XXX__</code>，使用这些成员和方法通常会有比较奇特的效果，比如说 <em>使用某个函数时就会自动调用某个方法</em>，<em>想要查看隐藏的信息就要访问特殊的成员</em> 等。</p>
-<h1 id="特殊成员"><a href="#特殊成员" class="headerlink" title="特殊成员"></a>特殊成员</h1><h2 id="class"><a href="#class" class="headerlink" title="__class__"></a><code>__class__</code></h2><p>用于查看类名</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span>:</span></span><br><span class="line">    ...</span><br><span class="line"></span><br><span class="line">myclass = MyClass()</span><br><span class="line"><span class="built_in">print</span>(myclass.__class__)    <span class="comment"># __main__.MyClass</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="module"><a href="#module" class="headerlink" title="__module__"></a><code>__module__</code></h2><p>用于查看类的来源</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> other.modules <span class="keyword">import</span> MyClass</span><br><span class="line">myclass = MyClass()</span><br><span class="line"><span class="built_in">print</span>(myclass.__module__)    <span class="comment"># other.modules</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="dict"><a href="#dict" class="headerlink" title="__dict__"></a><code>__dict__</code></h2><p>用于查看属性</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, name, age</span>):</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.age = age</span><br><span class="line"></span><br><span class="line">myclass = MyClass(<span class="string">&#x27;tom&#x27;</span>, <span class="number">18</span>)</span><br><span class="line"><span class="built_in">print</span>(myclass.__dict__) <span class="comment"># &#123;name: &#x27;tom&#x27;, age: 18&#125;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="str"><a href="#str" class="headerlink" title="__str__"></a><code>__str__</code></h2><p>定义打印输出时的显示内容</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__str__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;hello world&quot;</span></span><br><span class="line"></span><br><span class="line">myclass = MyClass()</span><br><span class="line"><span class="built_in">print</span>(myclass)  <span class="comment"># hello world</span></span><br><span class="line"></span><br><span class="line">sentence = <span class="string">&quot;I want to say: %s&quot;</span> % myclass</span><br><span class="line"><span class="built_in">print</span>(sentence) <span class="comment"># I want to say: hello world</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<h1 id="魔法方法"><a href="#魔法方法" class="headerlink" title="魔法方法"></a>魔法方法</h1><h2 id="new-cls-和-init-self"><a href="#new-cls-和-init-self" class="headerlink" title="__new__(cls, ...) 和 __init__(self, ...)"></a><code>__new__(cls, ...)</code> 和 <code>__init__(self, ...)</code></h2><p>注意，<code>__new__(cls, ...)</code>为构造函数，用于创建类对象，而<code>__init__(self, ...)</code>仅仅是初始化函数，用于将预设的内容传递到新建的类内。这两个函数在使用诸如<code>myClass = MyClass()</code>时自动调用。</p>
-<h2 id="call-self-args-kwargs"><a href="#call-self-args-kwargs" class="headerlink" title="__call__(self, *args, **kwargs)"></a><code>__call__(self, *args, **kwargs)</code></h2><p>使得类和函数一样，可以直接加上<code>()</code>并传入参数调用。</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Add</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__call__</span>(<span class="params">self, *args</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">sum</span>(args)</span><br><span class="line"></span><br><span class="line">myadd = Add()</span><br><span class="line">myadd(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)    <span class="comment"># 6</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="getitem-self-key-和-setitem-self-key-value"><a href="#getitem-self-key-和-setitem-self-key-value" class="headerlink" title="__getitem__(self, key) 和 __setitem__(self, key, value)"></a><code>__getitem__(self, key)</code> 和 <code>__setitem__(self, key, value)</code></h2><p>使得对象可以使用<code>[]</code>进行获取和设置，就类似于字典一样。</p>
-<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">myclass[key]            <span class="comment"># 调用__getitem__(self, key)</span></span><br><span class="line">myclass[key] = value    <span class="comment"># 调用__setitem(self, key, value)</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="getslice-self-begin-end-和-setslice-self-begin-end-value"><a href="#getslice-self-begin-end-和-setslice-self-begin-end-value" class="headerlink" title="__getslice__(self, begin, end) 和 __setslice__(self, begin, end, value)"></a><code>__getslice__(self, begin, end)</code> 和 <code>__setslice__(self, begin, end, value)</code></h2><p>使得对象可以使用<code>[begin: end]</code>这样类似list的方式进行获取和设置。</p>
-<h2 id="iter-self"><a href="#iter-self" class="headerlink" title="__iter__(self)"></a><code>__iter__(self)</code></h2><p>通过在函数内返回迭代器，使得对象可以被循环。</p>
-<h2 id="add-self-other"><a href="#add-self-other" class="headerlink" title="__add__(self, other)"></a><code>__add__(self, other)</code></h2><p>实现加法操作。对于其他运算也有相应的魔法方法</p>
-<h2 id="lt-self-other"><a href="#lt-self-other" class="headerlink" title="__lt__(self, other)"></a><code>__lt__(self, other)</code></h2><p><code>x&lt;y</code>相当于调用<code>x.lt(y)</code>，定义了使用<code>&lt;</code>时的评判标准。对于其他比较运算，也有对应的魔法方法。</p>
+                        <p>MRO主要是解决多继承中重复继承的问题。</p>
+<p>在使用<code>父类名.__init__()</code>的方法中，会造成多次继承父类的父类，如下图所示。</p>
+<p><a href="https://sm.ms/image/FAu7kposYCeh9Nl" target="_blank"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://i.loli.net/2021/05/21/FAu7kposYCeh9Nl.jpg"
+                      
+                ></a></p>
+<p>为了避免这样的问题，可以使用<code>super</code>，该方法基于MRO，根据MRO的顺序决定继承的顺序。</p>
+<p><a href="https://sm.ms/image/7dS5yz2qGUE6XZP" target="_blank"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://i.loli.net/2021/05/21/7dS5yz2qGUE6XZP.jpg"
+                      
+                ></a></p>
+<p>使用<code>className.__mro__</code>可以查看MRO链，使用<code>super().__init__()</code>方法时会在MRO链中选中当前class，然后调用下一个class的__init__方法。</p>
+<p>也可以使用<code>super(class, self).__init__()</code>指定调用的下一个class的__init__方法。</p>
 
                     </div>
 
@@ -302,28 +294,12 @@
                             
                                 <div class="article-nav">
                                     
-                                        <div class="article-prev">
-                                            <a class="prev" rel="prev" href="/2021/05/20/Python%E5%85%A8%E5%B1%80%E8%A7%A3%E9%87%8A%E5%99%A8%E9%94%81GIL/">
-                                                <span class="left arrow-icon flex-center">
-                                                    <i class="fas fa-chevron-left"></i>
-                                                </span>
-                                                <span class="title flex-center">
-                                                    <span class="post-nav-title-item">
-                                                        Python全局解释器锁GIL
-                                                    </span>
-                                                    <span class="post-nav-item">
-                                                        Prev posts
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                        
                                             
                                                 <div class="article-next">
-                                                    <a class="next" rel="next" href="/2021/05/20/Python%E4%B8%AD%E7%9A%84%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D/">
+                                                    <a class="next" rel="next" href="/2021/05/20/Python%E5%85%A8%E5%B1%80%E8%A7%A3%E9%87%8A%E5%99%A8%E9%94%81GIL/">
                                                         <span class="title flex-center">
                                                             <span class="post-nav-title-item">
-                                                                Python中的浅拷贝与深拷贝
+                                                                Python全局解释器锁GIL
                                                             </span>
                                                             <span class="post-nav-item">
                                                                 Next posts
@@ -449,7 +425,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%89%B9%E6%AE%8A%E6%88%90%E5%91%98"><span class="nav-text">特殊成员</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#class"><span class="nav-text">__class__</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#module"><span class="nav-text">__module__</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dict"><span class="nav-text">__dict__</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#str"><span class="nav-text">__str__</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%AD%94%E6%B3%95%E6%96%B9%E6%B3%95"><span class="nav-text">魔法方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#new-cls-%E5%92%8C-init-self"><span class="nav-text">__new__(cls, ...) 和 __init__(self, ...)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#call-self-args-kwargs"><span class="nav-text">__call__(self, *args, **kwargs)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getitem-self-key-%E5%92%8C-setitem-self-key-value"><span class="nav-text">__getitem__(self, key) 和 __setitem__(self, key, value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#getslice-self-begin-end-%E5%92%8C-setslice-self-begin-end-value"><span class="nav-text">__getslice__(self, begin, end) 和 __setslice__(self, begin, end, value)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iter-self"><span class="nav-text">__iter__(self)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#add-self-other"><span class="nav-text">__add__(self, other)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lt-self-other"><span class="nav-text">__lt__(self, other)</span></a></li></ol></li></ol>
+        
     </div>
 </div>
         </aside>
