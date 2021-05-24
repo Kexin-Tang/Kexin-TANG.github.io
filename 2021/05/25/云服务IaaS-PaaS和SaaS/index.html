@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Kexin">
+    
+    <title>
+        
+            云服务IaaS,PaaS和SaaS |
+        
+        Kexin Tang
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/cat.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"kexin-tang.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#ef476f","avatar":"/images/cat.png","favicon":"/images/cat.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/sea.jpg","description":"<tag> Too many people, too little soul... </tag>"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div
+        class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                Kexin Tang
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                                href="/">
+                                HOME
+                                    <!-- Home -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/archives">
+                                ARCHIVE
+                                    <!-- Archive -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/categories">
+                                CATEGORY
+                                    <!-- Category -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/tags">
+                                TAG
+                                    <!-- Tag -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/CV/CV.pdf">
+                                CV
+                                    <!-- CV -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/about">
+                                ABOUT
+                                    <!-- About -->
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/">
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/archives">
+                        ARCHIVE
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/categories">
+                        CATEGORY
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/tags">
+                        TAG
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/CV/CV.pdf">
+                        CV
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/about">
+                        ABOUT
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">
+                云服务IaaS,PaaS和SaaS
+            </span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/cat.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">
+                            Kexin
+                        </span>
+                        <!-- 
+                            <span class="author-label">Lv3</span>
+                         -->
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-05-25 00:49:16
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/%E6%A6%82%E5%BF%B5/%E4%BA%91/">云</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>907 Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>3 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+            
+
+                    <div class="article-content markdown-body">
+                        <h1 id="云服务"><a href="#云服务" class="headerlink" title="云服务"></a>云服务</h1><p>就以存储举例。</p>
+<p>在之前，如果A要存储100G的资源，需要买一个大于100G的硬盘，比如买一个500G的，那么就浪费了400G，但是钱还是一样花了。同样，如果有一天，A的资源增加到501G，那么他需要再买新的硬盘专门存储1G的资源。</p>
+<p>而云存储（云服务的一种）就类似于A要存储100G，B要存储50G，那么A和B可以存储在一个500G的空间内。即物理上存储在一起，逻辑上是独立的，A不能访问B的资源，反之亦然。当B增加到480G时，可以将多余的30G存储到另一个物理地址上，这就牵涉到分布式系统。</p>
+<p>常见的三种云服务模式为IaaS、PaaS和SaaS。</p>
+<p><a href="https://sm.ms/image/C5MZugVvL79NS3G" target="_blank"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://i.loli.net/2021/05/25/C5MZugVvL79NS3G.png"
+                      
+                ></a></p>
+<h2 id="IaaS"><a href="#IaaS" class="headerlink" title="IaaS"></a>IaaS</h2><p>Infrastructure as a Service，基础设施即为服务。</p>
+<p>由云服务提供商把 IT 系统的基础设施建设好，并对计算设备进行池化，然后直接对外出租硬件服务器、虚拟主机、存储或网络设施（负载均衡器、防火墙、公网IP地址及诸如 DNS 等基础服务）等。</p>
+<p>云服务提供商负责管理机房基础设施、计算机网络、磁盘柜、服务器和虚拟机，租户自己安装和管理操作系统、数据库、中间件、应用软件和数据信息，所以 IaaS 云服务的消费者一般是掌握一定技术的系统管理员。</p>
+<h2 id="PaaS"><a href="#PaaS" class="headerlink" title="PaaS"></a>PaaS</h2><p>Platform as a Service，平台即服务。</p>
+<p>云服务提供商把 IT 系统的平台软件层作为服务出租出去。相比于 IaaS 云服务提供商，PaaS 云服务提供商要做的事情增加了，他们需要准备机房、布好网络、购买设备、安装操作系统、数据库和中间件，即把基础设施层和平台软件层都搭建好，然后在平台软件层上划分“小块”（习惯称之为容器）并对外出租。</p>
+<p>PaaS 云服务提供商也可以从其他 IaaS 云服务提供商那里租赁计算资源，然后自己部署平台软件层。另外，为了让消费者能直接在云端开发调试程序，PaaS 云服务提供商还得安装各种开发调试工具。相反，租户要做的事情相比 IaaS 要少很多，租户只要开发和调试软件或者安装、配置和使用应用软件即可。</p>
+<h2 id="SaaS"><a href="#SaaS" class="headerlink" title="SaaS"></a>SaaS</h2><p>Software as a Service，软件即服务。</p>
+<p>软件部署在云端，让用户通过因特网来使用它，即云服务提供商把 IT 系统的应用软件层作为服务出租出去，而消费者可以使用任何云终端设备接入计算机网络，然后通过网页浏览器或者编程接口使用云端的软件。这进一步降低了租户的技术门槛，应用软件也无须自己安装了，而是直接使用软件。</p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>用生活中的例子来描述。比如提供服务类似于做饭，那么：</p>
+<ol>
+<li>IaaS 相当于提供刀叉、锅碗瓢盆等这些硬件设施(基础设施)，用户需要自己准备食材(开发套件，OS，DB等)，还需要自己烹饪(写软件代码)</li>
+<li>PaaS 相当于提供刀叉、锅碗瓢盆和切好的食材(基础设施和开发套件)，用户只需要自己烹饪(写代码)</li>
+<li>SaaS 相当于直接上菜，用户什么都不用做，只要使用饭店提供的筷子、刀叉(API，UI界面等)吃饭即可</li>
+</ol>
+
+                    </div>
+
+                    
+
+                            
+                                <div class="article-nav">
+                                    
+                                            
+                                                <div class="article-next">
+                                                    <a class="next" rel="next" href="/2021/05/24/%E8%BD%AF%E4%BB%B6%E5%B9%B6%E5%8F%91%E6%83%85%E5%BD%A2%E4%B8%8B%E7%9A%84%E5%B8%B8%E8%A7%81%E6%8C%87%E6%A0%87/">
+                                                        <span class="title flex-center">
+                                                            <span class="post-nav-title-item">
+                                                                软件并发情形下的常见指标
+                                                            </span>
+                                                            <span class="post-nav-item">
+                                                                Next posts
+                                                            </span>
+                                                        </span>
+                                                        <span class="right arrow-icon flex-center">
+                                                            <i class="fas fa-chevron-right"></i>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                
+                                </div>
+                                
+
+                                    
+    </div>
+</div>
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Kexin</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%91%E6%9C%8D%E5%8A%A1"><span class="nav-text">云服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IaaS"><span class="nav-text">IaaS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PaaS"><span class="nav-text">PaaS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SaaS"><span class="nav-text">SaaS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
