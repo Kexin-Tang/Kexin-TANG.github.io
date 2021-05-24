@@ -9,7 +9,7 @@
     
     <title>
         
-            编译型语言和解释型语言 |
+            消息队列&amp;订阅发布 |
         
         Kexin Tang
     </title>
@@ -189,7 +189,7 @@
 
         <div class="article-title">
             <span class="title-hover-animation">
-                编译型语言和解释型语言
+                消息队列&amp;订阅发布
             </span>
         </div>
 
@@ -210,7 +210,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-04-19 16:48:45
+        <i class="fas fa-edit"></i>&nbsp;2021-05-24 17:28:25
     </span>
     
         <span class="article-categories article-meta-item">
@@ -218,11 +218,15 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
+                        <a href="/categories/Web/">Web</a>&nbsp;
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/%E6%A6%82%E5%BF%B5/Java/">Java</a>&nbsp;
+                        &gt; <a href="/categories/Web/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Web/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列</a>&nbsp;
                     </li>
                 
             </ul>
@@ -234,11 +238,15 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
+                        <a href="/tags/web/">web</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/Java/">Java</a>&nbsp;
+                        | <a href="/tags/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/">消息队列</a>&nbsp;
                     </li>
                 
             </ul>
@@ -248,7 +256,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>819 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>655 Words</span>
         </span>
     
     
@@ -269,46 +277,31 @@
             
 
                     <div class="article-content markdown-body">
-                        <h1 id="编译型语言和解释型语言"><a href="#编译型语言和解释型语言" class="headerlink" title="编译型语言和解释型语言"></a>编译型语言和解释型语言</h1><p>计算机是不能理解高级语言的，更不能直接执行高级语言，它只能直接理解机器语言，所以使用任何高级语言编写的程序若想被计算机运行，都必须将其转换成计算机语言，也就是机器码。而转换主要有两种方法</p>
-<ul>
-<li><p>编译 – 先进行转换，然后再运行</p>
-</li>
-<li><p>解释 – 运行的过程中进行转换</p>
-</li>
-</ul>
-<h2 id="编译型语言"><a href="#编译型语言" class="headerlink" title="编译型语言"></a>编译型语言</h2><p>使用<em>专门的编译器</em>，针对特定的平台，将高级语言源代码一次性的编译成可被该平台硬件执行的机器码，并包装成该平台所能识别的可执行性程序的格式(如.exe)。由于已经生成了可执行格式，以后运行时不需要编译，所以编译型语言执行效率高(<strong>编译一次，多次使用</strong>)。</p>
-<p>一般而言，编译型语言有以下特点：</p>
+                        <h1 id="什么是消息队列-MQ"><a href="#什么是消息队列-MQ" class="headerlink" title="什么是消息队列(MQ)"></a>什么是消息队列(MQ)</h1><p>不论是<em>Kafka</em>还是<em>RabbitMQ</em>，消息队列的功能都可以概括为：一收一发。消息队列就如其名一样，是基于队列的数据结构。</p>
+<h1 id="为什么要加入消息队列"><a href="#为什么要加入消息队列" class="headerlink" title="为什么要加入消息队列"></a>为什么要加入消息队列</h1><p>那么为什么需要在Client和Server中间多加这样一个层呢？</p>
 <ol>
-<li>编译后无需再次编译，性能好</li>
-<li>针对特定平台，跨平台性能差</li>
+<li><strong>解耦</strong>：通过加入消息队列，可以将队列两端的业务逻辑完全隔离开。生产者只需要关注于向队列中加入数据，而不用在意消费者；消费者只需要关注于从队列中取数据，完全不关心生产者。</li>
+<li><strong>临时持久化</strong>：有时在处理数据的时候处理过程会失败。如果没有消息队列，数据处理失败后需要重新向生产者索要数据，而有了队列后，直接再次从队列中取出数据即可。在被许多消息队列所采用的”插入-获取-删除”范式中，在把一个消息从队列中删除之前，需要你的处理过程明确的指出该消息已经被处理完毕，确保你的数据被安全的保存直到使用完毕。</li>
+<li><strong>削峰</strong>：服务器的处理能力有限，如果突然出现高并发，那么服务器可能承受不了而崩溃。引入消息队列后，只要把数据全部存到消息队列，服务器再慢慢处理即可。</li>
+<li><strong>异步加速</strong>：如果没有消息队列，那么任务需要串行完成，这需要等待漫长的网络连接和数据库的IO读写。如果有了消息队列，可以待任务丢入消息队列后即给Clinet返回消息，然后数据库再慢慢通过IO和网络处理消息队列的内容。</li>
 </ol>
-<p>由于有以上的特点，所以编译型语言常用于OS，嵌入式等对性能要求极高的特定平台，所以衍生出的经典语言类型有 – C/C++</p>
-<h2 id="解释型语言"><a href="#解释型语言" class="headerlink" title="解释型语言"></a>解释型语言</h2><p>使用<em>专门的解释器</em>对源程序逐行解释成特定平台的机器码并立即执行。是代码在执行时才被解释器一行行动态翻译和执行，而不是在执行之前就完成翻译。</p>
-<p>一般而言，解释型语言有以下特点：</p>
-<ol>
-<li>由于在执行时再翻译，每次执行都要翻译，效率低</li>
-<li>只要对应平台有相应的解释器即可运行，跨平台性能好，便于移植</li>
-</ol>
-<p>由于有以上的特点，所以解释型语言常用于Web，脚本等跨平台使用的场景，所以衍生出的经典语言类型有 – Python, Javascript</p>
-<h2 id="关于Java"><a href="#关于Java" class="headerlink" title="关于Java"></a>关于Java</h2><p>Java是一种很特殊的语言，其需要将.java文件通过编译生成.class文件，但是该.class文件却可以在各种平台上使用，因为java针对不同的平台有不同的<strong>JVM</strong>，实现了跨平台。</p>
-<blockquote>
-<ul>
-<li>你可以说它是编译型的：因为所有的Java代码都是要编译的，.java不经过编译就什么用都没有。 </li>
-<li>你可以说它是解释型的：因为java代码编译后不能直接运行，它是解释运行在JVM上的，所以它是解释运行的，那也就算是解释的了。 </li>
-<li>但是，现在的JVM为了效率，都有一些JIT优化。它又会把.class的二进制代码编译为本地的代码直接运行，所以，又是编译的。</li>
-</ul>
-<img  
+<p><a href="https://sm.ms/image/ixeYGgKC48rs2uJ" target="_blank"><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="https://img-blog.csdn.net/20160419154349203"
-                     
-                >
+                     data-src="https://i.loli.net/2021/05/24/ixeYGgKC48rs2uJ.jpg"
+                      
+                ></a></p>
+<h1 id="消息队列-rarr-订阅发布"><a href="#消息队列-rarr-订阅发布" class="headerlink" title="消息队列 &rarr; 订阅发布"></a>消息队列 &rarr; 订阅发布</h1><p><a href="https://sm.ms/image/2yU68sOvW7F15JC" target="_blank"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://i.loli.net/2021/05/24/2yU68sOvW7F15JC.jpg"
+                      
+                ></a></p>
+<p>消息队列如图的左边，只能点对点（一对一），如果要将消息分发给不同的消费者，就需要更复杂的逻辑。</p>
+<p>因此就像图的右边，订阅发布出现了。订阅者需要先订阅指定的发布者。发布者只需要把内容放进消息队列；消息队列内容弹出时，该消息（主题）只会分发给 <em>订阅了生产该消息的发布者</em> 对应的订阅者。</p>
+<blockquote>
+<p>假设订阅者0、1订阅了发布者A；订阅者1、2订阅了发布者B。那么当消息队列取出“发布者A发布的消息时”，该消息只会分发给订阅者0和1，订阅者2无法接收到。</p>
 </blockquote>
-<h1 id="为什么需要编译"><a href="#为什么需要编译" class="headerlink" title="为什么需要编译"></a>为什么需要编译</h1><p>编译有两个主要的好处：</p>
-<ol>
-<li>可以提前排除错误;</li>
-<li>对于Java而言，编译并不会直接像C++一样产生基于特定系统的机器码，而是会产生一个二进制比特文件(又称为class文件)，这个文件可以在多种平台被识别(通过JVM)，然后再基于特定的系统进一步进行翻译，实现跨平台与高效率的trade-off</li>
-</ol>
 
                     </div>
 
@@ -317,28 +310,12 @@
                             
                                 <div class="article-nav">
                                     
-                                        <div class="article-prev">
-                                            <a class="prev" rel="prev" href="/2021/04/20/caffe2pytorch/">
-                                                <span class="left arrow-icon flex-center">
-                                                    <i class="fas fa-chevron-left"></i>
-                                                </span>
-                                                <span class="title flex-center">
-                                                    <span class="post-nav-title-item">
-                                                        caffe2pytorch
-                                                    </span>
-                                                    <span class="post-nav-item">
-                                                        Prev posts
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                        
                                             
                                                 <div class="article-next">
-                                                    <a class="next" rel="next" href="/2021/04/19/How-to-write-hello-world-in-HEXO-II/">
+                                                    <a class="next" rel="next" href="/2021/05/23/%E8%BF%9C%E7%A8%8B%E8%BF%87%E7%A8%8B%E8%B0%83%E7%94%A8RPC/">
                                                         <span class="title flex-center">
                                                             <span class="post-nav-title-item">
-                                                                How-to-write-hello-world-in-HEXO-II
+                                                                远程过程调用RPC
                                                             </span>
                                                             <span class="post-nav-item">
                                                                 Next posts
@@ -464,7 +441,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%9E%8B%E8%AF%AD%E8%A8%80%E5%92%8C%E8%A7%A3%E9%87%8A%E5%9E%8B%E8%AF%AD%E8%A8%80"><span class="nav-text">编译型语言和解释型语言</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%9E%8B%E8%AF%AD%E8%A8%80"><span class="nav-text">编译型语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E9%87%8A%E5%9E%8B%E8%AF%AD%E8%A8%80"><span class="nav-text">解释型语言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8EJava"><span class="nav-text">关于Java</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E7%BC%96%E8%AF%91"><span class="nav-text">为什么需要编译</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97-MQ"><span class="nav-text">什么是消息队列(MQ)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E5%8A%A0%E5%85%A5%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97"><span class="nav-text">为什么要加入消息队列</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97-rarr-%E8%AE%A2%E9%98%85%E5%8F%91%E5%B8%83"><span class="nav-text">消息队列 &amp;rarr; 订阅发布</span></a></li></ol>
     </div>
 </div>
         </aside>
