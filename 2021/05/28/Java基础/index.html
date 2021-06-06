@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Kexin">
+    
+    <title>
+        
+            Java基础 |
+        
+        Kexin Tang
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/cat.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"kexin-tang.github.io","root":"/","language":"en","path":"search.json"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#ef476f","avatar":"/images/cat.png","favicon":"/images/cat.png","article_img_align":"center","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":true,"scale":true},"first_screen":{"enable":true,"background_img":"/images/sea.jpg","description":"<tag> Too many people, too little soul... </tag>"},"scroll":{"progress_bar":{"enable":true},"percent":{"enable":true}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"mac"},"pjax":{"enable":false},"lazyload":{"enable":true},"version":"3.4.2"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+        <span class="scroll-progress-bar"></span>
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div
+        class="header-content">
+        <div class="left">
+            <a class="logo-title" href="/">
+                Kexin Tang
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                                href="/">
+                                HOME
+                                    <!-- Home -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/archives">
+                                ARCHIVE
+                                    <!-- Archive -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/categories">
+                                CATEGORY
+                                    <!-- Category -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/tags">
+                                TAG
+                                    <!-- Tag -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/CV/CV.pdf">
+                                CV
+                                    <!-- CV -->
+                            </a>
+                        </li>
+                        
+                        <li class="menu-item">
+                            <a class=""
+                                href="/about">
+                                ABOUT
+                                    <!-- About -->
+                            </a>
+                        </li>
+                        
+                            
+                                <li class="menu-item search search-popup-trigger">
+                                    <i class="fas fa-search"></i>
+                                </li>
+                                
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                    
+                        <div class="icon-item menu-bar">
+                            <div class="menu-bar-middle"></div>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/">
+                        HOME
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/archives">
+                        ARCHIVE
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/categories">
+                        CATEGORY
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/tags">
+                        TAG
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/CV/CV.pdf">
+                        CV
+                    </a>
+                </li>
+                
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                        href="/about">
+                        ABOUT
+                    </a>
+                </li>
+                
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">
+                Java基础
+            </span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/cat.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">
+                            Kexin
+                        </span>
+                        <!-- 
+                            <span class="author-label">Lv3</span>
+                         -->
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;2021-05-28 20:01:10
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Java/">Java</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/Java/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Java/">Java</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>4.2k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>16 Mins</span>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+            
+
+                    <div class="article-content markdown-body">
+                        <h1 id="Java概述"><a href="#Java概述" class="headerlink" title="Java概述"></a>Java概述</h1><h2 id="Java运行方法"><a href="#Java运行方法" class="headerlink" title="Java运行方法"></a>Java运行方法</h2><p>Java是一种很特殊的语言。其 <em>源文件.java</em>，而其通过编译生成 <em>字节码文件.class</em>，该.class文件再被执行。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">javac xxx.java  <span class="comment"># 编译 -&gt; 生成.class</span></span><br><span class="line">java xxx        <span class="comment"># 运行.class</span></span><br></pre></td></tr></table></figure>
+<p>上述<code>javac</code>为编译器，<code>java</code>为解释器。</p>
+<p><a href="https://sm.ms/image/hftqVRP7j5ZG3OB" target="_blank"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://i.loli.net/2021/05/26/hftqVRP7j5ZG3OB.png"
+                      
+                ></a></p>
+<ul>
+<li>你可以说它是编译型的：因为所有的Java代码都是要编译的，.java不经过编译就什么用都没有。 </li>
+<li>你可以说它是解释型的：因为java代码编译后不能直接运行，它是解释运行在Java虚拟机上的，所以它是解释运行的，那也就算是解释的了。 </li>
+</ul>
+<hr>
+<h2 id="常见名词解释"><a href="#常见名词解释" class="headerlink" title="常见名词解释"></a>常见名词解释</h2><h3 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h3><p>Java Virtual Machine，实现Java跨平台的核心。本质上来说，JVM并不是跨平台的，需要根据不同的操作系统选择不同的JVM，但是，对于java源文件（代码）而言，只要有JVM，就可以直接运行，不用在乎运行的平台（操作系统）。</p>
+<h3 id="JRE"><a href="#JRE" class="headerlink" title="JRE"></a>JRE</h3><p>Java Runtime Environment，是Java的运行环境，包含JVM和核心库。如果只需要运行Java文件，则可以只安装JRE。</p>
+<h3 id="JDK"><a href="#JDK" class="headerlink" title="JDK"></a>JDK</h3><p>Java Development Kit，是程序开发工具组件，包含JRE和其他工具。如果要开发项目，编写Java代码，则必须安装JDK。</p>
+<hr>
+<h2 id="Java源文件格式"><a href="#Java源文件格式" class="headerlink" title="Java源文件格式"></a>Java源文件格式</h2><ol>
+<li>一个源文件只能有一个public的class</li>
+<li>一个源文件可以有多个非public的class</li>
+<li>源文件的文件名要和public的class一致</li>
+<li>package语句放在源文件首行，import紧随其后，然后再是class定义</li>
+<li>一个项目(不是一个文件，一个项目可以有多个文件构成)中只能有一个main函数，且该main函数是该项目的起点</li>
+<li>该main函数有特定的定义方式和参数名，即<code>public static void main(String[] args) &#123;...&#125;</code></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> HelloWorld</span><br><span class="line"><span class="comment">// HelloWorld.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorld</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Java数据类型"><a href="#Java数据类型" class="headerlink" title="Java数据类型"></a>Java数据类型</h2><p>变量就是申请内存来存储值。也就是说，当创建变量的时候，需要在内存中申请空间。内存管理系统根据变量的类型为变量分配存储空间，分配的空间只能用来储存该类型数据。</p>
+<p>Java两大数据类型：基本数据类型，引用数据类型。</p>
+<h3 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h3><ul>
+<li>byte (8 bit)</li>
+</ul>
+<p>byte 用在大型数组中节约空间，主要代替整数，因为 byte 变量占用的空间只有 int 类型的四分之一</p>
+<ul>
+<li>short (16 bit)</li>
+<li>int (32 bit)</li>
+<li>long (64 bit)</li>
+<li>float (32 bit 单精度)</li>
+<li>double (64 bit 双精度)</li>
+<li>boolean (1 bit，true / false)</li>
+<li>char (16 bit，用<code>&#39;&#39;</code>标记)</li>
+</ul>
+<blockquote>
+<p>整数类型默认为int，如果要为long，则需要加上一个L后缀；浮点数类型默认为double，如果要为float，则需要加上一个F后缀。</p>
+</blockquote>
+<blockquote>
+<p>使用<code>Integer.SIZE</code>查看所用的bit数，使用<code>Integer.MIN_VALUE</code>、<code>Integer.MAX_VALUE</code>查看范围</p>
+</blockquote>
+<h3 id="引用数据类型"><a href="#引用数据类型" class="headerlink" title="引用数据类型"></a>引用数据类型</h3><ul>
+<li>在Java中，引用类型的变量非常类似于C/C++的指针。引用类型指向一个对象，指向对象的变量是引用变量。</li>
+<li>对象、数组都是引用数据类型。</li>
+<li>所有引用类型的默认值都是null。</li>
+<li>一个引用变量可以用来引用任何与之兼容的类型。（比如指向父类的指针同样可以指向子类）</li>
+</ul>
+<hr>
+<h2 id="Java类型转换"><a href="#Java类型转换" class="headerlink" title="Java类型转换"></a>Java类型转换</h2><h3 id="自动类型转换"><a href="#自动类型转换" class="headerlink" title="自动类型转换"></a>自动类型转换</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">低  ------------------------------------&gt;  高</span><br><span class="line"></span><br><span class="line">byte,short,char—&gt; int —&gt; long—&gt; float —&gt; double </span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>不能对boolean类型进行类型转换。</li>
+<li>不能把对象类型转换成不相关类的对象。</li>
+<li>在把容量大的类型转换为容量小的类型时必须使用强制类型转换。</li>
+<li>转换过程中可能导致溢出或损失精度</li>
+<li>浮点数到整数的转换是通过舍弃小数得到，而不是四舍五入</li>
+</ol>
+<h3 id="强制类型转换"><a href="#强制类型转换" class="headerlink" title="强制类型转换"></a>强制类型转换</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type <span class="keyword">var</span> = (type)otherTypeVar;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="Java类变量类型"><a href="#Java类变量类型" class="headerlink" title="Java类变量类型"></a>Java类变量类型</h2><p>对于class而言，主要有三种：局部变量、静态变量（类变量）和实例变量。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Student</span> </span>&#123;</span><br><span class="line">    <span class="keyword">static</span> String <span class="class"><span class="keyword">class</span> </span>= <span class="string">&quot;1704&quot;</span>;   <span class="comment">// 类变量</span></span><br><span class="line">    String name = <span class="string">&quot;tom&quot;</span>;            <span class="comment">// 实例变量</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">function</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> score = <span class="number">100</span>;            <span class="comment">// 局部变量</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h3><p>定义在类内方法中的变量，当超过某个特定方法区域后，就丧失作用。访问修饰符(private, public等)不能用于局部变量，因为其存储在栈上，到达方法结尾即被销毁，后续也无法访问。</p>
+<h3 id="实例变量"><a href="#实例变量" class="headerlink" title="实例变量"></a>实例变量</h3><p>实例变量声明在一个类中，但在方法、构造方法和语句块之外。当一个对象被实例化之后，每个实例变量的值就跟着确定。实例变量在对象创建的时候创建，在对象被销毁的时候销毁。</p>
+<p>实例变量需要将class new一个对象，然后使用 <em>objectName.value</em> 来进行访问。</p>
+<blockquote>
+<p>比如创建一个class用于表示中国居民的信息，那么每个人名字是和具体的类对象相关的，因人而异，所以需要定义成实例变量，给每个人分配相应的名字。</p>
+</blockquote>
+<h3 id="类变量"><a href="#类变量" class="headerlink" title="类变量"></a>类变量</h3><p>类变量也称为静态变量，在类中以 static 关键字声明，但必须在方法之外。静态变量在第一次被访问时创建，在程序结束时销毁。</p>
+<ul>
+<li>无论一个类创建了多少个对象，<strong>类只拥有类变量的一份拷贝</strong>。</li>
+<li><strong>静态变量初始化后不可改变</strong>。</li>
+<li>静态变量储存在<strong>静态存储区</strong>。</li>
+<li>使用 <em>className.value</em> 进行访问</li>
+</ul>
+<blockquote>
+<p>比如创建一个class用于表示中国居民的信息，那么每个人的国籍是和整个类相关的，此问题中国籍就可以设置成类变量，只要访问任意一个该类的实例都可以得到相同的国籍。</p>
+</blockquote>
+<hr>
+<h2 id="Java修饰符"><a href="#Java修饰符" class="headerlink" title="Java修饰符"></a>Java修饰符</h2><h3 id="访问控制修饰符"><a href="#访问控制修饰符" class="headerlink" title="访问控制修饰符"></a>访问控制修饰符</h3><p>详见class内的介绍，<a href="">点击此处</a>。</p>
+<h3 id="非访问控制修饰符"><a href="#非访问控制修饰符" class="headerlink" title="非访问控制修饰符"></a>非访问控制修饰符</h3><h4 id="static"><a href="#static" class="headerlink" title="static"></a>static</h4><p>静态变量：static 关键字用来声明独立于对象的静态变量，无论一个类实例化多少对象，它的静态变量只有一份拷贝。 静态变量也被称为类变量。局部变量不能被声明为 static 变量。</p>
+<p>静态方法：static 关键字用来声明独立于对象的静态方法。<strong>静态方法不能使用类的非静态变量</strong>。静态方法从参数列表得到静态数据，然后计算这些数据。</p>
+<h4 id="final"><a href="#final" class="headerlink" title="final"></a>final</h4><h5 id="final-变量"><a href="#final-变量" class="headerlink" title="final 变量"></a>final 变量</h5><p>final 变量一旦赋值后，不能被重新赋值。被 final 修饰的实例变量必须显式指定初始值。(与C/C++中const类似)</p>
+<p>final 修饰符通常和 static 修饰符一起使用来创建类常量。</p>
+<h5 id="final-class"><a href="#final-class" class="headerlink" title="final class"></a>final class</h5><p>使用final限定的class不能被继承。</p>
+<h5 id="final-方法"><a href="#final-方法" class="headerlink" title="final 方法"></a>final 方法</h5><p>使用final限定的方法在子类中不能被重写。</p>
+<h4 id="abstract"><a href="#abstract" class="headerlink" title="abstract"></a>abstract</h4><h5 id="abstract-类"><a href="#abstract-类" class="headerlink" title="abstract 类"></a>abstract 类</h5><ul>
+<li>该类不能被new，只能被后续继承。</li>
+<li>一个类不能同时被 abstract 和 final 修饰。</li>
+<li>如果一个类包含抽象方法，那么该类一定要声明为抽象类，否则将出现编译错误。</li>
+<li>抽象类可以包含抽象方法和非抽象方法。</li>
+</ul>
+<h5 id="abstract-方法"><a href="#abstract-方法" class="headerlink" title="abstract 方法"></a>abstract 方法</h5><ul>
+<li>该方法无实现方法，只能被后续重写。</li>
+<li>抽象方法不能被声明成 final 和 static。</li>
+<li>任何继承抽象类的子类必须实现父类的所有抽象方法，除非该子类也是抽象类。</li>
+<li>如果一个类包含若干个抽象方法，那么该类必须声明为抽象类。抽象类可以不包含抽象方法。</li>
+<li>抽象方法的声明以分号结尾，例如：<code>public abstract function()</code>;</li>
+</ul>
+<h4 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h4><p>sync定义的方法同一时间只能被一个线程访问。</p>
+<h4 id="transient"><a href="#transient" class="headerlink" title="transient"></a>transient</h4><p>被transient修饰的变量会被JVM跳过，不被持久化。</p>
+<h4 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h4><p>每次线程访问volatile定义的变量时，都要从内存中重新读取该值。当该值变化时，会强制线程将新的值写到内存。</p>
+<p>因此，多个线程总能看到变量的同一个值。</p>
+<hr>
+<h2 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h2><p>绝大部分运算都和C++高度一致。</p>
+<p>此处介绍<code>instanceof</code>运算，用于判断某个变量是否属于某个类型。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">String name = <span class="string">&quot;tom&quot;</span>;</span><br><span class="line">System.out.println(name <span class="keyword">instanceof</span> String); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h2><p>for循环和while循环和C++高度类似。</p>
+<p>此处介绍加强版for循环(又称for plus pro max)。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(声明语句 : 表达式)&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<ul>
+<li>声明语句：声明新的局部变量，该变量的类型必须和数组元素的类型匹配。其作用域限定在循环语句块，其值与此时数组元素的值相等。</li>
+<li>表达式：表达式是要访问的数组名，或者是返回值为数组的方法。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h2><p>与C++高度类似，不多BB。</p>
+<hr>
+<h2 id="Number类-amp-Math类"><a href="#Number类-amp-Math类" class="headerlink" title="Number类 &amp; Math类"></a>Number类 &amp; Math类</h2><p>所有的包装类（Integer、Long、Byte、Double、Float、Short）都是抽象类 Number 的子类。</p>
+<p>这种由编译器特别支持的包装称为装箱，所以当内置数据类型被当作对象使用的时候，编译器会把内置类型装箱为包装类。相似的，编译器也可以把一个对象拆箱为内置类型。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// var.xxxValue()对var进行类型转换</span></span><br><span class="line"><span class="keyword">int</span> a = <span class="number">5</span>;</span><br><span class="line">System.out.println(a.floatValue()); <span class="comment">// 5.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// type.parseInt(String str, int radix)将str转换成radix进制的type类型数据</span></span><br><span class="line">System.out.println(Integer.parseInt(<span class="string">&quot;5&quot;</span>));     <span class="comment">// 5</span></span><br><span class="line">System.out.println(Integer.parseInt(<span class="string">&quot;5&quot;</span>, <span class="number">2</span>));  <span class="comment">// 101</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// type.valueOf(int num, int radix)</span></span><br><span class="line"><span class="comment">// type.valueOf(String str, int radix)获取第一个参数，转换成radix进制并以type类型输出</span></span><br><span class="line">System.out.println(Double.valueOf(<span class="number">5</span>));         <span class="comment">// 5.0</span></span><br><span class="line">System.out.println(Integer.parseInt(<span class="string">&quot;5&quot;</span>, <span class="number">2</span>));  <span class="comment">// 101</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// var.toString() / Integer.toString(int var)返回string类型的var</span></span><br><span class="line">System.out.println(a.toString());       <span class="comment">// &quot;5&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// var.compareTo(NumberClass num)比较两者大小，如果var&lt;num，则返回-1</span></span><br><span class="line">System.out.println(a.compareTo(<span class="number">4</span>));     <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// var.equals(object num)如对象不为Null，且与方法的参数类型与数值都相等返回true，否则返回false</span></span><br><span class="line"><span class="keyword">short</span> b = <span class="number">5</span>;</span><br><span class="line">System.out.println(a==b);           <span class="comment">// true</span></span><br><span class="line">System.out.println(a.equals(b));    <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+
+<p>Math类中则包含了常见的数学运算，可以直接使用Math.method()进行调用。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> a = <span class="number">9</span>;</span><br><span class="line"><span class="keyword">int</span> b = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">Math.min(a, b);     <span class="comment">// 9</span></span><br><span class="line">Math.pow(a, <span class="number">2</span>);     <span class="comment">// 81</span></span><br><span class="line">Math.sqrt(a);       <span class="comment">// 3</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="String类"><a href="#String类" class="headerlink" title="String类"></a>String类</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>有两种定义方式，分别是直接定义和使用类创建对象。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">String s1 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">String s2 = <span class="string">&quot;hello&quot;</span>;</span><br><span class="line">String s3 = s1;</span><br><span class="line">String s4 = <span class="keyword">new</span> String(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">String s5 = <span class="keyword">new</span> String(<span class="string">&quot;hello&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>其中直接定义的会储存在公共池中，而实例化的会在堆中开辟空间并初始化。即上述代码中s1,s2,s3指向同一个地方，三者中任意一个改变会影响另外两个；s4,s5即使内容相同，但是是两个独立的内存区域。</p>
+<h3 id="常用函数"><a href="#常用函数" class="headerlink" title="常用函数"></a>常用函数</h3><ul>
+<li><code>int length()</code> – 用于得到字符串的长度</li>
+<li><code>String concat(String str)</code> / <code>str + str</code> – 拼接字符串</li>
+<li><code>char charAt(int index)</code> – 相当于Python中str[index]</li>
+<li><code>boolean equals(String str)</code> – 比较两个字符串内容是否一样</li>
+<li><code>int indexOf(char ch, int startIndex = 0)</code><br>/ <code>int indexOf(String substr, int startIndex = 0)</code> – 从startIndex查找第一次出现ch / substr的下标</li>
+<li><code>int compareTo(String str)</code> – 按字典序比较两个字符串<blockquote>
+<p>==比较的是地址，equals比较的是内容！</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<h2 id="StringBuilder类"><a href="#StringBuilder类" class="headerlink" title="StringBuilder类"></a>StringBuilder类</h2><h3 id="String的问题"><a href="#String的问题" class="headerlink" title="String的问题"></a>String的问题</h3><p>String类是不可改变的，即字符串常量，这就意味着每一个字符串都是独立占用空间的。比如如下的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String s = <span class="string">&quot;a&quot;</span> + <span class="string">&quot;b&quot;</span> + <span class="string">&quot;c&quot;</span>;</span><br></pre></td></tr></table></figure>
+<p>在使用String类时，由于”a”，”b”，”c”三者不同，所以占用三个内存区域；然后执行”a” + “b”生成”ab”又要占用一个内存区域；最后保存”abc”至s又要占用一个。所以上述代码占用了五个内存空间，非常浪费。</p>
+<h3 id="StringBuilder"><a href="#StringBuilder" class="headerlink" title="StringBuilder"></a>StringBuilder</h3><p>然而使用StringBuilder后，会先开辟16个单元，然后操作都会基于这16个单元进行。这样自始至终都只使用了一个内存区域。当16个单元不够用时，又会进行扩容，以求使用一块内存区域容纳更多内容。</p>
+<blockquote>
+<p>String的底层是final byte[]，而StringBuilder底层是byte[]。</p>
+</blockquote>
+<h4 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder s1 = <span class="keyword">new</span> StringBuilder();         <span class="comment">// &quot;&quot;</span></span><br><span class="line">StringBuilder s2 = <span class="keyword">new</span> StringBuilder(<span class="string">&quot;abc&quot;</span>);    <span class="comment">// &quot;abc&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a>常用方法</h4><ul>
+<li><code>public StringBuffer append(Type var)</code> – 将var追加到后面，var可以是任意的类型！</li>
+<li><code>public StringBuffer reverse()</code> – 翻转</li>
+<li><code>public delete(int start, int end)</code> – 删除区间内容</li>
+<li><code>public insert(int offset, String str)</code> – 插入</li>
+<li><code>public replace(int start, int end, String str)</code> – 替换</li>
+</ul>
+<p>上述几个方法都是返回<code>this</code>（即对原数据进行了修改），所以无需设置返回值。</p>
+<ul>
+<li><code>int capacity()</code> – 返回分配的单元大小</li>
+<li><code>int length()</code> – 返回内容的长度</li>
+<li><code>char charAt(int idx)</code> – 返回指定位置的元素</li>
+<li><code>int indexOf(String str)</code> – 返回首次出现的位置</li>
+<li><code>void setCharAt(int index, char ch)</code> – 设置指定位置的值</li>
+<li><code>String substring(int start, int end)</code> – 返回子序列</li>
+</ul>
+<hr>
+<h2 id="Java方法"><a href="#Java方法" class="headerlink" title="Java方法"></a>Java方法</h2><h3 id="按值传递"><a href="#按值传递" class="headerlink" title="按值传递"></a>按值传递</h3><p>Java和C++/Python不同，只有按值传递，没有按引用传递。但是，由于Java有引用变量，所以引用变量按值传递的效果和按引用传递是一样的。</p>
+<p>即内置数据类型在函数中修改，并不会影响原数据；引用数据类型在函数中修改，会影响原数据。</p>
+<h3 id="方法重载"><a href="#方法重载" class="headerlink" title="方法重载"></a>方法重载</h3><p>创建另一个有相同名字但参数不同的方法，系统会根据调用时传入参数的个数、类型等的对应关系选择合适的函数进行调用。</p>
+<p>这些不同的参数个数、类型等被称作<strong>参数列表</strong>。重载的方法必须拥有不同的参数列表。不能仅仅依据修饰符或者返回类型的不同来重载方法。</p>
+<h3 id="构造方法-1"><a href="#构造方法-1" class="headerlink" title="构造方法"></a>构造方法</h3><p>当一个对象被创建时候，构造方法用来初始化该对象。构造方法和它所在类的名字相同，但构造方法没有返回值。Java 自动提供了一个默认构造方法，默认构造方法的访问修饰符和类的访问修饰符相同(类为 public，构造函数也为 public；类改为 protected，构造函数也改为 protected)。一旦你定义了自己的构造方法，默认构造方法就会失效。</p>
+<h3 id="可变参数"><a href="#可变参数" class="headerlink" title="可变参数"></a>可变参数</h3><p>在参数列表中最多只能有一个可变参数，且一定要位于最后一个参数。其格式为<code>type... vars</code>。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span>... nums)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> big = Integer.MIN_VALUE;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> num: nums)&#123;</span><br><span class="line">        <span class="keyword">if</span>(num&gt;big)&#123;</span><br><span class="line">            big = num;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> big;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="finalize-方法"><a href="#finalize-方法" class="headerlink" title="finalize() 方法"></a>finalize() 方法</h3><p>Java 允许定义这样的方法，它在对象被垃圾收集器析构(回收)之前调用，这个方法叫做 finalize()，它用来清除回收对象。</p>
+<p>在 finalize() 方法里，你必须指定在对象销毁时候要执行的操作。</p>
+<p>Java 的内存回收可以由 JVM 来自动完成。如果你手动使用，则可以使用上面的finalize() 方法。</p>
+<hr>
+<h2 id="Java数组"><a href="#Java数组" class="headerlink" title="Java数组"></a>Java数组</h2><h3 id="数组创建"><a href="#数组创建" class="headerlink" title="数组创建"></a>数组创建</h3><h4 id="动态初始化"><a href="#动态初始化" class="headerlink" title="动态初始化"></a>动态初始化</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] array0 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>[] array1;</span><br><span class="line">array1 = <span class="keyword">new</span> <span class="keyword">int</span>[<span class="number">10</span>];</span><br></pre></td></tr></table></figure>
+
+<h4 id="静态初始化"><a href="#静态初始化" class="headerlink" title="静态初始化"></a>静态初始化</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] array0 = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"><span class="keyword">int</span>[] array1 = &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span>[] array2;</span><br><span class="line"><span class="comment">// array2 = &#123;1,2,3&#125;;    false</span></span><br><span class="line">array2 = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="java-util-Arrays"><a href="#java-util-Arrays" class="headerlink" title="java.util.Arrays"></a>java.util.Arrays</h3><p>提供的所有方法都是static的，可以用于操作数组。</p>
+<ul>
+<li><code>public static int binarySearch(Type[] a, type key)</code></li>
+</ul>
+<p>用二分查找算法在给定数组中搜索给定值的对象(Byte,Int,double等)。数组在调用前必须排序好的。如果查找值包含在数组中，则返回搜索键的索引；否则返回 (-(插入点) - 1)。</p>
+<ul>
+<li><code>public static boolean equals(Object[] a, Object[] a2)</code></li>
+</ul>
+<p>如果两个数组包含相同数量的元素，并且两个数组中的所有相应元素对都是相等的，则认为这两个数组是相等的。换句话说，如果两个数组以相同顺序包含相同的元素，则两个数组是相等的。</p>
+<ul>
+<li><code>public static void fill(Type[] a, type val)</code></li>
+</ul>
+<p>将指定的 val 值分配给指定 type 型数组指定范围中的每个元素。</p>
+<ul>
+<li><code>public static void sort(Object[] a)</code></li>
+</ul>
+<p>对指定对象数组根据其元素的自然顺序进行升序排列。</p>
+<hr>
+<h2 id="包装类"><a href="#包装类" class="headerlink" title="包装类"></a>包装类</h2><p>基本数据类型使用非常方便，但是缺少能够对这些数据进行操作的方法。因此我们可以用一个类将这些数据类型包裹起来，然后添加上额外的方法以便于操控。那么此时，这种类被称为包装类。</p>
+<p>使用包装类后，将基本数据类型变为引用数据类型，但是增加了更多方便的操控手段。</p>
+<h3 id="装箱与拆箱"><a href="#装箱与拆箱" class="headerlink" title="装箱与拆箱"></a>装箱与拆箱</h3><p>装箱：基本类型&rarr;引用类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Integer a = <span class="keyword">new</span> Integer(<span class="number">10</span>);        <span class="comment">// 使用构造方法</span></span><br><span class="line">Integer b = <span class="keyword">new</span> Integer(<span class="string">&quot;20&quot;</span>);      </span><br><span class="line"></span><br><span class="line">Integer c = Integer.valueOf(<span class="number">30</span>);    <span class="comment">// 使用静态方法</span></span><br><span class="line">Integer d = Integer.valueOf(<span class="string">&quot;40&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>拆箱：引用类型&rarr;基本类型</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> aa = a.intValue();</span><br></pre></td></tr></table></figure>
+
+<h3 id="自动装箱与自动拆箱"><a href="#自动装箱与自动拆箱" class="headerlink" title="自动装箱与自动拆箱"></a>自动装箱与自动拆箱</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer a = <span class="number">10</span>;     <span class="comment">// 自动装箱</span></span><br><span class="line">a = a + <span class="number">20</span>;         <span class="comment">// 先自动拆箱，取出10，计算后得到30，再自动装箱</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="IO-Stream和File"><a href="#IO-Stream和File" class="headerlink" title="IO, Stream和File"></a>IO, Stream和File</h2>
+                    </div>
+
+                    
+
+                            
+                                <div class="article-nav">
+                                    
+                                        <div class="article-prev">
+                                            <a class="prev" rel="prev" href="/2021/05/28/AFK%E5%92%8CCAP%E5%8E%9F%E5%88%99/">
+                                                <span class="left arrow-icon flex-center">
+                                                    <i class="fas fa-chevron-left"></i>
+                                                </span>
+                                                <span class="title flex-center">
+                                                    <span class="post-nav-title-item">
+                                                        AFK和CAP原则
+                                                    </span>
+                                                    <span class="post-nav-item">
+                                                        Prev posts
+                                                    </span>
+                                                </span>
+                                            </a>
+                                        </div>
+                                        
+                                            
+                                                <div class="article-next">
+                                                    <a class="next" rel="next" href="/2021/05/25/%E4%BA%91%E6%9C%8D%E5%8A%A1IaaS-PaaS%E5%92%8CSaaS/">
+                                                        <span class="title flex-center">
+                                                            <span class="post-nav-title-item">
+                                                                云服务IaaS,PaaS和SaaS
+                                                            </span>
+                                                            <span class="post-nav-item">
+                                                                Next posts
+                                                            </span>
+                                                        </span>
+                                                        <span class="right arrow-icon flex-center">
+                                                            <i class="fas fa-chevron-right"></i>
+                                                        </span>
+                                                    </a>
+                                                </div>
+                                                
+                                </div>
+                                
+
+                                    
+    </div>
+</div>
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2020</span>&nbsp;-&nbsp;
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Kexin</a>
+        </div>
+        
+            <script async  src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    <span id="busuanzi_container_site_uv">
+                        Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv">
+                        Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.2</a>
+        </div>
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E6%A6%82%E8%BF%B0"><span class="nav-text">Java概述</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E8%BF%90%E8%A1%8C%E6%96%B9%E6%B3%95"><span class="nav-text">Java运行方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%90%8D%E8%AF%8D%E8%A7%A3%E9%87%8A"><span class="nav-text">常见名词解释</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JVM"><span class="nav-text">JVM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JRE"><span class="nav-text">JRE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JDK"><span class="nav-text">JDK</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E6%BA%90%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F"><span class="nav-text">Java源文件格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text">Java数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text">基本数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-text">引用数据类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-text">Java类型转换</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-text">自动类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BC%BA%E5%88%B6%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2"><span class="nav-text">强制类型转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E7%B1%BB%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B"><span class="nav-text">Java类变量类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="nav-text">局部变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B%E5%8F%98%E9%87%8F"><span class="nav-text">实例变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B1%BB%E5%8F%98%E9%87%8F"><span class="nav-text">类变量</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-text">Java修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-text">访问控制修饰符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9D%9E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E4%BF%AE%E9%A5%B0%E7%AC%A6"><span class="nav-text">非访问控制修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#static"><span class="nav-text">static</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#final"><span class="nav-text">final</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#final-%E5%8F%98%E9%87%8F"><span class="nav-text">final 变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#final-class"><span class="nav-text">final class</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#final-%E6%96%B9%E6%B3%95"><span class="nav-text">final 方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#abstract"><span class="nav-text">abstract</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#abstract-%E7%B1%BB"><span class="nav-text">abstract 类</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#abstract-%E6%96%B9%E6%B3%95"><span class="nav-text">abstract 方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#synchronized"><span class="nav-text">synchronized</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#transient"><span class="nav-text">transient</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#volatile"><span class="nav-text">volatile</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%90%E7%AE%97"><span class="nav-text">运算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF"><span class="nav-text">循环</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%94%AF"><span class="nav-text">分支</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Number%E7%B1%BB-amp-Math%E7%B1%BB"><span class="nav-text">Number类 &amp; Math类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String%E7%B1%BB"><span class="nav-text">String类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E5%87%BD%E6%95%B0"><span class="nav-text">常用函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StringBuilder%E7%B1%BB"><span class="nav-text">StringBuilder类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#String%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">String的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#StringBuilder"><span class="nav-text">StringBuilder</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95"><span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-text">常用方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E6%96%B9%E6%B3%95"><span class="nav-text">Java方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8C%89%E5%80%BC%E4%BC%A0%E9%80%92"><span class="nav-text">按值传递</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B9%E6%B3%95%E9%87%8D%E8%BD%BD"><span class="nav-text">方法重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E6%96%B9%E6%B3%95-1"><span class="nav-text">构造方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0"><span class="nav-text">可变参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#finalize-%E6%96%B9%E6%B3%95"><span class="nav-text">finalize() 方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E6%95%B0%E7%BB%84"><span class="nav-text">Java数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA"><span class="nav-text">数组创建</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">动态初始化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%99%E6%80%81%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-text">静态初始化</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java-util-Arrays"><span class="nav-text">java.util.Arrays</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8C%85%E8%A3%85%E7%B1%BB"><span class="nav-text">包装类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A3%85%E7%AE%B1%E4%B8%8E%E6%8B%86%E7%AE%B1"><span class="nav-text">装箱与拆箱</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E8%A3%85%E7%AE%B1%E4%B8%8E%E8%87%AA%E5%8A%A8%E6%8B%86%E7%AE%B1"><span class="nav-text">自动装箱与自动拆箱</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IO-Stream%E5%92%8CFile"><span class="nav-text">IO, Stream和File</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/left-side-toggle.js"></script>
+
+<script src="/js/libs/anime.min.js"></script>
+
+<script src="/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>

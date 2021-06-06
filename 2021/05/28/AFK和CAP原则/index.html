@@ -9,7 +9,7 @@
     
     <title>
         
-            BIO、NIO和AIO |
+            AFK和CAP原则 |
         
         Kexin Tang
     </title>
@@ -189,7 +189,7 @@
 
         <div class="article-title">
             <span class="title-hover-animation">
-                BIO、NIO和AIO
+                AFK和CAP原则
             </span>
         </div>
 
@@ -210,7 +210,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-05-17 20:56:42
+        <i class="fas fa-edit"></i>&nbsp;2021-05-28 23:54:20
     </span>
     
         <span class="article-categories article-meta-item">
@@ -218,7 +218,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/OS/">OS</a>&nbsp;
+                        <a href="/categories/Redis/">Redis</a>&nbsp;
                     </li>
                 
                     <li>
@@ -226,11 +226,7 @@
                     </li>
                 
                     <li>
-                        &gt; <a href="/categories/OS/IO/">IO</a>&nbsp;
-                    </li>
-                
-                    <li>
-                        &gt; <a href="/categories/%E6%A6%82%E5%BF%B5/OS/">OS</a>&nbsp;
+                        &gt; <a href="/categories/%E6%A6%82%E5%BF%B5/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>&nbsp;
                     </li>
                 
             </ul>
@@ -242,11 +238,15 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
+                        <a href="/tags/%E5%88%86%E5%B8%83%E5%BC%8F/">分布式</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/OS/">OS</a>&nbsp;
+                        | <a href="/tags/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/redis/">redis</a>&nbsp;
                     </li>
                 
             </ul>
@@ -256,12 +256,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>608 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.5k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>2 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>5 Mins</span>
         </span>
     
     
@@ -277,48 +277,59 @@
             
 
                     <div class="article-content markdown-body">
-                        <h1 id="BIO"><a href="#BIO" class="headerlink" title="BIO"></a>BIO</h1><p>同步阻塞IO。同步指的是多个IO请求会按顺序执行，阻塞指的是如果一个IO请求没有完成，就会一直等待，直到完成释放。</p>
-<p><a href="https://sm.ms/image/1jXFDU58CuBYdgt" target="_blank"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.loli.net/2021/05/19/1jXFDU58CuBYdgt.jpg"
-                      
-                ></a></p>
-<p>图中<code>fd</code>代表 <em>文件描述符</em>。</p>
-<p>BIO的逻辑就是某个线程盯住某个特定的请求，没有请求就一直等，直到有请求并完成请求。</p>
-<hr>
-<h1 id="NIO"><a href="#NIO" class="headerlink" title="NIO"></a>NIO</h1><p>NIO本身是基于事件驱动思想来完成的，其主要想解决的是BIO的大并发问题。在BIO中，会使用多线程，每个线程盯住一个资源；在NIO中使用单线程或少量多线程，多个资源复用一个线程。</p>
-<h2 id="轮询"><a href="#轮询" class="headerlink" title="轮询"></a>轮询</h2><p><a href="https://sm.ms/image/2iQPmB6EY3GUTx7" target="_blank"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.loli.net/2021/05/19/2iQPmB6EY3GUTx7.jpg"
-                      
-                ></a></p>
-<p>会使用Linux的系统调用<code>read</code>来读取<code>fd</code>。仍然是使用类似循环的逻辑，不断查询<code>i</code>有没有请求？如果没有也不会傻等，而是换到下一个请求，所以是非阻塞的。在这种情况下，如果有<code>n</code>个IO，则需要调用<code>n</code>次系统调用。</p>
-<h2 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h2><p><a href="https://sm.ms/image/6kGiAujL8TQZeYz" target="_blank"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.loli.net/2021/05/19/6kGiAujL8TQZeYz.jpg"
-                      
-                ></a></p>
-<p>此时会使用Linux的系统调用<code>select</code>和<code>read</code>，但是此时不会调用<code>n</code>次系统调用。此时会先调用一次<code>select</code>记录下每个IO的请求与否，然后把这个信息返回。最后只调用<code>read</code>处理有请求的。这个过程类似于中断。</p>
-<h2 id="共享内存"><a href="#共享内存" class="headerlink" title="共享内存"></a>共享内存</h2><p><a href="https://sm.ms/image/fTNzVtprOwLYxBj" target="_blank"><img  
-                     lazyload
-                     src="/images/loading.svg"
-                     data-src="https://i.loli.net/2021/05/19/fTNzVtprOwLYxBj.jpg"
-                      
-                ></a></p>
-<p>上一种方法中仍然要进行文件的传输，而可以使用一个共享内存。kernel获取请求情况，然后标记在共享内存中，线程直接读取共享内存的状态即可，不用传输任何内容。</p>
-<hr>
-<h1 id="AIO"><a href="#AIO" class="headerlink" title="AIO"></a>AIO</h1><p>NIO本质上还是同步，但是AIO可以实现异步。</p>
-<p>AIO真正实现了中断的功能，即注册一个监视资源的线程，然后OS可以去做其他事。当资源发起请求时，线程监视到这个变化，并通知OS来处理该资源的请求。</p>
-<hr>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><ul>
-<li>AIO的做法是，每个水壶上装一个开关，当水开了以后会提醒对应的线程去处理。</li>
-<li>NIO的做法是，叫一个线程不停的循环观察每一个水壶，根据每个水壶当前的状态去处理。</li>
-<li>BIO的做法是，叫一个线程停留在一个水壶那，直到这个水壶烧开，才去处理下一个水壶。</li>
+                        <h1 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h1><ul>
+<li><strong>一致性</strong>(Consistency) – 在一个集群里，无论访问哪台机器，数据都是一致的。<blockquote>
+<p>一致性引入了“主从复制”的概念。</p>
+<ul>
+<li>强一致性 – 只要可读，必须保证能读到最新的值</li>
+<li>弱一致性 – 在写完后一定的时间窗口内不能读到最新的，但是过了时间窗口后可以读到最新的值</li>
+<li>最终一致性 – 弱一致性的特例，只要最后的数据能保持一致/更新即可</li>
 </ul>
-<p>可以看出AIO是最聪明省力，NIO相对省力，BIO最愚蠢。</p>
+</blockquote>
+</li>
+<li><strong>可用性</strong>(Availability) – 在可用节点上，能够提供正常的服务。</li>
+<li><strong>分区容错性</strong>(Partition Tolerance) – 集群中某个节点的某个主机宕机，并不会影响整体的服务。</li>
+</ul>
+<p><strong>这三个准则中只能同时满足其中两种</strong>。</p>
+<blockquote>
+<p>保证C：那么必须要等这条命令的修改执行到了所有服务器上，主从上都有这个修改，那么就必须等主服务器进行了命令传播后，才能回复客户端</p>
+<p>保证A：如果要保证A的话，那么一条命令的执行时间就必须在规定的范围内，不能太久，及时给客户端作出响应</p>
+<p>保证P：如果要保证P的话，那么一个节点坏了的时候需要有从服务器及时替上</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">1. 如果保证CA，放弃P：</span><br><span class="line"></span><br><span class="line">要保持数据一致性且不会超时，那么主从机数量有限。但是这样宕机后的可容忍性下降，无法满足P。</span><br><span class="line"></span><br><span class="line">2. 如果保证CP，放弃A：</span><br><span class="line"></span><br><span class="line">保持数据一致性且容忍性高，那么需要多台机器，且每台机器的执行时间会比较久。但是这样就不一定能满足在有限时间内完成任务。</span><br><span class="line"></span><br><span class="line">3. 如果保证AP，放弃C：</span><br><span class="line"></span><br><span class="line">保持多台机器且要在一定时间内完成任务，那么就不一定能保证数据在有限时间内同步到这么多机器内，数据一致性可能被破坏。</span><br></pre></td></tr></table></figure>
+
+<p>由于使用集群，肯定不能宕机导致服务崩溃，所以P必须要保证，而在A和C中，一般都会选择A，因为C可以通过最终一致性来实现。</p>
+<h2 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h2><p>保证A和C的时候，就实现了ACID(原子性、一致性、隔离性和持久性)</p>
+<h2 id="BASE"><a href="#BASE" class="headerlink" title="BASE"></a>BASE</h2><p>保证A和P时，就实现了BASE。</p>
+<ul>
+<li>基本可用（Basically Available）</li>
+<li>软状态（Soft state）</li>
+<li>最终一致（Eventually consistent）</li>
+</ul>
+<p>它的思想是通过让系统放松对某一时刻数据一致性的要求来换取系统整体伸缩性和性能上改观。</p>
+<hr>
+<h1 id="AFK"><a href="#AFK" class="headerlink" title="AFK"></a>AFK</h1><p>AKF扩展立方体：这个立方体有三个轴线，每个轴线描述扩展性的一个维度，他们分别是产品、流程和团队：</p>
+<ul>
+<li>x轴：考虑高可用，一个节点的数据需要做备份，越大代表备份越多</li>
+<li>y轴：代表将一个节点的数据细分成多个模块，想微服务将业务上细分成多个模块</li>
+<li>z轴：代表当细分成了多个模块之后，一个模块的并发依然很大，还需要细分，那么就需要把一个模块的数据分成多台机器存储，但是需要知道数据存在了哪台服务器上，就需要算法计算在哪台机器</li>
+</ul>
+<blockquote>
+<p>x轴：在x轴方向上，做N个主机的全量镜像数据的副本，主redis与这些副本的关系为主从。主机可以对外提供read / write ，从机可以对外提供read（读写分离）。结合高可用， 可以解决单点故障和容量瓶颈的问题，只是解决了 read 的压力，而没有解决 write 的压力。</p>
+</blockquote>
+<blockquote>
+<p>y轴：在y轴方向上，可以把之前一台redis中的数据按照业务功能来拆分成不同的redis实例存储，并且每个redis实例都可以再次做x轴的镜像副本进行读写分离，当然，x轴和y轴之间不是必须要结合使用。y轴的拆分解决了容量瓶颈问题和数据访问压力的问题。</p>
+</blockquote>
+<blockquote>
+<p>z轴：如果y轴的某个redis实例过于臃肿，还可以把这个redis实例进行z轴的拆分，也就是把这个redis实例里面的数据按照一定规则查分。比如：取模，优先级等规则再次查分成多个redis，使得不同的数据出现在固定的redis里。</p>
+</blockquote>
+<h2 id="三种模型"><a href="#三种模型" class="headerlink" title="三种模型"></a>三种模型</h2><p>A模型：算法写在每个客户端，如果需要修改算法，每个客户端都需要修改</p>
+<p>B模型：找一个代理，每个客户端访问先经过一个代理，代理做计算，然后访问具体机器</p>
+<p>C模型：服务器自身进行算法划分，redis的做法就是分了16384个槽(slot)，然后每台服务器各自占了其中一部分槽，如果key属于该槽，那么就由这条命令执行</p>
+<hr>
+<h1 id="RAFT"><a href="#RAFT" class="headerlink" title="RAFT"></a>RAFT</h1><p>分布式一致性算法，一般用于主从服务器，主服务器挂掉之后如何选举。</p>
+<p>简单说一下实现，三个角色，leader（主） ， follower（从） ，candidate（参与投票的候选人）</p>
+<p>每个节点都有一个定时器，每个节点的过期时间不一样，如果一个节点的定时器归零了，那么这个节点就会成为candidate，然后让其他节点给自己投票，出现多个的话就会同时要票，如果没有<strong>超过半数</strong>就会重新选举，票是先到先得的，如果超过半数，那么就会成为新的leader节点，这只是在于leader节点挂了的话，才会出现定时器归零，如果leader没有挂掉，那么就会定期发送心跳包，follower节点接收到心跳包，会重新刷新定时器的时间，直到leader挂掉，才会出现定时器归零进行选举leader节点。</p>
 
                     </div>
 
@@ -328,13 +339,13 @@
                                 <div class="article-nav">
                                     
                                         <div class="article-prev">
-                                            <a class="prev" rel="prev" href="/2021/05/19/Redis%E8%BF%9B%E9%98%B6/">
+                                            <a class="prev" rel="prev" href="/2021/06/06/Java%E8%BF%9B%E9%98%B6/">
                                                 <span class="left arrow-icon flex-center">
                                                     <i class="fas fa-chevron-left"></i>
                                                 </span>
                                                 <span class="title flex-center">
                                                     <span class="post-nav-title-item">
-                                                        Redis进阶
+                                                        Java进阶
                                                     </span>
                                                     <span class="post-nav-item">
                                                         Prev posts
@@ -345,10 +356,10 @@
                                         
                                             
                                                 <div class="article-next">
-                                                    <a class="next" rel="next" href="/2021/05/17/Redis%E5%9F%BA%E7%A1%80/">
+                                                    <a class="next" rel="next" href="/2021/05/28/Java%E5%9F%BA%E7%A1%80/">
                                                         <span class="title flex-center">
                                                             <span class="post-nav-title-item">
-                                                                Redis基础
+                                                                Java基础
                                                             </span>
                                                             <span class="post-nav-item">
                                                                 Next posts
@@ -474,7 +485,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BIO"><span class="nav-text">BIO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NIO"><span class="nav-text">NIO</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BD%AE%E8%AF%A2"><span class="nav-text">轮询</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="nav-text">多路复用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B1%E4%BA%AB%E5%86%85%E5%AD%98"><span class="nav-text">共享内存</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AIO"><span class="nav-text">AIO</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CAP"><span class="nav-text">CAP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ACID"><span class="nav-text">ACID</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BASE"><span class="nav-text">BASE</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AFK"><span class="nav-text">AFK</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E7%A7%8D%E6%A8%A1%E5%9E%8B"><span class="nav-text">三种模型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RAFT"><span class="nav-text">RAFT</span></a></li></ol>
     </div>
 </div>
         </aside>
