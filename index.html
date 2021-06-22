@@ -287,6 +287,74 @@
                 
 
                 <h3 class="home-article-title">
+                    <a href="/2021/06/22/Java%E8%BD%AC%E5%9E%8B/">
+                        Java转型
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        转型转型一般分为两种情况：
+
+向上转型：子类 &rarr; 父类（可以是类/接口），Father f = new Son()
+向下转型：父类 &rarr; 子类，Son s = (Son) f 
+
+如何判断能否转型？只要右边的能当做左边的使用就是正确...
+                    
+                </div>
+
+                <div class="home-article-meta-info-container">
+    <div class="home-article-meta-info">
+        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Tue Jun 22 2021 15:12:16 GMT+0800">2021-06-22</span></span>
+        
+            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/categories/Java/">Java</a>&nbsp;
+                        </li>
+                    
+                    
+                        <li>
+                            &gt; 
+                            <a href="/categories/Java/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
+                        </li>
+                    
+                    
+                </ul>
+            </span>
+        
+        
+            <span class="home-article-tag">
+                <i class="fas fa-tags"></i>&nbsp;
+                <ul>
+                    
+                        <li>
+                            
+                            <a href="/tags/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
+                        </li>
+                    
+                        <li>
+                            | 
+                            <a href="/tags/Java/">Java</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            </span>
+        
+    </div>
+
+    <a href="/2021/06/22/Java%E8%BD%AC%E5%9E%8B/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
+</div>
+
+            </li>
+        
+            <li class="home-article-item">
+
+                
+
+                <h3 class="home-article-title">
                     <a href="/2021/06/06/Java%E8%BF%9B%E9%98%B6/">
                         Java进阶
                     </a>
@@ -294,48 +362,8 @@
 
                 <div class="home-article-content markdown-body">
                     
-                        访问控制符
-
-
-控制符名称
-类内
-同包其他类
-同包父子类
-不同包父子类
-不同包其他类
-
-
-
-public
-Y
-Y
-Y
-Y
-Y
-
-
-protected
-Y
-Y
-Y
-Y/N
-N
-
-
-default
-Y
-Y
-Y
-N
-N
-
-
-private
-Y
-N
-N
-N
-...
+                        代码块静态代码快静态代码块在类被加载的时候就运行了，而且只运行一次，并且优先于各种代码块以及构造函数。如果一个类中有多个静态代码块，就会按照书写的顺序执行。一般如果有些代码需要在项目启动的时候执行，这时就需要静态代码快。
+12345public cl...
                     
                 </div>
 
@@ -918,70 +946,6 @@ N
     </div>
 
     <a href="/2021/05/21/Python%E6%96%B9%E6%B3%95%E8%A7%A3%E6%9E%90%E9%A1%BA%E5%BA%8F%E8%A1%A8MRO/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2021/05/20/Python%E5%85%A8%E5%B1%80%E8%A7%A3%E9%87%8A%E5%99%A8%E9%94%81GIL/">
-                        Python全局解释器锁GIL
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        GIL全局解释器锁GIL和Python其实并没有多大关系。因为Python是解释型语言，所以需要解释器，那么在最常见的C语言编写的CPython中，有一个部件会限制多线程的性能，这个部件就是GIL。
-在CPython运行的Python中，多线程实际上...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span><i class="fas fa-history"></i>&nbsp;<span class="home-article-date" data-date="Thu May 20 2021 16:46:12 GMT+0800">2021-05-20</span></span>
-        
-            <span class="home-article-category"><i class="fas fa-folder"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/categories/Python/">Python</a>&nbsp;
-                        </li>
-                    
-                    
-                        <li>
-                            &gt; 
-                            <a href="/categories/Python/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
-                        </li>
-                    
-                    
-                </ul>
-            </span>
-        
-        
-            <span class="home-article-tag">
-                <i class="fas fa-tags"></i>&nbsp;
-                <ul>
-                    
-                        <li>
-                            
-                            <a href="/tags/%E6%A6%82%E5%BF%B5/">概念</a>&nbsp;
-                        </li>
-                    
-                        <li>
-                            | 
-                            <a href="/tags/python/">python</a>&nbsp;
-                        </li>
-                    
-                </ul>
-            </span>
-        
-    </div>
-
-    <a href="/2021/05/20/Python%E5%85%A8%E5%B1%80%E8%A7%A3%E9%87%8A%E5%99%A8%E9%94%81GIL/">Read more&nbsp;<i class="fas fa-angle-right"></i></a>
 </div>
 
             </li>
