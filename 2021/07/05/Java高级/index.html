@@ -9,7 +9,7 @@
     
     <title>
         
-            Java转型 |
+            Java高级 |
         
         Kexin Tang
     </title>
@@ -189,7 +189,7 @@
 
         <div class="article-title">
             <span class="title-hover-animation">
-                Java转型
+                Java高级
             </span>
         </div>
 
@@ -210,7 +210,7 @@
                     <div class="meta-info">
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fas fa-edit"></i>&nbsp;2021-06-22 15:12:16
+        <i class="fas fa-edit"></i>&nbsp;2021-07-05 11:44:39
     </span>
     
         <span class="article-categories article-meta-item">
@@ -248,7 +248,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>583 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>706 Words</span>
         </span>
     
     
@@ -269,27 +269,28 @@
             
 
                     <div class="article-content markdown-body">
-                        <h1 id="转型"><a href="#转型" class="headerlink" title="转型"></a>转型</h1><p>转型一般分为两种情况：</p>
-<ul>
-<li>向上转型：子类 &rarr; 父类（可以是类/接口），<code>Father f = new Son()</code></li>
-<li>向下转型：父类 &rarr; 子类，<code>Son s = (Son) f</code> </li>
-</ul>
-<p>如何判断能否转型？<strong>只要右边的能当做左边的使用</strong>就是正确的，或者说<strong>只要左边有的功能右边都有</strong>就是正确的。比如<code>手机 = 苹果手机</code>，苹果手机能当成普通手机使用，那么这样的转换就是合理的。</p>
-<h2 id="向上转型"><a href="#向上转型" class="headerlink" title="向上转型"></a>向上转型</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Human h = <span class="keyword">new</span> Male();</span><br><span class="line">        h.sleep();                      <span class="comment">// Male sleep..</span></span><br><span class="line">        System.out.println(h.name);     <span class="comment">// Human</span></span><br><span class="line">        h.father();                     <span class="comment">// This is father</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Human</span></span>&#123;</span><br><span class="line">    String name = <span class="string">&quot;Human&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sleep</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Human sleep..&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">father</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;This is father&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Male</span> <span class="keyword">extends</span> <span class="title">Human</span></span>&#123;</span><br><span class="line">    String name = <span class="string">&quot;Male&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sleep</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Male sleep..&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">son</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;This is son&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>在向上转型时：</p>
-<ol>
-<li>父类的引用所指向的属性是父类的属性。</li>
-<li>如果子类重写了父类的方法，那么父类引用调用的方法是子类的方法,这个叫<strong>动态绑定</strong>。如果子类没有重写父类方法，那么调用的还是父类方法。</li>
-<li>不能调用子类独有的方法。</li>
-</ol>
+                        <h1 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h1><p>即预定义一个数据结构，内部可以存储统一的元素类型，但是此时未知数据类型。因此我们可以使用泛型，假设其为泛型类型 E。然后在初始化时再指定具体的泛型类型。</p>
+<p><strong>注意</strong>：如果ADHero和APHero是Hero的子类，那么<code>ArrayList&lt;Hero&gt;</code>可以储存Hero、ADHero和APHero类型的元素，该原则符合多态的思想。</p>
 <blockquote>
-<p>如果非要调用子类的属性，那么需要在父类定义一个属性getter，然后在子类中进行重写</p>
+<p>为什么不使用Object呢？毕竟Object是所有类型的父类。</p>
+<p>由于Object是父类，那么如果所有元素都用Object接收，相当于多态，那么使用元素特有方法的时候就需要向下转型，非常麻烦。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Object&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">list.add(<span class="string">&quot;xyz&quot;</span>);</span><br><span class="line">list.add(<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (Object o : list)&#123;</span><br><span class="line">    <span class="comment">// 如果想使用特有方法，需要向下转型</span></span><br><span class="line">    o.length();  <span class="comment">// 报错，Object没有length方法</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 即使转型，后面的元素可能类型不同，又要转型成新的类型</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<h2 id="向下转型"><a href="#向下转型" class="headerlink" title="向下转型"></a>向下转型</h2><p>只有向上转型的引用才能安全的使用向下转型，如果父类引用指向父类本身，那么使用向下转型可能会出错。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Human h = <span class="keyword">new</span> Male();</span><br><span class="line">        Male m = (Male) h;      <span class="comment">// 向下转型</span></span><br><span class="line">        System.out.println(m.name); <span class="comment">// Male</span></span><br><span class="line">        m.sleep();                  <span class="comment">// Male sleep..</span></span><br><span class="line">        m.son();                    <span class="comment">// This is son</span></span><br><span class="line">        m.father();                 <span class="comment">// This is father</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Human</span></span>&#123;</span><br><span class="line">    String name = <span class="string">&quot;Human&quot;</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sleep</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Human sleep..&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">father</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;This is father&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Male</span> <span class="keyword">extends</span> <span class="title">Human</span></span>&#123;</span><br><span class="line">    String name = <span class="string">&quot;Male&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sleep</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;Male sleep..&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">son</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;This is son&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="定义泛型"><a href="#定义泛型" class="headerlink" title="定义泛型"></a>定义泛型</h2><p>泛型的 Class , Method 和 Interface 都是使用类似的思想。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericClass</span>&lt;<span class="title">E</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> E ele;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">GenericClass</span><span class="params">(E e)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.ele = e;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.ele;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(E e)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.ele = e;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>向上转型会丢失子类特有的方法，但是仍然能保持子类中重写的方法；为了获取子类特有的方法，可以在向上转型基础上增加向下转型即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">GenericInterface</span>&lt;<span class="title">I</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">(I i)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GenericClass</span>&lt;<span class="title">I</span>&gt; <span class="keyword">implements</span> <span class="title">GenericInterface</span>&lt;<span class="title">I</span>&gt; </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">(I i)</span></span>&#123;</span><br><span class="line">        System.out.println(i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">        GenericClass&lt;String&gt; gc = <span class="keyword">new</span> GenericClass&lt;&gt;();</span><br><span class="line">        gc.func(<span class="string">&quot;generic interface&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="泛型通配符"><a href="#泛型通配符" class="headerlink" title="泛型通配符"></a>泛型通配符</h2><p>假设我们定义了一个ArrayList，并准备设计一个函数，以该ArrayList为参数，那么问题来了：形参应该定义成什么类型呢？用户可能传递一个<code>ArrayList&lt;String&gt;</code>，也可能是一个<code>ArrayList&lt;Integer&gt;</code>，程序员不可能给每一种类型都设计一个功能一样的函数。因此，使用泛型通配符就可以解决该问题。</p>
+<p>泛型通配符使用<code>&lt;?&gt;</code>的形式表明接收的泛型类型未知。</p>
+<p><strong>注意</strong>：通配符只能在接收时使用，不能实例化一个含有通配符的泛型，即<code>ArrayList&lt;?&gt; xx = new ArrayList&lt;&gt;();</code>是不允许的。</p>
+<p><strong>注意</strong>：不能使用ArrayList<Object>作为形参实现通配符。因为如果使用形如<code>public void func(ArrayList&lt;Object&gt; obj)</code>，那么在代码实现时每个元素都成了Object类型，如果需要返回元素，那么还需要进行类型转换，而本身传过来的元素类型就不定，所以这无法实现。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">func</span><span class="params">(ArrayList&lt;?&gt; item)</span></span>&#123;</span><br><span class="line">    <span class="comment">// 代码</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ArrayList&lt;String&gt; s = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">ArrayList&lt;Integer&gt; i = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">func(s);</span><br><span class="line">func(i);</span><br></pre></td></tr></table></figure>
+
+<h3 id="泛型通配符的上下限"><a href="#泛型通配符的上下限" class="headerlink" title="泛型通配符的上下限"></a>泛型通配符的上下限</h3><ul>
+<li>上限：<code>&lt;? extends E&gt;</code>，表示匹配E以及E的子类</li>
+<li>下限：<code>&lt;? super E&gt;</code>，表示匹配E以及E的父类</li>
+</ul>
 
                     </div>
 
@@ -298,28 +299,12 @@
                             
                                 <div class="article-nav">
                                     
-                                        <div class="article-prev">
-                                            <a class="prev" rel="prev" href="/2021/07/04/Java-Collection%E9%9B%86%E5%90%88/">
-                                                <span class="left arrow-icon flex-center">
-                                                    <i class="fas fa-chevron-left"></i>
-                                                </span>
-                                                <span class="title flex-center">
-                                                    <span class="post-nav-title-item">
-                                                        Java Collection集合
-                                                    </span>
-                                                    <span class="post-nav-item">
-                                                        Prev posts
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </div>
-                                        
                                             
                                                 <div class="article-next">
-                                                    <a class="next" rel="next" href="/2021/06/06/Java%E8%BF%9B%E9%98%B6/">
+                                                    <a class="next" rel="next" href="/2021/07/04/Java-Collection%E9%9B%86%E5%90%88/">
                                                         <span class="title flex-center">
                                                             <span class="post-nav-title-item">
-                                                                Java进阶
+                                                                Java Collection集合
                                                             </span>
                                                             <span class="post-nav-item">
                                                                 Next posts
@@ -445,7 +430,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AC%E5%9E%8B"><span class="nav-text">转型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E4%B8%8A%E8%BD%AC%E5%9E%8B"><span class="nav-text">向上转型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%91%E4%B8%8B%E8%BD%AC%E5%9E%8B"><span class="nav-text">向下转型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-text">总结</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B"><span class="nav-text">泛型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E6%B3%9B%E5%9E%8B"><span class="nav-text">定义泛型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B%E9%80%9A%E9%85%8D%E7%AC%A6"><span class="nav-text">泛型通配符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%9B%E5%9E%8B%E9%80%9A%E9%85%8D%E7%AC%A6%E7%9A%84%E4%B8%8A%E4%B8%8B%E9%99%90"><span class="nav-text">泛型通配符的上下限</span></a></li></ol></li></ol></li></ol>
     </div>
 </div>
         </aside>
