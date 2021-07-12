@@ -248,12 +248,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-            <i class="fas fa-file-word"></i>&nbsp;<span>416 Words</span>
+            <i class="fas fa-file-word"></i>&nbsp;<span>3.1k Words</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-            <i class="fas fa-clock"></i>&nbsp;<span>1 Mins</span>
+            <i class="fas fa-clock"></i>&nbsp;<span>13 Mins</span>
         </span>
     
     
@@ -269,11 +269,13 @@
             
 
                     <div class="article-content markdown-body">
-                        <h1 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">                         &lt;Collection&gt;</span><br><span class="line">                              |</span><br><span class="line">                ---------------------------</span><br><span class="line">                |                         |  </span><br><span class="line">              &lt;List&gt;                    &lt;Set&gt;</span><br><span class="line">                |                         |</span><br><span class="line">    ------------------------         -----------</span><br><span class="line">    |           |          |         |         |</span><br><span class="line">ArrayList   LinkedList  Vector    TreeSet   HashSet</span><br><span class="line">                                               |</span><br><span class="line">                                         LinkedHashSet</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>有&lt;&gt;的表示为 “接口Interface”，否则为 “类Class”。</p>
-</blockquote>
+                        <h1 id="集合框架"><a href="#集合框架" class="headerlink" title="集合框架"></a>集合框架</h1><p><a href="https://sm.ms/image/B45PL16IqHMmceV" target="_blank"><img  
+                     lazyload
+                     src="/images/loading.svg"
+                     data-src="https://i.loli.net/2021/07/11/B45PL16IqHMmceV.png"
+                      
+                ></a></p>
+<p>集合框架如上图所示，可以分为两个大类：存储元素集合的Collection；存储key-value键值对的Map。这两个大类又分别有一些具体的实现类。除此之外，还有一个Collections工具库，专门实现了一些能够操控、处理集合的方法，比如常见的“排序”，“倒置”等。</p>
 <ul>
 <li>List的特点：<ul>
 <li>存储时按序存储</li>
@@ -291,16 +293,6 @@
 </li>
 </ul>
 <hr>
-<h1 id="Collection共性方法"><a href="#Collection共性方法" class="headerlink" title="Collection共性方法"></a>Collection共性方法</h1><ul>
-<li><code>boolean add(E e)</code> – 添加元素到集合</li>
-<li><code>boolean remove(E e)</code> – 删除指定的元素</li>
-<li><code>void clear()</code> – 清空集合</li>
-<li><code>boolean contains(E e)</code> – 是否存在元素</li>
-<li><code>boolean isEmpty()</code> – 判断集合是否为空</li>
-<li><code>int size()</code> – 元素个数</li>
-<li><code>Object[] toArray()</code> – 转为普通数组</li>
-</ul>
-<hr>
 <h1 id="迭代器-Iterator"><a href="#迭代器-Iterator" class="headerlink" title="迭代器 Iterator"></a>迭代器 Iterator</h1><p>迭代器是 Collection 集合中取出元素的通用方法。每次先判断是否还有元素，如果是，那么继续取出下一个；如果不是，那么结束迭代。</p>
 <ul>
 <li>boolean hasNext() – 判断是否还有元素</li>
@@ -310,6 +302,144 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Iterator&lt;E&gt; it = collection对象.iterator();</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hero</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">        Collection&lt;String&gt; hero = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        hero.add(<span class="string">&quot;提莫&quot;</span>);</span><br><span class="line">        hero.add(<span class="string">&quot;盖伦&quot;</span>);</span><br><span class="line">        hero.add(<span class="string">&quot;亚索&quot;</span>);</span><br><span class="line">        hero.add(<span class="string">&quot;剑姬&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Iterator&lt;String&gt; it = hero.iterator();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// while循环</span></span><br><span class="line">        <span class="keyword">while</span>(it.hasNext())&#123;</span><br><span class="line">            System.out.println(it.next());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 普通for循环</span></span><br><span class="line">        <span class="keyword">for</span>(Iterator&lt;String&gt; it = hero.iterator(); it.hasNext(); )&#123;</span><br><span class="line">            System.out.println(it.next());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 增强for循环</span></span><br><span class="line">        <span class="keyword">for</span>(String s : hero)&#123;</span><br><span class="line">            System.out.println(s);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="List"><a href="#List" class="headerlink" title="List"></a>List<E></h1><p>List的数据结构都有一系列相同的操作：</p>
+<ul>
+<li><code>boolean add(E e)</code> / <code>boolean add(int idx, E e)</code> – 添加元素到集合</li>
+<li><code>E get(int idx)</code> – 获取元素</li>
+<li><code>E set(int idx, E e)</code> – 替换指定位置的元素，并返回旧的元素</li>
+<li><code>boolean remove(E e)</code> / <code>boolean remove(int idx)</code> – 删除指定的元素</li>
+<li><code>boolean contains(E e)</code> – 是否存在元素</li>
+<li><code>boolean isEmpty()</code> – 判断集合是否为空</li>
+<li><code>int size()</code> – 元素个数</li>
+<li><code>Object[] toArray()</code> – 转为普通数组</li>
+<li><code>String toString()</code> – 转为字符串</li>
+</ul>
+<h2 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList<E></h2><p>底层其实还是数组类型。当增加或删除元素时，会先根据当前的数组长度计算出更新后的数组长度，然后通过Arrays.copy()进行内容的复制，实现增删。</p>
+<p>对于查询，可以通过下标直接访问。</p>
+<p>因此，<strong>ArrayList的更新效率低，但是查询效率高</strong>。</p>
+<p>更多内容，详见<a href="">Java基础</a>。</p>
+<h2 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList<E></h2><p>底层是双向链表结构。根据链表的特性可知，其<strong>更新效率高，查询效率低</strong>。</p>
+<p>由于其增删效率很高，因此常见的栈、队列等数据结构都可以使用链表来模拟。</p>
+<ul>
+<li>增<ul>
+<li>在链表头部增加 – <code>addFirst(E e)</code></li>
+<li>在链表尾部增加 – <code>add(E e)</code> / <code>addLast(E e)</code></li>
+</ul>
+</li>
+<li>删<ul>
+<li>删除头部元素 – <code>removeFirst()</code></li>
+<li>删除尾部元素 – <code>removeLast()</code></li>
+</ul>
+</li>
+<li>查<ul>
+<li>查询头部元素 – <code>getFirst()</code></li>
+<li>查询尾部元素 – <code>getLast()</code></li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>虽然链表不能直接根据下标访问，但是java中重写了linkedlist的一些方法，所以仍然可以使用类似<code>set(int index, E e)</code>的方法，通过指定下标来直接访问指定位置。</p>
+</blockquote>
+<h2 id="Vector"><a href="#Vector" class="headerlink" title="Vector"></a>Vector<E></h2><p>是比较早期的概念，现已经被ArrayList所替代，基本不再使用。</p>
+<p>与ArrayList相比，他们有很多相同点：</p>
+<ul>
+<li>可以随机访问</li>
+<li>有序存放</li>
+<li>可边长</li>
+<li>支持泛型</li>
+<li>可存储重复元素</li>
+</ul>
+<p>但是他们也有很多不同点：</p>
+<ul>
+<li>Vector是同步的，这导致其在多线程环境下效率低</li>
+<li>Vector不支持迭代器，需要使用独有的方法去遍历</li>
+<li>Vector有很多独有的方法，增加了复杂性</li>
+</ul>
+<h3 id="Stack"><a href="#Stack" class="headerlink" title="Stack"></a>Stack<E></h3><p>是基于Vector实现的栈数据结构，现在很少直接使用该包。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> java.util;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    源码解析</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Stack</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Vector</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 构造函数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Stack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// push函数：将元素存入栈顶</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> E <span class="title">push</span><span class="params">(E item)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 将元素存入栈顶。</span></span><br><span class="line">        <span class="comment">// addElement()的实现在Vector包中</span></span><br><span class="line">        addElement(item);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// pop函数：返回栈顶元素，并将其从栈中删除</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> E <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        E obj;</span><br><span class="line">        <span class="keyword">int</span> len = size();</span><br><span class="line"></span><br><span class="line">        obj = peek();</span><br><span class="line">        <span class="comment">// 删除栈顶元素，removeElementAt()的实现在Vector包中</span></span><br><span class="line">        removeElementAt(len - <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// peek函数：返回栈顶元素，不执行删除操作</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> E <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> len = size();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (len == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> EmptyStackException();</span><br><span class="line">        <span class="comment">// 返回栈顶元素，elementAt()具体实现在Vector包中</span></span><br><span class="line">        <span class="keyword">return</span> elementAt(len - <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 栈是否为空</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">empty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> size() == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 查找“元素o”在栈中的位置：由栈底向栈顶方向数</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">int</span> <span class="title">search</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 获取元素索引，elementAt()具体实现在Vector.java中</span></span><br><span class="line">        <span class="keyword">int</span> i = lastIndexOf(o);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (i &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> size() - i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h1 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set<E></h1><h2 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet<E></h2><p>HashSet的底层是：<strong>数组+链表/红黑树</strong>。具体而言，当存入一个元素时，会使用方法<code>hashCode()</code>计算其hash值，然后将该元素放入数组中hash值对应的下标处。如果该下标处没有元素，那么直接放入；如果已经有元素了，那么会像链表一样在之前已有的后面添加节点。</p>
+<p>由于相同的元素会有相同的hash值，不同的元素可能也会凑巧有相同的hash值，因此Set在通过hash值找到对应位置时，还会依次调用方法<code>equals()</code>比较要放入的元素和已经存储的元素是否相同，如果有相同的，则终止操作，实现去重，否则就继续放入。</p>
+<p>**注意：如果想使用HashSet存储自定义的类，需要在类中重写<code>hashCode()</code>和<code>equals()</code>**。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">this</span> == o)    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">if</span> (o == <span class="keyword">null</span> || getClass() != o.getClass())  <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    ClassName <span class="keyword">var</span> = (ClassName) o;</span><br><span class="line">    <span class="keyword">return</span> (属性<span class="number">0</span>的值相同) &amp;&amp; (属性<span class="number">2</span>的值相同);    <span class="comment">// 比如 age == var.age &amp;&amp; Objects.equals(name, var.name);</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> Objects.hash(属性<span class="number">0</span>, 属性<span class="number">1</span>, ...);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>常用的API：</p>
+<ul>
+<li><code>add(E e)</code>，添加一个元素，由于Set是不管放入顺序的，所以不能指定放入的index</li>
+<li><code>remove(E e)</code>，删除一个元素，同样由于没有下标，所以不能指定删除哪个位置的，只能删除某个元素</li>
+<li><code>contains(E e)</code>，查看是否包含某个元素</li>
+<li><code>size()</code>，返回set内的元素个数</li>
+</ul>
+<blockquote>
+<p>由于没有下标，所以不能使用常规的for循环，只能使用增强for循环或者迭代器进行遍历。</p>
+</blockquote>
+<h2 id="LinkedHashSet"><a href="#LinkedHashSet" class="headerlink" title="LinkedHashSet"></a>LinkedHashSet<E></h2><p>与 <em>HashSet</em> 基本一致，只不过底层是哈希表+链表，即该 <em>HashSet</em> 可以做到记录存储的顺序。</p>
+<hr>
+<h1 id="Map-lt-K-V-gt"><a href="#Map-lt-K-V-gt" class="headerlink" title="Map&lt;K, V&gt;"></a>Map&lt;K, V&gt;</h1><p>以键值对的形式存储内容，和 <em>Python</em> 中的字典类似。</p>
+<h2 id="HashMap-lt-K-V-gt"><a href="#HashMap-lt-K-V-gt" class="headerlink" title="HashMap&lt;K, V&gt;"></a>HashMap&lt;K, V&gt;</h2><p>底层是哈希表，无序、键值要求不能重复、键和值可以使用 null。</p>
+<p>**注意：同 <em>Set</em> 一样，由于 <em>key</em> 不能重复，所以如果我们要用自定义的类作为 <em>key</em>，就必须在类中重写 <em>equals</em> 和 <em>hashCode</em> 方法**。</p>
+<p>常用API：</p>
+<ul>
+<li><code>public V put(K key, V value)</code>：如果不存在该key，则新建，并返回null；如果存在该key，则替换，并返回被替换的value</li>
+<li><code>public V remove(Object key)</code></li>
+<li><code>public V get(Object key)</code></li>
+<li><code>boolean containsKey(Object key)</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">    HashMap&lt;String, String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">    map.put(<span class="string">&quot;tom&quot;</span>, <span class="string">&quot;m&quot;</span>);</span><br><span class="line">    map.put(<span class="string">&quot;jack&quot;</span>, <span class="string">&quot;m&quot;</span>);</span><br><span class="line">    map.put(<span class="string">&quot;mary&quot;</span>, <span class="string">&quot;f&quot;</span>);</span><br><span class="line">    System.out.println(map);    <span class="comment">// &#123;tom: m, jack: m, mary: f&#125;</span></span><br><span class="line">    </span><br><span class="line">    map.remove(<span class="string">&quot;jack&quot;</span>);</span><br><span class="line">    System.out.println(map);    <span class="comment">// &#123;tom: m, mary: f&#125;</span></span><br><span class="line"></span><br><span class="line">    map.put(<span class="string">&quot;tom&quot;</span>, <span class="string">&quot;f&quot;</span>);</span><br><span class="line">    System.out.println(map);    <span class="comment">// &#123;tom: f, mary: f&#125;</span></span><br><span class="line"></span><br><span class="line">    System.out.println(map.get(<span class="string">&quot;mary&quot;</span>));    <span class="comment">// f</span></span><br><span class="line">    System.out.println(map.containsKey(<span class="string">&quot;xiaoming&quot;</span>));    <span class="comment">// false</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>public Set&lt;K&gt; keySet()</code></li>
+<li><code>public Set&lt;Map.Entry&lt;K, V&gt;&gt; entrySet()</code></li>
+<li><code>public Collection&lt;V&gt; values()</code></li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    使用keySet()获取key的集合，然后遍历keySet，并把对应的值取出</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">for</span> (String key : map.keySet())&#123;</span><br><span class="line">    System.out.println(key + <span class="string">&quot;: &quot;</span> + map.get(key));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    使用values()直接获取value的集合</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">for</span> (String s : map.values())&#123;</span><br><span class="line">    System.out.println(s);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    使用Entry对象</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">Set&lt;Map.Entry&lt;String, Integer&gt;&gt; s = map.entrySet();</span><br><span class="line"><span class="keyword">for</span> (Map.Entry&lt;String, Integer&gt; e : s) &#123;</span><br><span class="line">    System.out.println(e.getKey() + <span class="string">&quot;: &quot;</span> + e.getValue().toString());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Entry内部类"><a href="#Entry内部类" class="headerlink" title="Entry内部类"></a>Entry内部类</h3><p>每次初始化Map时，都会生成一个Entry静态内部类，存储了每一对键值对的内容。使用 <em>entrySet()</em> 方法后会生成一个由 <em>Map.Entry&lt;K, V&gt;</em> 结构构成的 Set，然后通过遍历该 Set 即可遍历到每一对键值对。再通过 <em>getKey()</em> 和 <em>getValue()</em> 方法分别获取键值对中的键和值。</p>
+<hr>
+<h1 id="Collections工具库"><a href="#Collections工具库" class="headerlink" title="Collections工具库"></a>Collections工具库</h1><p>该库位于 <em>java.util.Collections</em>，主要是提供了许多操控集合的方法。</p>
+<ul>
+<li><code>public static &lt;T&gt; boolean addAll(Collection&lt;T&gt; c, T..., elements)</code>：向集合中一次性添加多个元素</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;Integer&gt; arr = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 老方法</span></span><br><span class="line"><span class="comment">// arr.add(0);</span></span><br><span class="line"><span class="comment">// arr.add(1);</span></span><br><span class="line"><span class="comment">// arr.add(2);</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// collections工具库</span></span><br><span class="line">Collections.addAll(arr, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>public static &lt;T&gt; void sort(List&lt;T&gt; list)</code>：按照默认规则排序</li>
+<li><code>public static &lt;T&gt; void sort(List&lt;T&gt; list, Comparator&lt;? super T&gt;)</code>：按照指定的规则排序</li>
+</ul>
+<h2 id="Comparable接口"><a href="#Comparable接口" class="headerlink" title="Comparable接口"></a>Comparable接口</h2><p><em>Comparable</em> 是排序接口，如果一个类实现了排序接口，就意味着该类“支持默认排序规则”，可以使用 <code>Collections.sort()</code> 按照默认的排序规则进行排序。</p>
+<p>具体而言，**我们要在用户定义的类中实现 <em>Comparable</em>，并重写 <em>compareTo()</em> 方法**。</p>
+<blockquote>
+<p>默认情况下<code>res = x.compareTo(y)</code>：如果 <em>res&lt;0* 则代表 *x&lt;y* (或者说x排在y左侧)；如果 *res=0* 则代表 *x=y*；如果 *res&gt;0</em> 则代表 <em>x&gt;y</em> (或者说x排在y右侧)。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">    下面的 *Person* 类中，我们想按照用户的年龄顺序升序排列，</span></span><br><span class="line"><span class="comment">    如果同龄，则按照体重降序排列</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Person</span>&gt;</span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">float</span> weigh;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 省略了一些构造函数等方法</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Person o)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res;</span><br><span class="line">        res = <span class="keyword">this</span>.age - o.age;</span><br><span class="line">        <span class="keyword">if</span> (res == <span class="number">0</span>)&#123;</span><br><span class="line">            res = o.weigh - <span class="keyword">this</span>.weigh;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">        ArrayList&lt;Person&gt; arr = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        arr.add(<span class="keyword">new</span> Person(<span class="string">&quot;tom&quot;</span>, <span class="number">18</span>, <span class="number">55</span>));</span><br><span class="line">        arr.add(<span class="keyword">new</span> Person(<span class="string">&quot;mary&quot;</span>, <span class="number">28</span>, <span class="number">45</span>));</span><br><span class="line">        arr.add(<span class="keyword">new</span> Person(<span class="string">&quot;jack&quot;</span>, <span class="number">18</span>, <span class="number">60</span>));</span><br><span class="line">        Collections.sort(arr);</span><br><span class="line">        System.out.println(arr);    <span class="comment">// 返回[jack, tom, mary]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>调用 <code>Collections.sort()</code> 的顺序：<em>Collections.sort()</em> &rarr; <em>List.sort()</em> &rarr; <em>LegacyMergeSort()</em> &rarr; *mergeSort()*。在归并排序中，有这样一段代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (length &lt; INSERTIONSORT_THRESHOLD) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i=low; i&lt;high; i++)</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j=i; j&gt;low &amp;&amp; ((Comparable) dest[j-<span class="number">1</span>]).compareTo(dest[j])&gt;<span class="number">0</span>; j--)</span><br><span class="line">            swap(dest, j, j-<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以可以看出，每一次调用 <em>compareTo()</em> 时，this指向了前一个元素，o指向了当前元素。如果 <em>compareTo</em> 中是返回<code>this-o</code>，那么当“前一个元素&gt;当前元素”时才会执行将两者交换，即大的元素排右侧；如果 <em>compareTo</em> 中是返回<code>o-this</code>，那么当“当前元素&gt;前一个元素”时会执行交换，即大的元素排左侧。</p>
+</blockquote>
+<p>综上，**如果想要定义默认排序规则为升序，则在 <em>compareTo()</em> 中返回 <code>this-o</code>，否则返回 <code>o-this</code>**。</p>
+<h2 id="Comparator接口"><a href="#Comparator接口" class="headerlink" title="Comparator接口"></a>Comparator接口</h2><p><em>comparator</em> 是比较器接口，我们可以通过实现该接口来新建一个比较器。</p>
+<p>具体而言，**我们要实现 <em>Comparator</em>，并重写 <em>compare()</em> 方法，然后将该比较器放入 <em>Collections.sort()</em> 的第二个参数作为排序规则**。</p>
+<blockquote>
+<p>默认情况下<code>res = compare(Object o1, Object o2)</code>：如果 <em>res&lt;0* 则代表 *o1&lt;o2* (o1排在o2左侧)；如果 *res=0* 则代表 *o1=o2*；如果 *res&gt;0</em> 则代表 <em>o1&gt;o2</em>（o1排在o2右侧）</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">        ArrayList&lt;Person&gt; arr = <span class="keyword">new</span> <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        arr.add(<span class="keyword">new</span> Person(<span class="string">&quot;tom&quot;</span>, <span class="number">18</span>, <span class="number">55</span>));</span><br><span class="line">        arr.add(<span class="keyword">new</span> Person(<span class="string">&quot;mary&quot;</span>, <span class="number">28</span>, <span class="number">45</span>));</span><br><span class="line">        arr.add(<span class="keyword">new</span> Person(<span class="string">&quot;jack&quot;</span>, <span class="number">18</span>, <span class="number">60</span>));</span><br><span class="line">        Collections.sort(arr, <span class="keyword">new</span> Comparator&lt;Person&gt;()&#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Person o1, Person o2)</span></span>&#123;</span><br><span class="line">                <span class="keyword">int</span> res;</span><br><span class="line">                res = o1.age - o2.age;</span><br><span class="line">                <span class="keyword">if</span> (res == <span class="number">0</span>)&#123;</span><br><span class="line">                    res = o2.weigh - o1.weigh;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> res</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>与上述的 <em>Comparable</em> 类似，<strong>返回 <em>o1-o2</em> 则为升序，否则为降序</strong>。</p>
+<h2 id="Comparable-VS-Comparator"><a href="#Comparable-VS-Comparator" class="headerlink" title="Comparable VS Comparator"></a><em>Comparable</em> VS <em>Comparator</em></h2><p>一个定义的是默认排序方法，使用<em>sort</em>时不需要额外参数；一个定义的是自定义排序方法，使用<em>sort</em>时需要传入自定义方法。这就相当于 <strong><em>Comparable</em> 是内部（隐式）排序方法， <em>Comparator</em> 是外部（显式）排序方法</strong>。</p>
+<hr>
+<h1 id="of"><a href="#of" class="headerlink" title="of"></a><em>of</em></h1><p>在JDK9中，为 <em>List接口</em>，<em>Set接口</em> 和 <em>Map接口</em> 增加了一个静态方法 – <em>of</em>，用于在初始化时一次性添加多个元素。</p>
+<p><strong>注意</strong>：</p>
+<ol>
+<li><em>of</em>只适用于这三个接口，不适用于其实现类，如<em>ArrayList</em></li>
+<li>返回的集合是不可改变的，即不能使用诸如 <em>add</em>, <em>remove</em>, <em>set</em>等</li>
+<li><em>Set</em> 和 <em>Map</em> 使用 <em>of</em> 时不能传入相同的元素，否则会抛出异常</li>
+</ol>
+
                     </div>
 
                     
@@ -318,13 +448,13 @@
                                 <div class="article-nav">
                                     
                                         <div class="article-prev">
-                                            <a class="prev" rel="prev" href="/2021/07/05/Java%E9%AB%98%E7%BA%A7/">
+                                            <a class="prev" rel="prev" href="/2021/07/05/Java%E6%B3%9B%E5%9E%8B/">
                                                 <span class="left arrow-icon flex-center">
                                                     <i class="fas fa-chevron-left"></i>
                                                 </span>
                                                 <span class="title flex-center">
                                                     <span class="post-nav-title-item">
-                                                        Java高级
+                                                        Java泛型
                                                     </span>
                                                     <span class="post-nav-item">
                                                         Prev posts
@@ -464,7 +594,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6"><span class="nav-text">集合框架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Collection%E5%85%B1%E6%80%A7%E6%96%B9%E6%B3%95"><span class="nav-text">Collection共性方法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8-Iterator"><span class="nav-text">迭代器 Iterator</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6"><span class="nav-text">集合框架</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8-Iterator"><span class="nav-text">迭代器 Iterator</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#List"><span class="nav-text">List</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ArrayList"><span class="nav-text">ArrayList</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LinkedList"><span class="nav-text">LinkedList</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vector"><span class="nav-text">Vector</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Stack"><span class="nav-text">Stack</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Set"><span class="nav-text">Set</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HashSet"><span class="nav-text">HashSet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LinkedHashSet"><span class="nav-text">LinkedHashSet</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Map-lt-K-V-gt"><span class="nav-text">Map&lt;K, V&gt;</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HashMap-lt-K-V-gt"><span class="nav-text">HashMap&lt;K, V&gt;</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Entry%E5%86%85%E9%83%A8%E7%B1%BB"><span class="nav-text">Entry内部类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Collections%E5%B7%A5%E5%85%B7%E5%BA%93"><span class="nav-text">Collections工具库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Comparable%E6%8E%A5%E5%8F%A3"><span class="nav-text">Comparable接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Comparator%E6%8E%A5%E5%8F%A3"><span class="nav-text">Comparator接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Comparable-VS-Comparator"><span class="nav-text">Comparable VS Comparator</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#of"><span class="nav-text">of</span></a></li></ol>
     </div>
 </div>
         </aside>
