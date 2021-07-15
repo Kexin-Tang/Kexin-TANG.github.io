@@ -204,7 +204,7 @@
                             Kexin
                         </span>
                         <!-- 
-                            <span class="author-label">Lv3</span>
+                            <span class="author-label">Lv4</span>
                          -->
                     </div>
                     <div class="meta-info">
@@ -467,7 +467,6 @@
 <li>如果多个接口有同名的抽象方法，那么只需要实现一次</li>
 <li>如果存在冲突的默认方法，则必须要对默认方法进行重写</li>
 <li>如果一个class的父类方法和interface的默认方法冲突，那么会优先选择父类方法</li>
-<li></li>
 </ol>
 <h2 id="接口的继承"><a href="#接口的继承" class="headerlink" title="接口的继承"></a>接口的继承</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文件名: Sports.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Sports</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setHomeTeam</span><span class="params">(String name)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setVisitingTeam</span><span class="params">(String name)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"> </span><br><span class="line"><span class="comment">// 文件名: Football.java</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Football</span> <span class="keyword">extends</span> <span class="title">Sports</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">homeTeamScored</span><span class="params">(<span class="keyword">int</span> points)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">visitingTeamScored</span><span class="params">(<span class="keyword">int</span> points)</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">endOfQuarter</span><span class="params">(<span class="keyword">int</span> quarter)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>在上述代码中，如果某个 class 实现了 Football 接口，那么需要实现一共5个方法。</p>
@@ -475,7 +474,6 @@
 <ol>
 <li>如果多个父接口中抽象方法冲突，没有关系。</li>
 <li>如果多个父接口中默认方法冲突，则必须重写该默认方法，且仍然要带着default关键字。</li>
-<li></li>
 </ol>
 <h2 id="接口常量"><a href="#接口常量" class="headerlink" title="接口常量"></a>接口常量</h2><p>在接口中，<strong>不能定义普通的成员变量，只能定义public static final常量</strong>。这同样是因为接口的多继承原因，即如果多个接口有同名的成员变量，那么实现接口的类会出现冲突。</p>
 <h2 id="default默认方法"><a href="#default默认方法" class="headerlink" title="default默认方法"></a>default默认方法</h2><p>在 JAVA 8 之后加入了默认方法，为的就是解决接口升级问题：比如接口中定义了一个抽象方法，然后某一个类实现了该接口；如果更新接口，加入了新的抽象方法，那么之前的类就需要实现新添加的方法，这非常麻烦且不符合业务要求。</p>
@@ -561,7 +559,7 @@
                                 <div class="article-nav">
                                     
                                         <div class="article-prev">
-                                            <a class="prev" rel="prev" href="/2021/06/22/Java%E8%BD%AC%E5%9E%8B/">
+                                            <a class="prev" rel="prev" href="/2021/06/22/Java-%E8%BD%AC%E5%9E%8B/">
                                                 <span class="left arrow-icon flex-center">
                                                     <i class="fas fa-chevron-left"></i>
                                                 </span>
